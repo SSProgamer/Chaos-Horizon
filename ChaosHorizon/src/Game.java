@@ -1,12 +1,17 @@
 import java.awt.*;
 import java.awt.image.*;
+import java.util.*;
 
 public class Game extends Canvas implements Runnable {
     public static final int WIDTH = 800;
     public static final int HEIGHT = 600;
+
     private Thread thread;
     private boolean running = false;
+
+    private Random r;
     private Handler handler;
+    private HUD hud;
 
     public Game() {
         handler = new Handler();
@@ -14,7 +19,14 @@ public class Game extends Canvas implements Runnable {
 
         new Window(WIDTH, HEIGHT, "Chaos Horizon", this);
 
-        handler.addObject(new Player(WIDTH / 2 - 32, HEIGHT / 2 - 32, ID.Player));
+        hud = new HUD();
+
+        r = new Random();
+
+        handler.addObject(new Player(WIDTH / 2 - 32, HEIGHT / 2 - 32, ID.Player, handler));
+        for (int i = 0; i < 10; i++) {
+            handler.addObject(new BasicEnemy(r.nextInt(WIDTH - 270), r.nextInt(HEIGHT - 48), ID.BasicEnemy));
+        }
     }
 
     public synchronized void start() {
@@ -33,6 +45,7 @@ public class Game extends Canvas implements Runnable {
     }
 
     public void run() {
+        this.requestFocus();
         long lastTime = System.nanoTime();
         double amountOfTicks = 60.0;
         double ns = 1000000000 / amountOfTicks;
@@ -62,6 +75,7 @@ public class Game extends Canvas implements Runnable {
 
     private void tick() {
         handler.tick();
+        hud.tick();
     }
 
     private void render() {
@@ -78,8 +92,20 @@ public class Game extends Canvas implements Runnable {
 
         handler.render(g);
 
+        hud.render(g);
+
         g.dispose();
         bs.show();
+    }
+
+    public static int clamp(int var, int min, int max) {
+        if (var >= max) {
+            return var = max;
+        } else if (var <= min) {
+            return var = min;
+        } else {
+            return var;
+        }
     }
 
     public static void main(String[] args) {
