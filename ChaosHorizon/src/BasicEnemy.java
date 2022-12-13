@@ -5,7 +5,7 @@ public class BasicEnemy extends GameObject {
     private int startX;
     private int startY;
     private HUD hud;
-    Handler handler;
+    private Handler handler;
 
     public BasicEnemy(int x, int y, ID id, Handler handler, HUD hud) {
         super(x, y, id);
