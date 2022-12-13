@@ -14,6 +14,8 @@ public class Player extends GameObject {
     }
 
     public void tick() {
+        HEALTH = Game.clamp(HEALTH, 0, 100);
+
         x += velX;
         y += velY;
 
@@ -23,7 +25,7 @@ public class Player extends GameObject {
         collision();
     }
 
-    private void collision() {
+    private synchronized void collision() {
         for (int i = 0; i < handler.object.size(); i++) {
 
             GameObject tempObject = handler.object.get(i);
@@ -31,7 +33,6 @@ public class Player extends GameObject {
             if (tempObject.getId() == ID.BasicEnemy) {
                 if (getBounds().intersects(tempObject.getBounds())) {
                     HEALTH--;
-                    handler.removeObject(tempObject);
                 }
             }
         }

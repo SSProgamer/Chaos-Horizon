@@ -1,6 +1,5 @@
 import java.awt.*;
 import java.awt.image.*;
-import java.util.*;
 
 public class Game extends Canvas implements Runnable {
     public static final int WIDTH = 800;
@@ -9,9 +8,9 @@ public class Game extends Canvas implements Runnable {
     private Thread thread;
     private boolean running = false;
 
-    private Random r;
     private Handler handler;
     private HUD hud;
+    private Spawn spawner;
 
     public Game() {
         handler = new Handler();
@@ -20,13 +19,9 @@ public class Game extends Canvas implements Runnable {
         new Window(WIDTH, HEIGHT, "Chaos Horizon", this);
 
         hud = new HUD();
+        spawner = new Spawn(handler, hud);
 
-        r = new Random();
-
-        handler.addObject(new Player(WIDTH / 2 - 32, HEIGHT / 2 - 32, ID.Player, handler));
-        for (int i = 0; i < 10; i++) {
-            handler.addObject(new BasicEnemy(r.nextInt(WIDTH - 270), r.nextInt(HEIGHT - 48), ID.BasicEnemy));
-        }
+        handler.addObject(new Player(600 / 2 - 32, HEIGHT - 90, ID.Player, handler));
     }
 
     public synchronized void start() {
@@ -76,6 +71,7 @@ public class Game extends Canvas implements Runnable {
     private void tick() {
         handler.tick();
         hud.tick();
+        spawner.tick();
     }
 
     private void render() {
