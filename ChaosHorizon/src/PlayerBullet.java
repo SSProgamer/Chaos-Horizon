@@ -1,7 +1,7 @@
 import java.awt.*;
 
 public class PlayerBullet extends GameObject {
-    Handler handler;
+    private Handler handler;
 
     public PlayerBullet(int x, int y, ID id, Handler handler) {
         super(x, y, id);

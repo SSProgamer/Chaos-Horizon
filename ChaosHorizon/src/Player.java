@@ -2,7 +2,7 @@ import java.awt.*;
 
 public class Player extends GameObject {
     public static int HEALTH = 100;
-    Handler handler;
+    private Handler handler;
 
     private boolean shoot;
     private int cooldown;

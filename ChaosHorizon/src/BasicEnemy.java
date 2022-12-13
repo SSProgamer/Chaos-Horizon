@@ -5,7 +5,7 @@ public class BasicEnemy extends GameObject {
     private int startX;
     private int startY;
     private HUD hud;
-    Handler handler;
+    private Handler handler;
 
     public BasicEnemy(int x, int y, ID id, Handler handler, HUD hud) {
         super(x, y, id);
@@ -47,7 +47,7 @@ public class BasicEnemy extends GameObject {
         for (int i = 0; i < handler.object.size(); i++) {
             GameObject tempObject = handler.object.get(i);
 
-            if (tempObject.getId() == ID.Player || tempObject.getId() == ID.PlayerBullet) {
+            if (tempObject.getId() == ID.Player) {
                 if (getBounds().intersects(tempObject.getBounds())) {
                     HP--;
                 }
