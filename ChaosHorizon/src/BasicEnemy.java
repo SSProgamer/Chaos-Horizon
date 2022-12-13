@@ -6,6 +6,7 @@ public class BasicEnemy extends GameObject {
     private int startY;
     private HUD hud;
     private Handler handler;
+<<<<<<< Updated upstream
 
     private int HP;
     private int cooldown;
@@ -21,6 +22,16 @@ public class BasicEnemy extends GameObject {
         HP = 20;
         r = new Random();
 
+=======
+    private int idEnemy;
+    private ID id;
+    public BasicEnemy(int x, int y, ID id, Handler handler, HUD hud,int idEnemy) {
+        super(x, y, id);
+        this.handler = handler;
+        this.hud = hud;
+        this.id = id;
+        this.idEnemy = idEnemy;
+>>>>>>> Stashed changes
         startX = x;
         startY = y;
 
@@ -29,6 +40,19 @@ public class BasicEnemy extends GameObject {
 
         endCooldown = 100;
         cooldown = endCooldown;
+    }
+
+    public int getidEnemy() {
+        return idEnemy;
+    }
+    public void setEnemypo(int idEnemy) {
+        if(idEnemy%2 == 0){
+            super.y=80;
+        }
+        else{
+            super.y=150;
+        }
+        
     }
 
     public Rectangle getBounds() {
