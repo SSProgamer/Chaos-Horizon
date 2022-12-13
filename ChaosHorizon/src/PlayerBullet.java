@@ -1,25 +1,22 @@
 import java.awt.*;
 
 public class PlayerBullet extends GameObject {
-    private int cooldown;
-    private boolean shoot;
     Handler handler;
 
-    public PlayerBullet(int x, int y, ID id) {
+    public PlayerBullet(int x, int y, ID id, Handler handler) {
         super(x, y, id);
+        this.handler = handler;
 
-        cooldown = 1000;
-        shoot = false;
-        velY = -5;
+        velY = -10;
     }
 
     public Rectangle getBounds() {
-        return new Rectangle(x, y, 2, 2);
+        return new Rectangle(x, y, 8, 16);
     }
 
     public void render(Graphics g) {
         g.setColor(Color.blue);
-        g.fillRect(x, y, 2, 2);
+        g.fillRect(x, y, 8, 16);
     }
 
     public void tick() {
@@ -28,14 +25,6 @@ public class PlayerBullet extends GameObject {
 
         if (x <= 0) {
             handler.removeObject(this);
-        }
-
-        if (shoot) {
-            for (int i = 0; i < handler.object.size(); i++) {
-                GameObject tempObject = handler.object.get(i);
-
-                handler.addObject(new PlayerBullet(tempObject.getX(), tempObject.getY(), ID.PlayerBullet));
-            }
         }
     }
 }

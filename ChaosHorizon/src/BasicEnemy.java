@@ -4,11 +4,13 @@ public class BasicEnemy extends GameObject {
     private int HP = 20;
     private int startX;
     private int startY;
+    private HUD hud;
     Handler handler;
 
-    public BasicEnemy(int x, int y, ID id, Handler handler) {
+    public BasicEnemy(int x, int y, ID id, Handler handler, HUD hud) {
         super(x, y, id);
         this.handler = handler;
+        this.hud = hud;
 
         startX = x;
         startY = y;
@@ -35,6 +37,7 @@ public class BasicEnemy extends GameObject {
 
         if (HP <= 0) {
             handler.removeObject(this);
+            hud.setScore(hud.getScore() + 20);
         }
 
         collision();
@@ -44,9 +47,15 @@ public class BasicEnemy extends GameObject {
         for (int i = 0; i < handler.object.size(); i++) {
             GameObject tempObject = handler.object.get(i);
 
-            if (tempObject.getId() == ID.Player) {
+            if (tempObject.getId() == ID.Player || tempObject.getId() == ID.PlayerBullet) {
                 if (getBounds().intersects(tempObject.getBounds())) {
                     HP--;
+                }
+            }
+            if (tempObject.getId() == ID.PlayerBullet) {
+                if (getBounds().intersects(tempObject.getBounds())) {
+                    HP--;
+                    handler.removeObject(tempObject);
                 }
             }
         }
