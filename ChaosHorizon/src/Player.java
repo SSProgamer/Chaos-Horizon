@@ -10,7 +10,7 @@ public class Player extends GameObject {
     }
 
     public Rectangle getBounds() {
-        return new Rectangle(x, y, 32, 32);
+        return new Rectangle(x, y, 30, 30);
     }
 
     public void tick() {
@@ -40,6 +40,6 @@ public class Player extends GameObject {
 
     public void render(Graphics g) {
         g.setColor(Color.white);
-        g.fillRect(x, y, 32, 32);
+        g.fillRect(x, y, 30, 30);
     }
 }

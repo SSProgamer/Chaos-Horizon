@@ -42,7 +42,6 @@ public class BasicEnemy extends GameObject {
 
     private synchronized void collision() {
         for (int i = 0; i < handler.object.size(); i++) {
-
             GameObject tempObject = handler.object.get(i);
 
             if (tempObject.getId() == ID.Player) {
