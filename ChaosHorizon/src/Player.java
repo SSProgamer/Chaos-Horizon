@@ -4,13 +4,21 @@ public class Player extends GameObject {
     public static int HEALTH = 100;
     Handler handler;
 
+    private boolean shoot;
+    private int cooldown;
+    private int endCooldown;
+
     public Player(int x, int y, ID id, Handler handler) {
         super(x, y, id);
         this.handler = handler;
+
+        shoot = false;
+        endCooldown = 10;
+        cooldown = endCooldown;
     }
 
     public Rectangle getBounds() {
-        return new Rectangle(x, y, 30, 30);
+        return new Rectangle(x, y, 64, 64);
     }
 
     public void tick() {
@@ -18,9 +26,16 @@ public class Player extends GameObject {
 
         x += velX;
         y += velY;
+        cooldown++;
 
         x = Game.clamp(x, 0, Game.WIDTH - 280);
         y = Game.clamp(y, 0, Game.HEIGHT - 72);
+        cooldown = Game.clamp(cooldown, 0, endCooldown);
+
+        if (shoot && (cooldown == endCooldown)) {
+            handler.addObject(new PlayerBullet(x + 28, y - 14, ID.PlayerBullet, handler));
+            cooldown = 0;
+        }
 
         collision();
     }
@@ -38,8 +53,16 @@ public class Player extends GameObject {
         }
     }
 
+    public boolean isShoot() {
+        return shoot;
+    }
+
+    public void setShoot(boolean shoot) {
+        this.shoot = shoot;
+    }
+
     public void render(Graphics g) {
         g.setColor(Color.white);
-        g.fillRect(x, y, 30, 30);
+        g.fillRect(x, y, 64, 64);
     }
 }

@@ -21,7 +21,7 @@ public class Game extends Canvas implements Runnable {
         hud = new HUD();
         spawner = new Spawn(handler, hud);
 
-        handler.addObject(new Player(600 / 2 - 30, HEIGHT - 90, ID.Player, handler));
+        handler.addObject(new Player(600 / 2 - 64, HEIGHT - 128, ID.Player, handler));
     }
 
     public synchronized void start() {

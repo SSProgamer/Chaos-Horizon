@@ -28,7 +28,8 @@ public class KeyInput extends KeyAdapter {
                     tempObject.setVelX(5);
                 }
                 if (key == KeyEvent.VK_SHIFT) {
-
+                    ((Player) tempObject).setShoot(true);
+                    ;
                 }
             }
         }
@@ -57,6 +58,10 @@ public class KeyInput extends KeyAdapter {
                 }
                 if (key == KeyEvent.VK_D) {
                     tempObject.setVelX(0);
+                }
+                if (key == KeyEvent.VK_SHIFT) {
+                    ((Player) tempObject).setShoot(false);
+                    ;
                 }
             }
         }
