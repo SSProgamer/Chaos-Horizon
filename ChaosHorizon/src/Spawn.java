@@ -11,11 +11,11 @@ public class Spawn {
 
     public void tick() {
         if (hud.getWave() == 0) {
-            new Wave(handler, hud);
-            for (int i = 0; i < 5; i++) {
+            new Wave(handler, hud, 1);
+            /*for (int i = 0; i < 5; i++) {
                 handler.addObject(new BasicEnemy(spawnX + 40 * i, spawnY, ID.BasicEnemy, handler, hud));
             }
-            hud.setWave(hud.getWave() + 1);
+            hud.setWave(hud.getWave() + 1);*/
         }
     }
 

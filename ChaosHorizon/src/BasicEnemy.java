@@ -6,32 +6,25 @@ public class BasicEnemy extends GameObject {
     private int startY;
     private HUD hud;
     private Handler handler;
-<<<<<<< Updated upstream
-
     private int HP;
     private int cooldown;
     private int endCooldown;
     private int shoot;
     private Random r;
-
-    public BasicEnemy(int x, int y, ID id, Handler handler, HUD hud) {
-        super(x, y, id);
-        this.handler = handler;
-        this.hud = hud;
-
-        HP = 20;
-        r = new Random();
-
-=======
     private int idEnemy;
     private ID id;
+    private int maxY;
+    private int maxedY = 0;
+    private static int numberEnemy = 0;
     public BasicEnemy(int x, int y, ID id, Handler handler, HUD hud,int idEnemy) {
         super(x, y, id);
         this.handler = handler;
         this.hud = hud;
         this.id = id;
         this.idEnemy = idEnemy;
->>>>>>> Stashed changes
+        numberEnemy++;
+        HP = 20;
+        r = new Random();
         startX = x;
         startY = y;
 
@@ -45,12 +38,12 @@ public class BasicEnemy extends GameObject {
     public int getidEnemy() {
         return idEnemy;
     }
-    public void setEnemypo(int idEnemy) {
+    public void setEnemyPosition(int idEnemy) {
         if(idEnemy%2 == 0){
-            super.y=80;
+            maxY=80;
         }
         else{
-            super.y=150;
+            maxY=150;
         }
         
     }
@@ -65,13 +58,22 @@ public class BasicEnemy extends GameObject {
     }
 
     public void tick() {
-        x += velX;
+        if(y <= maxY){
+            maxedY += velY;
+            y += velY;
+        }
+        else if(maxedY <= 150){
+            maxedY += velY;
+        }
+        else if(y >= maxY){
+            x += velX;
+        }
         shoot = r.nextInt(100);
         cooldown++;
 
         cooldown = Game.clamp(cooldown, 0, endCooldown);
 
-        if (x <= startX || x >= Game.WIDTH - 470 + startX) {
+        if (x <= startX-10 || x >= Game.WIDTH - 470 + startX-(numberEnemy*20)) {
             velX *= -1;
         }
 
