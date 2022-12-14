@@ -16,14 +16,15 @@ public class BasicEnemy extends GameObject {
     private int maxY;
     private int maxedY = 0;
     private static int numberEnemy = 0;
-    public BasicEnemy(int x, int y, ID id, Handler handler, HUD hud,int idEnemy) {
+
+    public BasicEnemy(int x, int y, ID id, Handler handler, HUD hud, int idEnemy) {
         super(x, y, id);
         this.handler = handler;
         this.hud = hud;
         this.id = id;
         this.idEnemy = idEnemy;
         numberEnemy++;
-        HP = 20;
+        HP = 5;
         r = new Random();
         startX = x;
         startY = y;
@@ -38,14 +39,14 @@ public class BasicEnemy extends GameObject {
     public int getidEnemy() {
         return idEnemy;
     }
+
     public void setEnemyPosition(int idEnemy) {
-        if(idEnemy%2 == 0){
-            maxY=80;
+        if (idEnemy % 2 == 0) {
+            maxY = 80;
+        } else {
+            maxY = 150;
         }
-        else{
-            maxY=150;
-        }
-        
+
     }
 
     public Rectangle getBounds() {
@@ -58,22 +59,21 @@ public class BasicEnemy extends GameObject {
     }
 
     public void tick() {
-        if(y <= maxY){
+        if (y <= maxY) {
             maxedY += velY;
             y += velY;
-        }
-        else if(maxedY <= 150){
+        } else if (maxedY <= 150) {
             maxedY += velY;
-        }
-        else if(y >= maxY){
+        } else if (y >= maxY) {
             x += velX;
         }
+
         shoot = r.nextInt(100);
         cooldown++;
 
         cooldown = Game.clamp(cooldown, 0, endCooldown);
 
-        if (x <= startX-10 || x >= Game.WIDTH - 470 + startX-(numberEnemy*20)) {
+        if (x <= startX - 10 || x >= Game.WIDTH - 470 + startX - (numberEnemy * 20)) {
             velX *= -1;
         }
 
@@ -83,7 +83,9 @@ public class BasicEnemy extends GameObject {
         }
 
         if (cooldown == endCooldown && shoot <= 5) {
-            handler.addObject(new EnemyBullet(x, y, ID.EnemyBullet, handler));
+            handler.addObject(new EnemyBullet(x, y, ID.EnemyBullet, handler, 0, 5));
+            handler.addObject(new EnemyBullet(x, y, ID.EnemyBullet, handler, 5, 5));
+            handler.addObject(new EnemyBullet(x, y, ID.EnemyBullet, handler, -5, 5));
             cooldown = 0;
         }
 
@@ -101,7 +103,7 @@ public class BasicEnemy extends GameObject {
             }
             if (tempObject.getId() == ID.PlayerBullet) {
                 if (getBounds().intersects(tempObject.getBounds())) {
-                    HP--;
+                    HP -= ((PlayerBullet) tempObject).getDamage();
                     handler.removeObject(tempObject);
                 }
             }

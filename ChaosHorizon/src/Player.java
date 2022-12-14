@@ -13,12 +13,12 @@ public class Player extends GameObject {
         this.handler = handler;
 
         shoot = false;
-        endCooldown = 10;
+        endCooldown = 30;
         cooldown = endCooldown;
     }
 
     public Rectangle getBounds() {
-        return new Rectangle(x, y, 64, 64);
+        return new Rectangle(x + 8, y + 8, 48, 48);
     }
 
     public void tick() {
@@ -28,16 +28,31 @@ public class Player extends GameObject {
         y += velY;
         cooldown++;
 
-        x = Game.clamp(x, 0, Game.WIDTH - 280);
-        y = Game.clamp(y, 0, Game.HEIGHT - 72);
+        x = Game.clamp(x, 0, Game.WIDTH - 312);
+        y = Game.clamp(y, 0, Game.HEIGHT - 104);
         cooldown = Game.clamp(cooldown, 0, endCooldown);
 
         if (shoot && (cooldown == endCooldown)) {
-            handler.addObject(new PlayerBullet(x + 28, y - 14, ID.PlayerBullet, handler));
+            handler.addObject(new PlayerBullet(x + 28, y - 14, ID.PlayerBullet, handler, 0, -10));
+            handler.addObject(new PlayerBullet(x + 28, y - 14, ID.PlayerBullet, handler, 5, -10));
+            handler.addObject(new PlayerBullet(x + 28, y - 14, ID.PlayerBullet, handler, -5, -10));
+            handler.addObject(new PlayerBullet(x + 28, y - 14, ID.PlayerBullet, handler, 10, -10));
+            handler.addObject(new PlayerBullet(x + 28, y - 14, ID.PlayerBullet, handler, -10, -10));
+
             cooldown = 0;
         }
 
         collision();
+    }
+
+    public void render(Graphics g) {
+        Graphics2D g2d = (Graphics2D) g;
+
+        g.setColor(Color.white);
+        g.fillRect(x, y, 64, 64);
+
+        g.setColor(Color.green);
+        g2d.draw(getBounds());
     }
 
     private synchronized void collision() {
@@ -48,6 +63,12 @@ public class Player extends GameObject {
             if (tempObject.getId() == ID.BasicEnemy) {
                 if (getBounds().intersects(tempObject.getBounds())) {
                     HEALTH--;
+                }
+            }
+            if (tempObject.getId() == ID.EnemyBullet) {
+                if (getBounds().intersects(tempObject.getBounds())) {
+                    HEALTH--;
+                    handler.removeObject(tempObject);
                 }
             }
         }
@@ -61,8 +82,4 @@ public class Player extends GameObject {
         this.shoot = shoot;
     }
 
-    public void render(Graphics g) {
-        g.setColor(Color.white);
-        g.fillRect(x, y, 64, 64);
-    }
 }
