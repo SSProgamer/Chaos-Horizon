@@ -11,12 +11,46 @@ public class Wave {
         idEnemy = 1;
         this.handler = handler;
         this.hud = hud;
+        //เริ่มนับ Enemy ใหม่
+        basicEnemy.setNumberEnemy(0);
+        //กำหนด wave
+        if (wave == 1){
+            Wave1();
+        }
+        else if(wave == 2){
+            System.out.println(2);
+        }
+        else if(wave == 3){
+            System.out.println(3);
+        }
+        else if(wave == 4){
+            System.out.println(4);
+        }
+        else if(wave == 5){
+            System.out.println(5);
+        }
+        hud.setWave(hud.getWave() + 1);
+    }
+    public void Wave1(){
         for (int i = 0; i < 8; i++) {
+            //สร้าง enemy
             basicEnemy = new BasicEnemy(20 + 40 * i, -60, ID.BasicEnemy, handler, hud, idEnemy);
             handler.addObject(basicEnemy);
             idEnemy++;
             basicEnemy.setEnemyPosition(basicEnemy.getidEnemy());
         }
-        hud.setWave(hud.getWave() + 1);
+    }
+    public void Wave2(){
+        for (int i = 0; i < 4; i++) {
+            basicEnemy = new BasicEnemy(20 + 40 * i, -60, ID.BasicEnemy, handler, hud, idEnemy);
+            handler.addObject(basicEnemy);
+            idEnemy++;
+            basicEnemy.setEnemyPosition(basicEnemy.getidEnemy());
+        }
+        for (int i = 0; i < 8; i++) {
+            //new Enemy
+            idEnemy++;
+            //basicEnemy.setEnemyPosition(basicEnemy.getidEnemy());
+        }
     }
 }

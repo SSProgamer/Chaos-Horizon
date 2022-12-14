@@ -40,6 +40,10 @@ public class BasicEnemy extends GameObject {
         return idEnemy;
     }
 
+    public static void setNumberEnemy(int numberEnemy) {
+        BasicEnemy.numberEnemy = numberEnemy;
+    }
+
     public void setEnemyPosition(int idEnemy) {
         if (idEnemy % 2 == 0) {
             maxY = 80;
@@ -62,7 +66,7 @@ public class BasicEnemy extends GameObject {
         if (y <= maxY) {
             maxedY += velY;
             y += velY;
-        } else if (maxedY <= 150) {
+        } else if (maxedY <= 210) {
             maxedY += velY;
         } else if (y >= maxY) {
             x += velX;
