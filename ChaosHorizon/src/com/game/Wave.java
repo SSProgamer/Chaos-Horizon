@@ -26,7 +26,7 @@ public class Wave {
         } else if (wave == 2) {
             Wave3();
         } else if (wave == 3) {
-            Wave2();
+            Wave4();
         } else if (wave == 4) {
             Wave2();
         }
@@ -45,32 +45,58 @@ public class Wave {
     }
 
     public void Wave2() {
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 10; i++) {
+            fastEnemy = new FastEnemy(-50 * i, 300, ID.BasicEnemy, handler, hud, idEnemy);
+            handler.addObject(fastEnemy);
+            idEnemy++;
+            fastEnemy.setEnemyPosition(fastEnemy.getidEnemy());
+        }
+        for (int i = 0; i < 8; i++) {
+            // สร้าง enemy
+            EnemyaLive++;
             basicEnemy = new BasicEnemy(20 + 40 * i, -60, ID.BasicEnemy, handler, hud, idEnemy);
             handler.addObject(basicEnemy);
             idEnemy++;
             basicEnemy.setEnemyPosition(basicEnemy.getidEnemy());
         }
-        for (int i = 0; i < 8; i++) {
-            fastEnemy = new FastEnemy(20 + 40 * i, 150, ID.BasicEnemy, handler, hud, idEnemy);
-            handler.addObject(fastEnemy);
-            idEnemy++;
-            fastEnemy.setEnemyPosition(fastEnemy.getidEnemy());
-        }
     }
 
     public void Wave3() {
         for (int i = 0; i < 4; i++) {
-            heavyEnemy = new HeavyEnemy(20 + 40 * i, -60, ID.BasicEnemy, handler, hud, idEnemy);
+            heavyEnemy = new HeavyEnemy(50 + 40 * i, -60, ID.BasicEnemy, handler, hud, idEnemy);
             handler.addObject(heavyEnemy);
             idEnemy++;
             heavyEnemy.setEnemyPosition(heavyEnemy.getidEnemy());
         }
         for (int i = 0; i < 8; i++) {
-            fastEnemy = new FastEnemy(20 + 40 * i, 150, ID.BasicEnemy, handler, hud, idEnemy);
+            // สร้าง enemy
+            EnemyaLive++;
+            basicEnemy = new BasicEnemy(20 + 40 * i, -60, ID.BasicEnemy, handler, hud, idEnemy);
+            handler.addObject(basicEnemy);
+            idEnemy++;
+            basicEnemy.setEnemyPosition(basicEnemy.getidEnemy());
+        }
+    }
+    public void Wave4() {
+        for (int i = 0; i < 8; i++) {
+            // สร้าง enemy
+            EnemyaLive++;
+            basicEnemy = new BasicEnemy(20 + 40 * i, -60, ID.BasicEnemy, handler, hud, idEnemy);
+            handler.addObject(basicEnemy);
+            idEnemy++;
+            basicEnemy.setEnemyPosition(basicEnemy.getidEnemy());
+        }
+        for (int i = 0; i < 10; i++) {
+            fastEnemy = new FastEnemy(-50 * i, 300, ID.BasicEnemy, handler, hud, idEnemy);
             handler.addObject(fastEnemy);
             idEnemy++;
             fastEnemy.setEnemyPosition(fastEnemy.getidEnemy());
+        }
+        for (int i = 0; i < 4; i++) {
+            heavyEnemy = new HeavyEnemy(50 + 40 * i, -60, ID.BasicEnemy, handler, hud, idEnemy);
+            handler.addObject(heavyEnemy);
+            idEnemy++;
+            heavyEnemy.setEnemyPosition(heavyEnemy.getidEnemy());
         }
     }
 

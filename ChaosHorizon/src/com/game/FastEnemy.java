@@ -31,8 +31,7 @@ public class FastEnemy extends GameObject {
         r = new Random();
         startX = x;
         startY = y;
-        inPosition = false;
-
+        inPosition = true;
         velX = 5;
         velY = 5;
 
@@ -67,14 +66,12 @@ public class FastEnemy extends GameObject {
     }
 
     public void tick() {
-        if (y <= maxY) {
-            maxedY += velY;
-            y += velY;
-        } else if (maxedY <= 210) {
-            maxedY += velY;
-        } else if (y >= maxY) {
+        if (x <= 0) {
+            //y -= velY;
             x += velX;
-            inPosition = true;
+        } else{
+            y += velY;
+            x += velX;
         }
 
         shoot = r.nextInt(100);
@@ -82,8 +79,11 @@ public class FastEnemy extends GameObject {
 
         cooldown = Game.clamp(cooldown, 0, endCooldown);
 
-        if (x <= startX - 10 || x >= Game.WIDTH - 470 + startX - (numberEnemy * 20)) {
+        if (x <= numberEnemy*-45 || x >= Game.WIDTH) {
             velX *= -1;
+        }
+        if (y <= 100 || y >= 300) {
+            velY *= -1;
         }
 
         if (HP <= 0) {

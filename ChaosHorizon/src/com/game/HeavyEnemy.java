@@ -50,9 +50,12 @@ public class HeavyEnemy extends GameObject {
 
     public void setEnemyPosition(int idEnemy) {
         if (idEnemy % 2 == 0) {
-            maxY = 80;
+            maxY = 90;
+            x = x+40;
+            y = y+70;
+            startX = startX+40;
         } else {
-            maxY = 150;
+            maxY = 20;
         }
 
     }
@@ -82,7 +85,7 @@ public class HeavyEnemy extends GameObject {
 
         cooldown = Game.clamp(cooldown, 0, endCooldown);
 
-        if (x <= startX - 10 || x >= Game.WIDTH - 470 + startX - (numberEnemy * 20)) {
+        if (x <= startX-60 || x >= Game.WIDTH - 470 +startX-10) {
             velX *= -1;
         }
 
