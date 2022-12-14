@@ -67,7 +67,7 @@ public class Player extends GameObject {
             }
             if (tempObject.getId() == ID.EnemyBullet) {
                 if (getBounds().intersects(tempObject.getBounds())) {
-                    HEALTH--;
+                    HEALTH -= ((EnemyBullet) tempObject).getDamage();
                     handler.removeObject(tempObject);
                 }
             }

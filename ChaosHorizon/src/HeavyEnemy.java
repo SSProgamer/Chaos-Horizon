@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.util.*;
 
-public class BasicEnemy extends GameObject {
+public class HeavyEnemy extends GameObject {
     private int startX;
     private int startY;
     private HUD hud;
@@ -17,23 +17,23 @@ public class BasicEnemy extends GameObject {
     private boolean inPosition;
     private static int numberEnemy = 0;
 
-    public BasicEnemy(int x, int y, ID id, Handler handler, HUD hud, int idEnemy) {
+    public HeavyEnemy(int x, int y, ID id, Handler handler, HUD hud, int idEnemy) {
         super(x, y, id);
         this.handler = handler;
         this.hud = hud;
         this.id = id;
         this.idEnemy = idEnemy;
         numberEnemy++;
-        HP = 5;
+        HP = 20;
         r = new Random();
         startX = x;
         startY = y;
         inPosition = false;
 
-        velX = 3;
-        velY = 3;
+        velX = 1;
+        velY = 1;
 
-        endCooldown = 100;
+        endCooldown = 200;
         cooldown = endCooldown;
     }
 
@@ -42,7 +42,7 @@ public class BasicEnemy extends GameObject {
     }
 
     public static void setNumberEnemy(int numberEnemy) {
-        BasicEnemy.numberEnemy = numberEnemy;
+        HeavyEnemy.numberEnemy = numberEnemy;
     }
 
     public void setEnemyPosition(int idEnemy) {
@@ -55,12 +55,12 @@ public class BasicEnemy extends GameObject {
     }
 
     public Rectangle getBounds() {
-        return new Rectangle(x, y, 32, 32);
+        return new Rectangle(x, y, 48, 48);
     }
 
     public void render(Graphics g) {
-        g.setColor(Color.red);
-        g.fillRect(x, y, 32, 32);
+        g.setColor(Color.pink);
+        g.fillRect(x, y, 48, 48);
     }
 
     public void tick() {
@@ -89,7 +89,7 @@ public class BasicEnemy extends GameObject {
         }
 
         if (cooldown == endCooldown && shoot <= 5 && inPosition) {
-            handler.addObject(new EnemyBullet(x + 12, y + 32, ID.EnemyBullet, handler, 0, 5, 1));
+            handler.addObject(new EnemyBullet(x + 20, y + 48, ID.EnemyBullet, handler, 0, 3, 1));
             cooldown = 0;
         }
 
