@@ -2,6 +2,7 @@ import java.awt.*;
 import java.awt.image.*;
 
 public class Game extends Canvas implements Runnable {
+    // Set screen size
     public static final int WIDTH = 800;
     public static final int HEIGHT = 600;
 
