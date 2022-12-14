@@ -12,17 +12,36 @@ public class Game extends Canvas implements Runnable {
     private Handler handler;
     private HUD hud;
     private Spawn spawner;
+    private MainMenu menu;
+
+    // Make state variable
+    public enum STATE {
+        Menu,
+        Game
+    };
+
+    // set State
+    public STATE gameState = STATE.Menu;
 
     public Game() {
         handler = new Handler();
+        menu = new MainMenu(this, handler);
         this.addKeyListener(new KeyInput(handler));
-
+        this.addMouseListener(menu);
         new Window(WIDTH, HEIGHT, "Chaos Horizon", this);
 
         hud = new HUD();
         spawner = new Spawn(handler, hud);
+        
 
-        handler.addObject(new Player(600 / 2 - 64, HEIGHT - 128, ID.Player, handler));
+        // Check State
+        if (gameState == STATE.Game) {
+            // handler create play
+            // hud = new HUD();
+            // spawner = new Spawn(handler, hud);
+            handler.addObject(new Player(600 / 2 - 64, HEIGHT - 128, ID.Player, handler));
+        }
+
     }
 
     public synchronized void start() {
@@ -71,8 +90,15 @@ public class Game extends Canvas implements Runnable {
 
     private void tick() {
         handler.tick();
-        hud.tick();
-        spawner.tick();
+
+        // check State
+        if (gameState == STATE.Game) {
+            hud.tick();
+            spawner.tick();
+        } else if (gameState == STATE.Menu) {
+            menu.tick();
+        }
+
     }
 
     private void render() {
@@ -89,7 +115,13 @@ public class Game extends Canvas implements Runnable {
 
         handler.render(g);
 
-        hud.render(g);
+        // check State
+        if (gameState == STATE.Game) {
+            hud.render(g);
+        } else if (gameState == STATE.Menu) {
+            menu.render(g);
+
+        }
 
         g.dispose();
         bs.show();
