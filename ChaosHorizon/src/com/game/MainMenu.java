@@ -11,6 +11,7 @@ public class MainMenu extends MouseAdapter {
     public MainMenu(Game game, Handler handler) {
         this.game = game;
         this.handler = handler;
+        
     }
 
     @Override
@@ -41,9 +42,11 @@ public class MainMenu extends MouseAdapter {
     public void render(Graphics g) {
         g.setFont(new Font("arial", 1, 50));
         g.setColor(Color.white);
-        g.drawString("God Damn Game XD!", 150, 100);
+        // g.drawString("God Damn Game XD!", 150, 100);
         g.setFont(new Font("arial", 1, 20));
         g.drawString("Start", 380, 310);
+        Image img1 = Toolkit.getDefaultToolkit().getImage("ChaosHorizon/src/com/game/logo.png");
+        g.drawImage(img1, 150, -100, null);
         g.drawRoundRect(250, 275, 300, 60, 10, 10);
         g.drawRoundRect(250, 375, 300, 60, 10, 10);
         g.drawRoundRect(250, 475, 300, 60, 10, 10);
