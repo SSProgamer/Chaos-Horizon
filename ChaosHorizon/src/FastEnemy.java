@@ -16,6 +16,7 @@ public class FastEnemy extends GameObject {
     private int maxedY = 0;
     private boolean inPosition;
     private static int numberEnemy = 0;
+    private Wave wave;
 
     public FastEnemy(int x, int y, ID id, Handler handler, HUD hud, int idEnemy) {
         super(x, y, id);
@@ -86,6 +87,7 @@ public class FastEnemy extends GameObject {
         if (HP <= 0) {
             handler.removeObject(this);
             hud.setScore(hud.getScore() + 20);
+            wave.setIdEnemy();
         }
 
         if (cooldown == endCooldown && shoot <= 5 && inPosition) {

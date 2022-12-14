@@ -5,7 +5,7 @@ public class Spawn {
     private HUD hud;
     private int spawnX = 20;
     private int spawnY = 20;
-    private BasicEnemy basicEnemy;
+    private Wave wave;
     public Spawn(Handler handler, HUD hud) {
         this.handler = handler;
         this.hud = hud;
@@ -13,7 +13,8 @@ public class Spawn {
     }
 
     public void tick() {
-        if (basicEnemy.getEnemyaLive() == 0) {
+        
+        if (wave.getIdEnemy() == 0) {
             new Wave(handler, hud, hud.getWave());
             /*for (int i = 0; i < 5; i++) {
                 handler.addObject(new BasicEnemy(spawnX + 40 * i, spawnY, ID.BasicEnemy, handler, hud));
