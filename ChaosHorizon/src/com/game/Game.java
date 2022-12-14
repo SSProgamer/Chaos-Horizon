@@ -1,3 +1,5 @@
+package com.game;
+
 import java.awt.*;
 import java.awt.image.*;
 
@@ -32,7 +34,6 @@ public class Game extends Canvas implements Runnable {
 
         hud = new HUD();
         spawner = new Spawn(handler, hud);
-        
 
         // Check State
         if (gameState == STATE.Game) {

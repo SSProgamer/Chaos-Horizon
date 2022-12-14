@@ -1,3 +1,5 @@
+package com.game;
+
 import java.awt.*;
 
 public class PlayerBullet extends GameObject {

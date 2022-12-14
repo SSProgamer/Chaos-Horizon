@@ -1,6 +1,7 @@
+package com.game;
+
 import java.awt.event.*;
 import java.awt.*;
-
 
 public class MainMenu extends MouseAdapter {
     private Game game;
@@ -15,7 +16,6 @@ public class MainMenu extends MouseAdapter {
     public void mousePressed(MouseEvent e) {
         int mx = e.getX();
         int my = e.getY();
-        
 
         if (mouseOver(mx, my, 250, 275, 300, 60)) {
             // System.out.println(e);

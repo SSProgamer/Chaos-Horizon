@@ -1,9 +1,11 @@
+package com.game;
+
 import java.awt.*;
 
 public class Wave {
     private Handler handler;
     private HUD hud;
-    //private int num = 20;
+    // private int num = 20;
     private static int idEnemy = 0;
     private static int EnemyaLive = 0;
     private BasicEnemy basicEnemy;
@@ -14,29 +16,26 @@ public class Wave {
         idEnemy = 0;
         this.handler = handler;
         this.hud = hud;
-        //เริ่มนับ Enemy ใหม่
+        // เริ่มนับ Enemy ใหม่
         basicEnemy.setNumberEnemy(0);
-        //กำหนด wave
-        if (wave == 0){
+        // กำหนด wave
+        if (wave == 0) {
             Wave1();
-        }
-        else if(wave == 1){
+        } else if (wave == 1) {
             Wave2();
-        }
-        else if(wave == 2){
+        } else if (wave == 2) {
             Wave3();
-        }
-        else if(wave == 3){
+        } else if (wave == 3) {
             Wave2();
-        }
-        else if(wave == 4){
+        } else if (wave == 4) {
             Wave2();
         }
         hud.setWave(hud.getWave() + 1);
     }
-    public void Wave1(){
+
+    public void Wave1() {
         for (int i = 0; i < 8; i++) {
-            //สร้าง enemy
+            // สร้าง enemy
             EnemyaLive++;
             basicEnemy = new BasicEnemy(20 + 40 * i, -60, ID.BasicEnemy, handler, hud, idEnemy);
             handler.addObject(basicEnemy);
@@ -44,7 +43,8 @@ public class Wave {
             basicEnemy.setEnemyPosition(basicEnemy.getidEnemy());
         }
     }
-    public void Wave2(){
+
+    public void Wave2() {
         for (int i = 0; i < 4; i++) {
             basicEnemy = new BasicEnemy(20 + 40 * i, -60, ID.BasicEnemy, handler, hud, idEnemy);
             handler.addObject(basicEnemy);
@@ -58,7 +58,8 @@ public class Wave {
             fastEnemy.setEnemyPosition(fastEnemy.getidEnemy());
         }
     }
-    public void Wave3(){
+
+    public void Wave3() {
         for (int i = 0; i < 4; i++) {
             heavyEnemy = new HeavyEnemy(20 + 40 * i, -60, ID.BasicEnemy, handler, hud, idEnemy);
             handler.addObject(heavyEnemy);
@@ -72,12 +73,13 @@ public class Wave {
             fastEnemy.setEnemyPosition(fastEnemy.getidEnemy());
         }
     }
+
     public static int getIdEnemy() {
         return idEnemy;
     }
+
     public static void setIdEnemy() {
         Wave.idEnemy--;
     }
-    
-    
+
 }

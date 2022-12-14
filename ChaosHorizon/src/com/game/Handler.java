@@ -1,3 +1,5 @@
+package com.game;
+
 import java.util.*;
 import java.awt.*;
 

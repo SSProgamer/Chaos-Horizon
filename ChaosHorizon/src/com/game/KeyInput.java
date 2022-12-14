@@ -1,3 +1,5 @@
+package com.game;
+
 import java.awt.event.*;
 
 public class KeyInput extends KeyAdapter {

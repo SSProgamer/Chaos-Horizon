@@ -1,3 +1,5 @@
+package com.game;
+
 import java.awt.*;
 import java.util.*;
 
@@ -45,7 +47,6 @@ public class BasicEnemy extends GameObject {
     public static void setNumberEnemy(int numberEnemy) {
         BasicEnemy.numberEnemy = numberEnemy;
     }
-
 
     public void setEnemyPosition(int idEnemy) {
         if (idEnemy % 2 == 0) {
