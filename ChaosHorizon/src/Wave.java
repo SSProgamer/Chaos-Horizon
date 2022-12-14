@@ -3,7 +3,7 @@ import java.awt.*;
 public class Wave {
     private Handler handler;
     private HUD hud;
-    private int num = 20;
+    //private int num = 20;
     private int idEnemy = 1;
     private BasicEnemy basicEnemy;
 
@@ -14,20 +14,20 @@ public class Wave {
         //เริ่มนับ Enemy ใหม่
         basicEnemy.setNumberEnemy(0);
         //กำหนด wave
-        if (wave == 1){
+        if (wave == 0){
             Wave1();
         }
+        else if(wave == 1){
+            Wave2();
+        }
         else if(wave == 2){
-            System.out.println(2);
+            Wave2();
         }
         else if(wave == 3){
-            System.out.println(3);
+            Wave2();
         }
         else if(wave == 4){
-            System.out.println(4);
-        }
-        else if(wave == 5){
-            System.out.println(5);
+            Wave2();
         }
         hud.setWave(hud.getWave() + 1);
     }

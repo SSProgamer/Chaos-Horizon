@@ -16,7 +16,7 @@ public class BasicEnemy extends GameObject {
     private int maxedY = 0;
     private boolean inPosition;
     private static int numberEnemy = 0;
-
+    private static int EnemyaLive = 0;
     public BasicEnemy(int x, int y, ID id, Handler handler, HUD hud, int idEnemy) {
         super(x, y, id);
         this.handler = handler;
@@ -24,6 +24,7 @@ public class BasicEnemy extends GameObject {
         this.id = id;
         this.idEnemy = idEnemy;
         numberEnemy++;
+        EnemyaLive++;
         HP = 5;
         r = new Random();
         startX = x;
@@ -43,6 +44,10 @@ public class BasicEnemy extends GameObject {
 
     public static void setNumberEnemy(int numberEnemy) {
         BasicEnemy.numberEnemy = numberEnemy;
+    }
+
+    public static int getEnemyaLive() {
+        return EnemyaLive;
     }
 
     public void setEnemyPosition(int idEnemy) {
@@ -86,6 +91,7 @@ public class BasicEnemy extends GameObject {
         if (HP <= 0) {
             handler.removeObject(this);
             hud.setScore(hud.getScore() + 20);
+            EnemyaLive--;
         }
 
         if (cooldown == endCooldown && shoot <= 5 && inPosition) {
