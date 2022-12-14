@@ -1,87 +1,99 @@
+package com.game;
+
 import java.awt.*;
 import java.util.*;
 
-public class BasicEnemy extends GameObject {
+public class FastEnemy extends GameObject {
     private int startX;
     private int startY;
     private HUD hud;
     private Handler handler;
-<<<<<<< Updated upstream
-
     private int HP;
     private int cooldown;
     private int endCooldown;
     private int shoot;
     private Random r;
-
-    public BasicEnemy(int x, int y, ID id, Handler handler, HUD hud) {
-        super(x, y, id);
-        this.handler = handler;
-        this.hud = hud;
-
-        HP = 20;
-        r = new Random();
-
-=======
     private int idEnemy;
-    private ID id;
-    public BasicEnemy(int x, int y, ID id, Handler handler, HUD hud,int idEnemy) {
+    private int maxY;
+    private int maxedY = 0;
+    private boolean inPosition;
+    private static int numberEnemy = 0;
+    private Wave wave;
+
+    public FastEnemy(int x, int y, ID id, Handler handler, HUD hud, int idEnemy) {
         super(x, y, id);
         this.handler = handler;
         this.hud = hud;
         this.id = id;
         this.idEnemy = idEnemy;
->>>>>>> Stashed changes
+        numberEnemy++;
+        HP = 2;
+        r = new Random();
         startX = x;
         startY = y;
+        inPosition = true;
+        velX = 5;
+        velY = 5;
 
-        velX = 3;
-        velY = 3;
-
-        endCooldown = 100;
+        endCooldown = 75;
         cooldown = endCooldown;
     }
 
     public int getidEnemy() {
         return idEnemy;
     }
-    public void setEnemypo(int idEnemy) {
-        if(idEnemy%2 == 0){
-            super.y=80;
+
+    public static void setNumberEnemy(int numberEnemy) {
+        FastEnemy.numberEnemy = numberEnemy;
+    }
+
+    public void setEnemyPosition(int idEnemy) {
+        if (idEnemy % 2 == 0) {
+            maxY = 80;
+        } else {
+            maxY = 150;
         }
-        else{
-            super.y=150;
-        }
-        
+
     }
 
     public Rectangle getBounds() {
-        return new Rectangle(x, y, 32, 32);
+        return new Rectangle(x, y, 16, 16);
     }
 
     public void render(Graphics g) {
-        g.setColor(Color.red);
-        g.fillRect(x, y, 32, 32);
+        g.setColor(Color.pink);
+        g.fillRect(x, y, 16, 16);
     }
 
     public void tick() {
-        x += velX;
+        if (x <= 0) {
+            //y -= velY;
+            x += velX;
+        } else{
+            y += velY;
+            x += velX;
+        }
+
         shoot = r.nextInt(100);
         cooldown++;
 
         cooldown = Game.clamp(cooldown, 0, endCooldown);
 
-        if (x <= startX || x >= Game.WIDTH - 470 + startX) {
+        if (x <= numberEnemy*-45 || x >= Game.WIDTH) {
             velX *= -1;
+        }
+        if (y <= 100 || y >= 300) {
+            velY *= -1;
         }
 
         if (HP <= 0) {
             handler.removeObject(this);
             hud.setScore(hud.getScore() + 20);
+            wave.setIdEnemy();
         }
 
-        if (cooldown == endCooldown && shoot <= 5) {
-            handler.addObject(new EnemyBullet(x, y, ID.EnemyBullet, handler));
+        if (cooldown == endCooldown && shoot <= 5 && inPosition) {
+            handler.addObject(new EnemyBullet(x + 4, y + 16, ID.EnemyBullet, handler, 0, 5, 1));
             cooldown = 0;
         }
 
@@ -99,7 +111,7 @@ public class BasicEnemy extends GameObject {
             }
             if (tempObject.getId() == ID.PlayerBullet) {
                 if (getBounds().intersects(tempObject.getBounds())) {
-                    HP--;
+                    HP -= ((PlayerBullet) tempObject).getDamage();
                     handler.removeObject(tempObject);
                 }
             }

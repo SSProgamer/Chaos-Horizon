@@ -1,13 +1,17 @@
+package com.game;
+
 import java.awt.*;
 
 public class PlayerBullet extends GameObject {
     private Handler handler;
+    private int damage;
 
-    public PlayerBullet(int x, int y, ID id, Handler handler) {
+    public PlayerBullet(int x, int y, ID id, Handler handler, int velX, int velY) {
         super(x, y, id);
         this.handler = handler;
-
-        velY = -10;
+        this.velX = velX;
+        this.velY = velY;
+        damage = 1;
     }
 
     public Rectangle getBounds() {
@@ -26,5 +30,13 @@ public class PlayerBullet extends GameObject {
         if (x <= 0) {
             handler.removeObject(this);
         }
+    }
+
+    public int getDamage() {
+        return damage;
+    }
+
+    public void setDamage(int damage) {
+        this.damage = damage;
     }
 }

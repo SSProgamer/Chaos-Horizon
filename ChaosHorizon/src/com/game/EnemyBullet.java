@@ -1,13 +1,17 @@
+package com.game;
+
 import java.awt.*;
 
 public class EnemyBullet extends GameObject {
     private Handler handler;
+    private int damage;
 
-    public EnemyBullet(int x, int y, ID id, Handler handler) {
+    public EnemyBullet(int x, int y, ID id, Handler handler, int velX, int velY, int damage) {
         super(x, y, id);
         this.handler = handler;
-
-        velY = 5;
+        this.velX = velX;
+        this.velY = velY;
+        this.damage = damage;
     }
 
     public Rectangle getBounds() {
@@ -15,8 +19,13 @@ public class EnemyBullet extends GameObject {
     }
 
     public void render(Graphics g) {
+        Graphics2D g2d = (Graphics2D) g;
+
         g.setColor(Color.yellow);
         g.fillRect(x, y, 8, 8);
+
+        g.setColor(Color.green);
+        g2d.draw(getBounds());
     }
 
     public void tick() {
@@ -28,4 +37,7 @@ public class EnemyBullet extends GameObject {
         }
     }
 
+    public int getDamage() {
+        return damage;
+    }
 }
