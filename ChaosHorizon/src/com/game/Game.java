@@ -38,8 +38,6 @@ public class Game extends Canvas implements Runnable {
         // Check State
         if (gameState == STATE.Game) {
             // handler create play
-            // hud = new HUD();
-            // spawner = new Spawn(handler, hud);
             handler.addObject(new Player(600 / 2 - 64, HEIGHT - 128, ID.Player, handler));
         }
 

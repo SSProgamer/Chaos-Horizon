@@ -1,4 +1,5 @@
 package com.game;
+import com.game.Game.STATE;
 
 import java.awt.event.*;
 import java.awt.*;
@@ -17,9 +18,9 @@ public class MainMenu extends MouseAdapter {
         int mx = e.getX();
         int my = e.getY();
 
-        if (mouseOver(mx, my, 250, 275, 300, 60)) {
-            // System.out.println(e);
-            // game.gameState = STATE.Game;
+        if (mouseOver(mx, my, 250, 275, 60, 300)) {
+            game.gameState = STATE.Game;
+            handler.addObject(new Player(600 / 2 - 64, game.HEIGHT - 128, ID.Player, handler));
         }
     }
 
