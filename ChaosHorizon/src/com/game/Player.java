@@ -15,7 +15,7 @@ public class Player extends GameObject {
         this.handler = handler;
 
         shoot = false;
-        endCooldown = 30;
+        endCooldown = 20;
         cooldown = endCooldown;
     }
 

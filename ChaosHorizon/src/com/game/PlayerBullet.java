@@ -11,7 +11,7 @@ public class PlayerBullet extends GameObject {
         this.handler = handler;
         this.velX = velX;
         this.velY = velY;
-        damage = 1;
+        damage = 3;
     }
 
     public Rectangle getBounds() {
@@ -27,7 +27,7 @@ public class PlayerBullet extends GameObject {
         x += velX;
         y += velY;
 
-        if (x <= 0) {
+        if (x <= -16 || y <= -8 || y >= 550) {
             handler.removeObject(this);
         }
     }

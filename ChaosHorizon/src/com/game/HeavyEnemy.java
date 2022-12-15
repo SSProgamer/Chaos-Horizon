@@ -51,9 +51,9 @@ public class HeavyEnemy extends GameObject {
     public void setEnemyPosition(int idEnemy) {
         if (idEnemy % 2 == 0) {
             maxY = 90;
-            x = x+40;
-            y = y+70;
-            startX = startX+40;
+            x = x + 40;
+            y = y + 70;
+            startX = startX + 40;
         } else {
             maxY = 20;
         }
@@ -85,18 +85,19 @@ public class HeavyEnemy extends GameObject {
 
         cooldown = Game.clamp(cooldown, 0, endCooldown);
 
-        if (x <= startX-60 || x >= Game.WIDTH - 470 +startX-10) {
+        if (x <= startX - 60 || x >= Game.WIDTH - 470 + startX - 10) {
             velX *= -1;
         }
 
         if (HP <= 0) {
             handler.removeObject(this);
-            hud.setScore(hud.getScore() + 20);
+            hud.setScore(hud.getScore() + 40);
             wave.setIdEnemy();
         }
 
         if (cooldown == endCooldown && shoot <= 5 && inPosition) {
-            handler.addObject(new EnemyBullet(x + 20, y + 48, ID.EnemyBullet, handler, 0, 3, 1));
+            handler.addObject(new EnemyBullet(x + 4, y + 48, ID.EnemyBullet, handler, 0, 3, 4));
+            handler.addObject(new EnemyBullet(x + 36, y + 48, ID.EnemyBullet, handler, 0, 3, 4));
             cooldown = 0;
         }
 

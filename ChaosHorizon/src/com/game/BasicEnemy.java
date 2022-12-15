@@ -93,7 +93,7 @@ public class BasicEnemy extends GameObject {
         }
 
         if (cooldown == endCooldown && shoot <= 5 && inPosition) {
-            handler.addObject(new EnemyBullet(x + 12, y + 32, ID.EnemyBullet, handler, 0, 5, 1));
+            handler.addObject(new EnemyBullet(x + 12, y + 32, ID.EnemyBullet, handler, 0, 5, 2));
             cooldown = 0;
         }
 

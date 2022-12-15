@@ -5,6 +5,7 @@ public enum ID {
     BasicEnemy(),
     HeavyEnemy(),
     FastEnemy(),
+    Boss(),
     PlayerBullet(),
     EnemyBullet();
 }

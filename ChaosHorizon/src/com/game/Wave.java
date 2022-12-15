@@ -11,6 +11,7 @@ public class Wave {
     private BasicEnemy basicEnemy;
     private HeavyEnemy heavyEnemy;
     private FastEnemy fastEnemy;
+    private Boss boss;
 
     public Wave(Handler handler, HUD hud, int wave) {
         idEnemy = 0;
@@ -20,20 +21,20 @@ public class Wave {
         basicEnemy.setNumberEnemy(0);
         // กำหนด wave
         if (wave == 0) {
-            Wave1();
+            wave1();
         } else if (wave == 1) {
-            Wave2();
+            wave2();
         } else if (wave == 2) {
-            Wave3();
+            wave3();
         } else if (wave == 3) {
-            Wave4();
+            wave4();
         } else if (wave == 4) {
-            Wave2();
+            wave5();
         }
         hud.setWave(hud.getWave() + 1);
     }
 
-    public void Wave1() {
+    public void wave1() {
         for (int i = 0; i < 8; i++) {
             // สร้าง enemy
             EnemyaLive++;
@@ -44,7 +45,7 @@ public class Wave {
         }
     }
 
-    public void Wave2() {
+    public void wave2() {
         for (int i = 0; i < 10; i++) {
             fastEnemy = new FastEnemy(-50 * i, 300, ID.BasicEnemy, handler, hud, idEnemy);
             handler.addObject(fastEnemy);
@@ -61,7 +62,7 @@ public class Wave {
         }
     }
 
-    public void Wave3() {
+    public void wave3() {
         for (int i = 0; i < 4; i++) {
             heavyEnemy = new HeavyEnemy(50 + 40 * i, -60, ID.BasicEnemy, handler, hud, idEnemy);
             handler.addObject(heavyEnemy);
@@ -77,7 +78,8 @@ public class Wave {
             basicEnemy.setEnemyPosition(basicEnemy.getidEnemy());
         }
     }
-    public void Wave4() {
+
+    public void wave4() {
         for (int i = 0; i < 8; i++) {
             // สร้าง enemy
             EnemyaLive++;
@@ -98,6 +100,12 @@ public class Wave {
             idEnemy++;
             heavyEnemy.setEnemyPosition(heavyEnemy.getidEnemy());
         }
+    }
+
+    public void wave5() {
+        boss = new Boss(75, 0, ID.Boss, handler, hud);
+        handler.addObject(boss);
+        idEnemy++;
     }
 
     public static int getIdEnemy() {

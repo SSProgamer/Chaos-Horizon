@@ -67,9 +67,9 @@ public class FastEnemy extends GameObject {
 
     public void tick() {
         if (x <= 0) {
-            //y -= velY;
+            // y -= velY;
             x += velX;
-        } else{
+        } else {
             y += velY;
             x += velX;
         }
@@ -79,7 +79,7 @@ public class FastEnemy extends GameObject {
 
         cooldown = Game.clamp(cooldown, 0, endCooldown);
 
-        if (x <= numberEnemy*-45 || x >= Game.WIDTH) {
+        if (x <= numberEnemy * -45 || x >= Game.WIDTH) {
             velX *= -1;
         }
         if (y <= 100 || y >= 300) {
@@ -88,12 +88,12 @@ public class FastEnemy extends GameObject {
 
         if (HP <= 0) {
             handler.removeObject(this);
-            hud.setScore(hud.getScore() + 20);
+            hud.setScore(hud.getScore() + 10);
             wave.setIdEnemy();
         }
 
         if (cooldown == endCooldown && shoot <= 5 && inPosition) {
-            handler.addObject(new EnemyBullet(x + 4, y + 16, ID.EnemyBullet, handler, 0, 5, 1));
+            handler.addObject(new EnemyBullet(x + 4, y + 16, ID.EnemyBullet, handler, 0, 7, 1));
             cooldown = 0;
         }
 
