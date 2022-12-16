@@ -68,7 +68,7 @@ public class BasicEnemy extends GameObject {
     }
 
     public void tick() {
-        
+
         if (y <= maxY) {
             maxedY += velY;
             y += velY;

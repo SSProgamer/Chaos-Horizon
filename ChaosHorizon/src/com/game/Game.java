@@ -8,6 +8,7 @@ public class Game extends Canvas implements Runnable {
     public static final int WIDTH = 800;
     public static final int HEIGHT = 600;
 
+    private PlaySound playSound = new PlaySound();
     private Thread thread;
     private boolean running = false;
 
@@ -40,6 +41,8 @@ public class Game extends Canvas implements Runnable {
 
         hud = new HUD();
         spawner = new Spawn(handler, hud);
+
+        playMusic(0);
 
         // Check State
         if (gameState == STATE.Game) {
@@ -102,7 +105,7 @@ public class Game extends Canvas implements Runnable {
             spawner.tick();
         } else if (gameState == STATE.Menu) {
             menu.tick();
-        }else if(gameState == STATE.Win || gameState == STATE.Lose){
+        } else if (gameState == STATE.Win || gameState == STATE.Lose) {
             end.tick();
         }
 
@@ -127,9 +130,9 @@ public class Game extends Canvas implements Runnable {
             hud.render(g);
         } else if (gameState == STATE.Menu || gameState == STATE.Help) {
             menu.render(g);
-        } else if (gameState == STATE.Win){
+        } else if (gameState == STATE.Win) {
             end.render(g);
-        } else if (gameState == STATE.Lose){
+        } else if (gameState == STATE.Lose) {
             end.render(g);
         }
 
@@ -145,6 +148,16 @@ public class Game extends Canvas implements Runnable {
         } else {
             return var;
         }
+    }
+
+    public void playMusic(int i) {
+        playSound.setFile(i);
+        playSound.play();
+        playSound.loop();
+    }
+
+    public void stopMusic() {
+        playSound.stop();
     }
 
     public static void main(String[] args) {
