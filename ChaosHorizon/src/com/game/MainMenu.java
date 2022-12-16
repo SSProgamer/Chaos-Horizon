@@ -1,5 +1,4 @@
 package com.game;
-
 import com.game.Game.STATE;
 
 import java.awt.event.*;
@@ -36,7 +35,10 @@ public class MainMenu extends MouseAdapter {
         }
         // exit
         else if (mouseOver(mx, my, 250, 475, 60, 300)) {
-            System.exit(1);
+            if(game.gameState == STATE.Menu){
+                System.exit(1);
+            }
+            
         }
     }
 
