@@ -63,8 +63,10 @@ public class BasicEnemy extends GameObject {
     }
 
     public void render(Graphics g) {
-        g.setColor(Color.red);
-        g.fillRect(x, y, 32, 32);
+        Image img1 = Toolkit.getDefaultToolkit().getImage("ChaosHorizon/res/enemy/medium_ship/enemy_medium.gif");
+        g.drawImage(img1, x, y, null);
+        //g.setColor(Color.red);
+        //g.fillRect(x, y, 32, 32);
     }
 
     public void tick() {

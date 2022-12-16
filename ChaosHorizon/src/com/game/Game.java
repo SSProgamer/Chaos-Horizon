@@ -17,6 +17,7 @@ public class Game extends Canvas implements Runnable {
     private Spawn spawner;
     private MainMenu menu;
     private EndGame end;
+    private BackgroundInGame backgroundInGame;
 
     // Make state variable
     public enum STATE {
@@ -39,6 +40,7 @@ public class Game extends Canvas implements Runnable {
         this.addMouseListener(end);
         new Window(WIDTH, HEIGHT, "Chaos Horizon", this);
 
+        backgroundInGame = new BackgroundInGame(0, -635, ID.BackgroundInGame);
         hud = new HUD();
         spawner = new Spawn(handler, hud);
 
@@ -102,6 +104,7 @@ public class Game extends Canvas implements Runnable {
         // check State
         if (gameState == STATE.Game) {
             hud.tick();
+            backgroundInGame.tick();
             spawner.tick();
         } else if (gameState == STATE.Menu) {
             menu.tick();
@@ -120,13 +123,14 @@ public class Game extends Canvas implements Runnable {
 
         Graphics g = bs.getDrawGraphics();
 
+        
         g.setColor(Color.black);
         g.fillRect(0, 0, WIDTH, HEIGHT);
 
-        handler.render(g);
-
         // check State
         if (gameState == STATE.Game) {
+            backgroundInGame.render(g);
+            handler.render(g);
             hud.render(g);
         } else if (gameState == STATE.Menu || gameState == STATE.Help) {
             menu.render(g);
@@ -135,7 +139,6 @@ public class Game extends Canvas implements Runnable {
         } else if (gameState == STATE.Lose) {
             end.render(g);
         }
-
         g.dispose();
         bs.show();
     }
