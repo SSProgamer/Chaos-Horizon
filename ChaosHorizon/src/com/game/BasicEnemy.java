@@ -50,9 +50,11 @@ public class BasicEnemy extends GameObject {
 
     public void setEnemyPosition(int idEnemy) {
         if (idEnemy % 2 == 0) {
-            maxY = 80;
-        } else {
             maxY = 150;
+            maxedY = -280;
+        } else {
+            maxY = 220;
+            maxedY = -280;
         }
 
     }
@@ -67,10 +69,11 @@ public class BasicEnemy extends GameObject {
     }
 
     public void tick() {
+        
         if (y <= maxY) {
             maxedY += velY;
             y += velY;
-        } else if (maxedY <= 210) {
+        } else if (maxedY <= 0) {
             maxedY += velY;
         } else if (y >= maxY) {
             x += velX;
@@ -82,7 +85,7 @@ public class BasicEnemy extends GameObject {
 
         cooldown = Game.clamp(cooldown, 0, endCooldown);
 
-        if (x <= startX - 10 || x >= Game.WIDTH - 470 + startX - (numberEnemy * 20)) {
+        if (x <= startX - 90 || x >= Game.WIDTH - 470 + startX - (numberEnemy * 25)) {
             velX *= -1;
         }
 

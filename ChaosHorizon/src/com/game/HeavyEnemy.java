@@ -53,9 +53,11 @@ public class HeavyEnemy extends GameObject {
             maxY = 90;
             x = x + 40;
             y = y + 70;
+            maxedY = -150;
             startX = startX + 40;
         } else {
             maxY = 20;
+            maxedY = -150;
         }
 
     }
@@ -73,7 +75,7 @@ public class HeavyEnemy extends GameObject {
         if (y <= maxY) {
             maxedY += velY;
             y += velY;
-        } else if (maxedY <= 210) {
+        } else if (maxedY <= 0) {
             maxedY += velY;
         } else if (y >= maxY) {
             x += velX;
@@ -85,7 +87,7 @@ public class HeavyEnemy extends GameObject {
 
         cooldown = Game.clamp(cooldown, 0, endCooldown);
 
-        if (x <= startX - 60 || x >= Game.WIDTH - 470 + startX - 10) {
+        if (x <= startX - 200 || x >= Game.WIDTH - 470 + startX - 135) {
             velX *= -1;
         }
 

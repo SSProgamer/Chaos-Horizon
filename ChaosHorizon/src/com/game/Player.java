@@ -64,7 +64,8 @@ public class Player extends GameObject {
 
             if (tempObject.getId() == ID.BasicEnemy) {
                 if (getBounds().intersects(tempObject.getBounds())) {
-                    HEALTH--;
+                    //ลองหักเลือดเยอะขึ้นเมื่อชน
+                    HEALTH -= 5;
                 }
             }
             if (tempObject.getId() == ID.EnemyBullet) {
