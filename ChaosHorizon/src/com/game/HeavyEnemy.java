@@ -26,7 +26,7 @@ public class HeavyEnemy extends GameObject {
         this.id = id;
         this.idEnemy = idEnemy;
         numberEnemy++;
-        HP = 20;
+        HP = 30;
         r = new Random();
         startX = x;
         startY = y;
@@ -68,8 +68,8 @@ public class HeavyEnemy extends GameObject {
     public void render(Graphics g) {
         Image img1 = Toolkit.getDefaultToolkit().getImage("ChaosHorizon/res/enemy/big_ship/big_enemy.gif");
         g.drawImage(img1, x, y, null);
-        //g.setColor(Color.pink);
-        //g.fillRect(x, y, 48, 48);
+        // g.setColor(Color.pink);
+        // g.fillRect(x, y, 48, 48);
     }
 
     public void tick() {

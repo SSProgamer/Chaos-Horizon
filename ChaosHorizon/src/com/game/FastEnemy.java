@@ -27,7 +27,7 @@ public class FastEnemy extends GameObject {
         this.id = id;
         this.idEnemy = idEnemy;
         numberEnemy++;
-        HP = 2;
+        HP = 10;
         r = new Random();
         startX = x;
         startY = y;
@@ -63,8 +63,8 @@ public class FastEnemy extends GameObject {
     public void render(Graphics g) {
         Image img1 = Toolkit.getDefaultToolkit().getImage("ChaosHorizon/res/enemy/small_ship/small_enemy_16px.gif");
         g.drawImage(img1, x, y, null);
-        //g.setColor(Color.pink);
-        //g.fillRect(x, y, 16, 16);
+        // g.setColor(Color.pink);
+        // g.fillRect(x, y, 16, 16);
     }
 
     public void tick() {

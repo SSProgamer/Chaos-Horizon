@@ -26,7 +26,7 @@ public class BasicEnemy extends GameObject {
         this.id = id;
         this.idEnemy = idEnemy;
         numberEnemy++;
-        HP = 5;
+        HP = 20;
         r = new Random();
         startX = x;
         startY = y;
@@ -65,8 +65,8 @@ public class BasicEnemy extends GameObject {
     public void render(Graphics g) {
         Image img1 = Toolkit.getDefaultToolkit().getImage("ChaosHorizon/res/enemy/medium_ship/enemy_medium.gif");
         g.drawImage(img1, x, y, null);
-        //g.setColor(Color.red);
-        //g.fillRect(x, y, 32, 32);
+        // g.setColor(Color.red);
+        // g.fillRect(x, y, 32, 32);
     }
 
     public void tick() {
