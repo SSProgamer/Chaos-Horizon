@@ -19,15 +19,25 @@ public class HUD {
 
     public void render(Graphics g) {
         g.setColor(Color.gray);
+        g.setFont(new Font("arial",1,16));
         g.fillRect(550, 0, 250, 600);
         g.setColor(new Color(redValue, greenValue, 0));
-        g.fillRect(600, 25, Player.HEALTH * 17 / 10, 30);
+        g.fillRect(600, 125, Player.HEALTH * 17 / 10, 30);
         g.setColor(Color.white);
-        g.drawRect(600, 25, 170, 30);
+        g.drawRect(600, 125, 170, 30);
+        
+        g.drawString("HP : ", 570, 145);
+        g.drawString("Wave : " + wave, 570, 190);
+        g.drawString("Score : " + score, 570, 235);
+        g.drawString("Stats",570,300);
+        g.drawString("DMG",570, 330);
+        g.drawString("MAG",570, 360);
+        g.drawString("FIRE",570, 390);
+        g.drawString("BOMB",570, 420);
+        g.drawString("DRILL",680, 420);
+        g.setFont(new Font("arial",1,24));
+        g.drawString("UPGRADE",600,500);
 
-        g.drawString("HP : ", 570, 45);
-        g.drawString("Wave : " + wave, 570, 90);
-        g.drawString("Score : " + score, 570, 135);
     }
 
     public int getScore() {
