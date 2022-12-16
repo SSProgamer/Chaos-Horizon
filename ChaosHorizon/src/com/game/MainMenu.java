@@ -23,7 +23,7 @@ public class MainMenu extends MouseAdapter {
         //play button
         if (mouseOver(mx, my, 250, 275, 60, 300)) {
             game.gameState = STATE.Game;
-            handler.addObject(new Player(600 / 2 - 64, game.HEIGHT - 128, ID.Player, handler));
+            handler.addObject(new Player(600 / 2 - 64, Game.HEIGHT - 128, ID.Player, handler));
         }
         //help
         else if (mouseOver(mx, my, 250, 375, 60, 300)){

@@ -18,7 +18,6 @@ public class HeavyEnemy extends GameObject {
     private int maxedY = 0;
     private boolean inPosition;
     private static int numberEnemy = 0;
-    private Wave wave;
 
     public HeavyEnemy(int x, int y, ID id, Handler handler, HUD hud, int idEnemy) {
         super(x, y, id);
@@ -94,7 +93,7 @@ public class HeavyEnemy extends GameObject {
         if (HP <= 0) {
             handler.removeObject(this);
             hud.setScore(hud.getScore() + 40);
-            wave.setIdEnemy();
+            Wave.setIdEnemy();
         }
 
         if (cooldown == endCooldown && shoot <= 5 && inPosition) {

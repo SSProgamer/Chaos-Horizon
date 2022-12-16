@@ -1,13 +1,10 @@
 package com.game;
 
-import java.net.SocketTimeoutException;
-
 public class Spawn {
     private Handler handler;
     private HUD hud;
     private int spawnX = 20;
     private int spawnY = 20;
-    private Wave wave;
 
     public Spawn(Handler handler, HUD hud) {
         this.handler = handler;
@@ -17,7 +14,7 @@ public class Spawn {
 
     public void tick() {
 
-        if (wave.getIdEnemy() == 0) {
+        if (Wave.getIdEnemy() == 0) {
             new Wave(handler, hud, hud.getWave());
             /*
              * for (int i = 0; i < 5; i++) {

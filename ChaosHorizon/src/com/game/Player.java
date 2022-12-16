@@ -62,9 +62,10 @@ public class Player extends GameObject {
 
             GameObject tempObject = handler.object.get(i);
 
-            if (tempObject.getId() == ID.BasicEnemy) {
+            if (tempObject.getId() == ID.BasicEnemy || tempObject.getId() == ID.FastEnemy
+                    || tempObject.getId() == ID.HeavyEnemy || tempObject.getId() == ID.Boss) {
                 if (getBounds().intersects(tempObject.getBounds())) {
-                    //ลองหักเลือดเยอะขึ้นเมื่อชน
+                    // ลองหักเลือดเยอะขึ้นเมื่อชน
                     HEALTH -= 5;
                 }
             }

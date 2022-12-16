@@ -1,7 +1,5 @@
 package com.game;
 
-import java.awt.*;
-
 public class Wave {
     private Handler handler;
     private HUD hud;
@@ -18,7 +16,7 @@ public class Wave {
         this.handler = handler;
         this.hud = hud;
         // เริ่มนับ Enemy ใหม่
-        basicEnemy.setNumberEnemy(0);
+        BasicEnemy.setNumberEnemy(0);
         // กำหนด wave
         if (wave == 0) {
             wave1();

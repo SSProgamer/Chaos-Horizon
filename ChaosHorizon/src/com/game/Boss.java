@@ -1,7 +1,6 @@
 package com.game;
 
 import java.awt.*;
-import java.util.*;
 
 public class Boss extends GameObject {
     private HUD hud;
