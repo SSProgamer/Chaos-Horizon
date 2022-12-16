@@ -55,7 +55,10 @@ public class MainMenu extends MouseAdapter {
     }
 
     public void render(Graphics g) {
+        Image img1 = Toolkit.getDefaultToolkit().getImage("ChaosHorizon/res/logo.png");
+        Image bg = Toolkit.getDefaultToolkit().getImage("ChaosHorizon/res/background.png");
         if (game.gameState == STATE.Menu) {
+            g.drawImage(bg, 0, 0, null);
             g.setFont(new Font("arial", 1, 50));
             g.setColor(Color.white);
             // g.drawString("God Damn Game XD!", 150, 100);
@@ -63,14 +66,13 @@ public class MainMenu extends MouseAdapter {
             g.drawString("Start", 380, 310);
             g.drawString("Help", 380, 410);
             g.drawString("Exit", 380, 510);
-
-            Image img1 = Toolkit.getDefaultToolkit().getImage("ChaosHorizon/res/logo.png");
             g.drawImage(img1, 150, -100, null);
             g.drawRoundRect(250, 275, 300, 60, 10, 10);
             g.drawRoundRect(250, 375, 300, 60, 10, 10);
             g.drawRoundRect(250, 475, 300, 60, 10, 10);
         } else if (game.gameState == STATE.Help) {
             // drawhelp
+            g.drawImage(bg, 0, 0, null);
             Font fnt1 = new Font("arial", 1, 48);
             Font fnt2 = new Font("arial", 1, 28);
             Font fnt3 = new Font("arial", 1, 20);
