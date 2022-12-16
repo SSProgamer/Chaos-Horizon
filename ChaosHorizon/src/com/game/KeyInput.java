@@ -5,7 +5,6 @@ import java.awt.event.*;
 public class KeyInput extends KeyAdapter {
     private Handler handler;
     private boolean[] keyDown = new boolean[4];
-
     public KeyInput(Handler handler) {
         this.handler = handler;
 
@@ -34,10 +33,12 @@ public class KeyInput extends KeyAdapter {
                 if (key == KeyEvent.VK_A) {
                     tempObject.setVelX(-5);
                     keyDown[2] = true;
+                    ((Player) tempObject).playerPost(1);
                 }
                 if (key == KeyEvent.VK_D) {
                     tempObject.setVelX(5);
                     keyDown[3] = true;
+                    ((Player) tempObject).playerPost(2);
                 }
                 if (key == KeyEvent.VK_SHIFT) {
                     ((Player) tempObject).setShoot(true);
@@ -66,9 +67,11 @@ public class KeyInput extends KeyAdapter {
                 }
                 if (key == KeyEvent.VK_A) {
                     keyDown[2] = false;
+                    ((Player) tempObject).playerPost(0);
                 }
                 if (key == KeyEvent.VK_D) {
                     keyDown[3] = false;
+                    ((Player) tempObject).playerPost(0);
                 }
                 if (key == KeyEvent.VK_SHIFT) {
                     ((Player) tempObject).setShoot(false);

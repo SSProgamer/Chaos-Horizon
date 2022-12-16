@@ -66,8 +66,10 @@ public class HeavyEnemy extends GameObject {
     }
 
     public void render(Graphics g) {
-        g.setColor(Color.pink);
-        g.fillRect(x, y, 48, 48);
+        Image img1 = Toolkit.getDefaultToolkit().getImage("ChaosHorizon/res/enemy/big_ship/big_enemy.gif");
+        g.drawImage(img1, x, y, null);
+        //g.setColor(Color.pink);
+        //g.fillRect(x, y, 48, 48);
     }
 
     public void tick() {

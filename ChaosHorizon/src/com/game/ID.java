@@ -7,5 +7,6 @@ public enum ID {
     FastEnemy(),
     Boss(),
     PlayerBullet(),
-    EnemyBullet();
+    EnemyBullet(),
+    BackgroundInGame();
 }
