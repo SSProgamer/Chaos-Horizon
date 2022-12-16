@@ -15,12 +15,15 @@ public class Game extends Canvas implements Runnable {
     private HUD hud;
     private Spawn spawner;
     private MainMenu menu;
+    private EndGame end;
 
     // Make state variable
     public enum STATE {
         Menu,
         Game,
         Help,
+        Win,
+        Lose
     };
 
     // set State
@@ -29,8 +32,10 @@ public class Game extends Canvas implements Runnable {
     public Game() {
         handler = new Handler();
         menu = new MainMenu(this, handler);
+        end = new EndGame(this, handler);
         this.addKeyListener(new KeyInput(handler));
         this.addMouseListener(menu);
+        this.addMouseListener(end);
         new Window(WIDTH, HEIGHT, "Chaos Horizon", this);
 
         hud = new HUD();
@@ -97,6 +102,8 @@ public class Game extends Canvas implements Runnable {
             spawner.tick();
         } else if (gameState == STATE.Menu) {
             menu.tick();
+        }else if(gameState == STATE.Win || gameState == STATE.Lose){
+            end.tick();
         }
 
     }
@@ -120,6 +127,10 @@ public class Game extends Canvas implements Runnable {
             hud.render(g);
         } else if (gameState == STATE.Menu || gameState == STATE.Help) {
             menu.render(g);
+        } else if (gameState == STATE.Win){
+            end.render(g);
+        } else if (gameState == STATE.Lose){
+            end.render(g);
         }
 
         g.dispose();
