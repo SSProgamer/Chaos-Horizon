@@ -8,6 +8,8 @@ public class BasicEnemy extends GameObject {
     private int startY;
     private HUD hud;
     private Handler handler;
+    private PlaySound playSound;
+
     private int HP;
     private int cooldown;
     private int endCooldown;
@@ -31,6 +33,7 @@ public class BasicEnemy extends GameObject {
         startX = x;
         startY = y;
         inPosition = false;
+        playSound = new PlaySound();
 
         velX = 3;
         velY = 3;
@@ -55,7 +58,6 @@ public class BasicEnemy extends GameObject {
             maxY = 220;
             maxedY = -280;
         }
-
     }
 
     public Rectangle getBounds() {
@@ -70,7 +72,6 @@ public class BasicEnemy extends GameObject {
     }
 
     public void tick() {
-
         if (y <= maxY) {
             maxedY += velY;
             y += velY;
@@ -91,6 +92,7 @@ public class BasicEnemy extends GameObject {
         }
 
         if (HP <= 0) {
+            playSE(7);
             handler.removeObject(this);
             hud.setScore(hud.getScore() + 20);
             Wave.setIdEnemy();
@@ -98,6 +100,9 @@ public class BasicEnemy extends GameObject {
 
         if (cooldown == endCooldown && shoot <= 5 && inPosition) {
             handler.addObject(new EnemyBullet(x + 12, y + 32, ID.EnemyBullet, handler, 0, 5, 2));
+
+            playSE(3);
+
             cooldown = 0;
         }
 
@@ -120,6 +125,11 @@ public class BasicEnemy extends GameObject {
                 }
             }
         }
+    }
+
+    public void playSE(int i) {
+        playSound.setFile(i);
+        playSound.play();
     }
 
     public int getHP() {

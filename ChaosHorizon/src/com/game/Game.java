@@ -8,7 +8,7 @@ public class Game extends Canvas implements Runnable {
     public static final int WIDTH = 800;
     public static final int HEIGHT = 600;
 
-    private PlaySound playSound = new PlaySound();
+    private PlaySound playSound;
     private Thread thread;
     private boolean running = false;
 
@@ -32,8 +32,9 @@ public class Game extends Canvas implements Runnable {
     public STATE gameState = STATE.Menu;
 
     public Game() {
+        playSound = new PlaySound();
         handler = new Handler();
-        menu = new MainMenu(this, handler);
+        menu = new MainMenu(this);
         end = new EndGame(this, handler);
         this.addKeyListener(new KeyInput(handler));
         this.addMouseListener(menu);
@@ -45,7 +46,7 @@ public class Game extends Canvas implements Runnable {
         spawner = new Spawn(handler, hud);
 
         // music start
-        // playMusic(1);
+        playMusic(1);
 
         // handler create play
         handler.addObject(new Player(600 / 2 - 64, HEIGHT - 128, ID.Player, handler));

@@ -8,6 +8,8 @@ public class FastEnemy extends GameObject {
     private int startY;
     private HUD hud;
     private Handler handler;
+    private PlaySound playSound;
+
     private int HP;
     private int cooldown;
     private int endCooldown;
@@ -34,6 +36,7 @@ public class FastEnemy extends GameObject {
         inPosition = true;
         velX = 5;
         velY = 5;
+        playSound = new PlaySound();
 
         endCooldown = 75;
         cooldown = endCooldown;
@@ -89,6 +92,7 @@ public class FastEnemy extends GameObject {
         }
 
         if (HP <= 0) {
+            playSE(7);
             handler.removeObject(this);
             hud.setScore(hud.getScore() + 10);
             wave.setIdEnemy();
@@ -96,6 +100,9 @@ public class FastEnemy extends GameObject {
 
         if (cooldown == endCooldown && shoot <= 5 && inPosition) {
             handler.addObject(new EnemyBullet(x + 4, y + 16, ID.EnemyBullet, handler, 0, 7, 1));
+
+            playSE(3);
+
             cooldown = 0;
         }
 
@@ -118,6 +125,11 @@ public class FastEnemy extends GameObject {
                 }
             }
         }
+    }
+
+    public void playSE(int i) {
+        playSound.setFile(i);
+        playSound.play();
     }
 
     public int getHP() {

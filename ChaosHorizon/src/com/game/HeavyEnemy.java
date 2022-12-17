@@ -8,6 +8,8 @@ public class HeavyEnemy extends GameObject {
     private int startY;
     private HUD hud;
     private Handler handler;
+    private PlaySound playSound;
+
     private int HP;
     private int cooldown;
     private int endCooldown;
@@ -31,6 +33,7 @@ public class HeavyEnemy extends GameObject {
         startX = x;
         startY = y;
         inPosition = false;
+        playSound = new PlaySound();
 
         velX = 1;
         velY = 1;
@@ -93,6 +96,7 @@ public class HeavyEnemy extends GameObject {
         }
 
         if (HP <= 0) {
+            playSE(7);
             handler.removeObject(this);
             hud.setScore(hud.getScore() + 40);
             Wave.setIdEnemy();
@@ -101,6 +105,9 @@ public class HeavyEnemy extends GameObject {
         if (cooldown == endCooldown && shoot <= 5 && inPosition) {
             handler.addObject(new EnemyBullet(x + 4, y + 48, ID.EnemyBullet, handler, 0, 3, 4));
             handler.addObject(new EnemyBullet(x + 36, y + 48, ID.EnemyBullet, handler, 0, 3, 4));
+
+            playSE(3);
+
             cooldown = 0;
         }
 
@@ -123,6 +130,11 @@ public class HeavyEnemy extends GameObject {
                 }
             }
         }
+    }
+
+    public void playSE(int i) {
+        playSound.setFile(i);
+        playSound.play();
     }
 
     public int getHP() {

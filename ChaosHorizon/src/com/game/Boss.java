@@ -5,6 +5,8 @@ import java.awt.*;
 public class Boss extends GameObject {
     private HUD hud;
     private Handler handler;
+    private PlaySound playSound;
+
     private int HP;
     private int cooldown;
     private int endCooldown;
@@ -17,6 +19,7 @@ public class Boss extends GameObject {
         this.id = id;
         HP = 500;
         inPosition = true;
+        playSound = new PlaySound();
 
         velX = 3;
         velY = 3;
@@ -40,6 +43,7 @@ public class Boss extends GameObject {
         cooldown = Game.clamp(cooldown, 0, endCooldown);
 
         if (HP <= 0) {
+            playSE(7);
             handler.removeObject(this);
             hud.setScore(hud.getScore() + 20);
         }
@@ -48,22 +52,34 @@ public class Boss extends GameObject {
             handler.addObject(new EnemyBullet(x + 20, y + 64, ID.EnemyBullet, handler, 0, 5, 2));
             handler.addObject(new EnemyBullet(x + 20 + 32 * 11, y + 64, ID.EnemyBullet, handler, 0, 5, 2));
 
+            playSE(3);
+
             cooldown = 0;
         } else if (cooldown == 100 && inPosition) {
             handler.addObject(new EnemyBullet(x + 20 + 32 * 5, y + 64, ID.EnemyBullet, handler, 0, 5, 2));
             handler.addObject(new EnemyBullet(x + 20 + 32 * 6, y + 64, ID.EnemyBullet, handler, 0, 5, 2));
+
+            playSE(3);
         } else if (cooldown == 110 && inPosition) {
             handler.addObject(new EnemyBullet(x + 20 + 32 * 4, y + 64, ID.EnemyBullet, handler, 0, 5, 2));
             handler.addObject(new EnemyBullet(x + 20 + 32 * 7, y + 64, ID.EnemyBullet, handler, 0, 5, 2));
+
+            playSE(3);
         } else if (cooldown == 120 && inPosition) {
             handler.addObject(new EnemyBullet(x + 20 + 32 * 3, y + 64, ID.EnemyBullet, handler, 0, 5, 2));
             handler.addObject(new EnemyBullet(x + 20 + 32 * 8, y + 64, ID.EnemyBullet, handler, 0, 5, 2));
+
+            playSE(3);
         } else if (cooldown == 130 && inPosition) {
             handler.addObject(new EnemyBullet(x + 20 + 32 * 2, y + 64, ID.EnemyBullet, handler, 0, 5, 2));
             handler.addObject(new EnemyBullet(x + 20 + 32 * 9, y + 64, ID.EnemyBullet, handler, 0, 5, 2));
+
+            playSE(3);
         } else if (cooldown == 140 && inPosition) {
             handler.addObject(new EnemyBullet(x + 20 + 32 * 1, y + 64, ID.EnemyBullet, handler, 0, 5, 2));
             handler.addObject(new EnemyBullet(x + 20 + 32 * 10, y + 64, ID.EnemyBullet, handler, 0, 5, 2));
+
+            playSE(3);
         }
 
         collision();
@@ -85,6 +101,11 @@ public class Boss extends GameObject {
                 }
             }
         }
+    }
+
+    public void playSE(int i) {
+        playSound.setFile(i);
+        playSound.play();
     }
 
     public int getHP() {

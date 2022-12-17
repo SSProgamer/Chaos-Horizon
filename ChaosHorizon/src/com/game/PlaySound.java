@@ -10,6 +10,12 @@ public class PlaySound {
     public PlaySound() {
         soundFile[0] = new File("ChaosHorizon/res/sound/Music1.wav");
         soundFile[1] = new File("ChaosHorizon/res/sound/Music2.wav");
+        soundFile[2] = new File("ChaosHorizon/res/sound/Gun1.wav");
+        soundFile[3] = new File("ChaosHorizon/res/sound/Gun2.wav");
+        soundFile[4] = new File("ChaosHorizon/res/sound/Bomb1.wav");
+        soundFile[5] = new File("ChaosHorizon/res/sound/Bomb2.wav");
+        soundFile[6] = new File("ChaosHorizon/res/sound/Button1.wav");
+        soundFile[7] = new File("ChaosHorizon/res/sound/Dead.wav");
     }
 
     public void setFile(int i) {

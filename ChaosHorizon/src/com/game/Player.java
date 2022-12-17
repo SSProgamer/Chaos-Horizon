@@ -5,6 +5,7 @@ import java.awt.*;
 public class Player extends GameObject {
     public static int HEALTH = 100;
     private Handler handler;
+    private PlaySound playSound;
 
     private boolean shoot;
     private int cooldown;
@@ -14,6 +15,7 @@ public class Player extends GameObject {
     public Player(int x, int y, ID id, Handler handler) {
         super(x, y, id);
         this.handler = handler;
+        playSound = new PlaySound();
 
         shoot = false;
         endCooldown = 20;
@@ -45,6 +47,8 @@ public class Player extends GameObject {
             handler.addObject(new PlayerBullet(x + 28, y - 14, ID.PlayerBullet, handler, -5, -10));
             handler.addObject(new PlayerBullet(x + 28, y - 14, ID.PlayerBullet, handler, 10, -10));
             handler.addObject(new PlayerBullet(x + 28, y - 14, ID.PlayerBullet, handler, -10, -10));
+
+            playSE(2);
 
             cooldown = 0;
         }
@@ -94,6 +98,11 @@ public class Player extends GameObject {
                 }
             }
         }
+    }
+
+    public void playSE(int i) {
+        playSound.setFile(i);
+        playSound.play();
     }
 
     public boolean isShoot() {
