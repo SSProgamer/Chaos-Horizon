@@ -7,9 +7,11 @@ import java.awt.*;
 
 public class MainMenu extends MouseAdapter {
     private Game game;
+    private Handler handler;
 
-    public MainMenu(Game game) {
+    public MainMenu(Game game, Handler handler) {
         this.game = game;
+        this.handler = handler;
     }
 
     @Override
@@ -20,6 +22,7 @@ public class MainMenu extends MouseAdapter {
         // play button
         if (mouseOver(mx, my, 250, 275, 60, 300) && game.gameState == STATE.Menu) {
             game.gameState = STATE.Game;
+            handler.addObject(new Player(600 / 2 - 64, Game.HEIGHT - 128, ID.Player, handler));
             game.playSE(6);
         }
         // help

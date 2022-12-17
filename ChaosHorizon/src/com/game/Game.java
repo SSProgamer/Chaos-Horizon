@@ -34,7 +34,7 @@ public class Game extends Canvas implements Runnable {
     public Game() {
         playSound = new PlaySound();
         handler = new Handler();
-        menu = new MainMenu(this);
+        menu = new MainMenu(this, handler);
         end = new EndGame(this, handler);
         this.addKeyListener(new KeyInput(handler));
         this.addMouseListener(menu);
@@ -99,7 +99,15 @@ public class Game extends Canvas implements Runnable {
 
     private void tick() {
         handler.tick();
-
+        if(hud.getWave() == 2){
+            hud.setWave(0);
+            gameState = STATE.Win;
+            
+        }
+        if(Player.HEALTH <= 0){
+            Player.HEALTH = 100;
+            gameState = STATE.Lose;
+        }
         // check State
         if (gameState == STATE.Game) {
             hud.tick();
