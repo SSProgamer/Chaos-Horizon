@@ -3,18 +3,19 @@ package com.game;
 import java.awt.*;
 
 public class EnegyBall extends GameObject {
+    private HUD hud;
     private Handler handler;
     private PlaySound playSound;
 
     private int HP;
-    private boolean inPosition;
 
-    public EnegyBall(int x, int y, ID id, Handler handler) {
+    public EnegyBall(int x, int y, ID id, Handler handler, HUD hud) {
         super(x, y, id);
         this.handler = handler;
-        HP = 20;
-        inPosition = false;
+        this.hud = hud;
+        playSound = new PlaySound();
 
+        HP = 20;
         velY = 3;
     }
 
@@ -32,6 +33,7 @@ public class EnegyBall extends GameObject {
 
         if (HP <= 0) {
             handler.removeObject(this);
+            hud.setScore(hud.getScore() + 10);
         }
 
         if (y >= 300) {
@@ -43,6 +45,8 @@ public class EnegyBall extends GameObject {
             handler.addObject(new EnemyBullet(x + 28, y + 28, ID.EnemyBullet, handler, 7, 7, 1));
             handler.addObject(new EnemyBullet(x + 28, y + 28, ID.EnemyBullet, handler, -7, -7, 1));
             handler.addObject(new EnemyBullet(x + 28, y + 28, ID.EnemyBullet, handler, 7, -7, 1));
+
+            playSE(3);
 
             handler.removeObject(this);
         }
@@ -66,5 +70,10 @@ public class EnegyBall extends GameObject {
                 }
             }
         }
+    }
+
+    public void playSE(int i) {
+        playSound.setFile(i);
+        playSound.play();
     }
 }

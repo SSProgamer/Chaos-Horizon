@@ -85,11 +85,15 @@ public class Player extends GameObject {
             GameObject tempObject = handler.object.get(i);
 
             if (tempObject.getId() == ID.BasicEnemy || tempObject.getId() == ID.FastEnemy
-                    || tempObject.getId() == ID.HeavyEnemy || tempObject.getId() == ID.Boss
-                    || tempObject.getId() == ID.EnegyBall) {
+                    || tempObject.getId() == ID.HeavyEnemy || tempObject.getId() == ID.Boss) {
                 if (getBounds().intersects(tempObject.getBounds())) {
                     // ลองหักเลือดเยอะขึ้นเมื่อชน
                     HEALTH -= 5;
+                }
+            }
+            if (tempObject.getId() == ID.EnegyBall) {
+                if (getBounds().intersects(tempObject.getBounds())) {
+                    HEALTH -= 3;
                 }
             }
             if (tempObject.getId() == ID.EnemyBullet) {

@@ -21,10 +21,10 @@ public class Boss extends GameObject {
         super(x, y, id);
         this.handler = handler;
         this.hud = hud;
-        HP = 1000;
-        inPosition = false;
         playSound = new PlaySound();
 
+        HP = 1000;
+        inPosition = false;
         velX = 1;
         velY = 1;
 
@@ -73,7 +73,7 @@ public class Boss extends GameObject {
         if (HP <= 0) {
             playSE(7);
             handler.removeObject(this);
-            hud.setScore(hud.getScore() + 20);
+            hud.setScore(hud.getScore() + 1000);
         }
 
         if (cooldown1 == endCooldown1 && inPosition) {
@@ -126,7 +126,7 @@ public class Boss extends GameObject {
             cooldown2 = 0;
         }
         if (cooldown3 == endCooldown3 && inPosition) {
-            handler.addObject(new EnegyBall(x + 173, y, ID.EnegyBall, handler));
+            handler.addObject(new EnegyBall(x + 173, y, ID.EnegyBall, handler, hud));
 
             cooldown3 = 0;
 
