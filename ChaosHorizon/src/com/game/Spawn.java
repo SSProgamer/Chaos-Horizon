@@ -9,7 +9,6 @@ public class Spawn {
     public Spawn(Handler handler, HUD hud) {
         this.handler = handler;
         this.hud = hud;
-
     }
 
     public void tick() {

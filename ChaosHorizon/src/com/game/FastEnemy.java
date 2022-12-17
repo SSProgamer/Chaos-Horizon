@@ -26,7 +26,6 @@ public class FastEnemy extends GameObject {
         super(x, y, id);
         this.handler = handler;
         this.hud = hud;
-        this.id = id;
         this.idEnemy = idEnemy;
         numberEnemy++;
         HP = 10;

@@ -32,7 +32,7 @@ public class EnemyBullet extends GameObject {
         x += velX;
         y += velY;
 
-        if (x >= Game.HEIGHT) {
+        if (x >= Game.WIDTH || x <= -10 || y >= Game.HEIGHT || y <= -10) {
             handler.removeObject(this);
         }
     }

@@ -8,5 +8,6 @@ public enum ID {
     Boss(),
     PlayerBullet(),
     EnemyBullet(),
+    EnegyBall(),
     BackgroundInGame();
 }

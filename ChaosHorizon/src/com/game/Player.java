@@ -42,11 +42,11 @@ public class Player extends GameObject {
         cooldown = Game.clamp(cooldown, 0, endCooldown);
 
         if (shoot && (cooldown == endCooldown)) {
-            handler.addObject(new PlayerBullet(x + 28, y - 14, ID.PlayerBullet, handler, 0, -10));
-            handler.addObject(new PlayerBullet(x + 28, y - 14, ID.PlayerBullet, handler, 5, -10));
-            handler.addObject(new PlayerBullet(x + 28, y - 14, ID.PlayerBullet, handler, -5, -10));
-            handler.addObject(new PlayerBullet(x + 28, y - 14, ID.PlayerBullet, handler, 10, -10));
-            handler.addObject(new PlayerBullet(x + 28, y - 14, ID.PlayerBullet, handler, -10, -10));
+            handler.addObject(new PlayerBullet(x + 26, y - 20, ID.PlayerBullet, handler, 0, -10));
+            handler.addObject(new PlayerBullet(x + 26, y - 20, ID.PlayerBullet, handler, 5, -10));
+            handler.addObject(new PlayerBullet(x + 26, y - 20, ID.PlayerBullet, handler, -5, -10));
+            handler.addObject(new PlayerBullet(x + 26, y - 20, ID.PlayerBullet, handler, 10, -10));
+            handler.addObject(new PlayerBullet(x + 26, y - 20, ID.PlayerBullet, handler, -10, -10));
 
             playSE(2);
 
@@ -85,7 +85,8 @@ public class Player extends GameObject {
             GameObject tempObject = handler.object.get(i);
 
             if (tempObject.getId() == ID.BasicEnemy || tempObject.getId() == ID.FastEnemy
-                    || tempObject.getId() == ID.HeavyEnemy || tempObject.getId() == ID.Boss) {
+                    || tempObject.getId() == ID.HeavyEnemy || tempObject.getId() == ID.Boss
+                    || tempObject.getId() == ID.EnegyBall) {
                 if (getBounds().intersects(tempObject.getBounds())) {
                     // ลองหักเลือดเยอะขึ้นเมื่อชน
                     HEALTH -= 5;
