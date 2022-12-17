@@ -19,32 +19,31 @@ public class HUD {
 
     public void render(Graphics g) {
         g.setColor(Color.gray);
-        g.setFont(new Font("arial",1,16));
+        g.setFont(new Font("arial", 1, 16));
         g.fillRect(550, 0, 250, 600);
         g.setColor(new Color(redValue, greenValue, 0));
-        g.fillRect(600, 125, Player.HEALTH * 17 / 10, 30);
+        g.fillRect(610, 125, Player.HEALTH * 17 / 10, 30);
         g.setColor(Color.white);
-        g.drawRect(600, 125, 170, 30);
-        
+        g.drawRect(610, 125, 170, 30);
+
         g.drawString("HP : ", 570, 145);
         g.drawString("Wave : " + wave, 570, 190);
         g.drawString("Score : " + score, 570, 235);
-        g.drawString("Stats",570,300);
-        g.drawString("DMG",570, 330);
-        g.drawString("MAG",570, 360);
-        g.drawString("FIRE",570, 390);
-        g.drawString("BOMB",570, 450);
-        g.drawString("DRILL",680, 450);
+        g.drawString("Stats", 570, 300);
+        g.drawString("Damage : Level 3", 570, 330);
+        g.drawString("Rate of fire : Level 3", 570, 360);
+        g.drawString("Ammo : Level 3", 570, 390);
+        g.drawString("BOMB", 570, 450);
+        g.drawString("DRILL", 680, 450);
         g.drawRect(750, 315, 20, 20);
         g.drawRect(750, 345, 20, 20);
         g.drawRect(750, 375, 20, 20);
         g.drawString("^", 755, 335);
         g.drawString("^", 755, 365);
         g.drawString("^", 755, 395);
-        
+
         // g.setFont(new Font("arial",1,24));
         // g.drawString("UPGRADE",600,500);
-
     }
 
     public int getScore() {
