@@ -63,7 +63,7 @@ public class MainMenu extends MouseAdapter {
         if (game.gameState == STATE.Menu) {
             g.drawImage(bg, 0, 0, null);
             g.setFont(new Font("arial", 1, 50));
-            g.setColor(Color.white);
+            g.setColor(Color.black);
             // g.drawString("God Damn Game XD!", 150, 100);
             g.setFont(new Font("arial", 1, 20));
             g.drawString("Start", 380, 310);
@@ -80,7 +80,7 @@ public class MainMenu extends MouseAdapter {
             Font fnt2 = new Font("arial", 1, 28);
             Font fnt3 = new Font("arial", 1, 20);
             g.setFont(fnt1);
-            g.setColor(Color.white);
+            g.setColor(Color.black);
             g.drawString("How to play?", 45, 70);
             g.drawRect(350, 160, 75, 75);
             g.drawRect(350, 260, 75, 75);
