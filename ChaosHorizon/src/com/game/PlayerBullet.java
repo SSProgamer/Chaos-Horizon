@@ -15,12 +15,15 @@ public class PlayerBullet extends GameObject {
     }
 
     public Rectangle getBounds() {
-        return new Rectangle(x, y, 8, 16);
+        return new Rectangle(x, y, 12, 24);
     }
 
     public void render(Graphics g) {
-        g.setColor(Color.blue);
-        g.fillRect(x, y, 8, 16);
+        Image pBulletImage = Toolkit.getDefaultToolkit().getImage("ChaosHorizon/res/player/weapon/range/bullet.gif");
+        g.drawImage(pBulletImage, x - 6, y, null);
+
+        // g.setColor(Color.blue);
+        // g.fillRect(x, y, 12, 24);
     }
 
     public void tick() {

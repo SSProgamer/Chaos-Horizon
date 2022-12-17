@@ -101,7 +101,7 @@ public class Wave {
     }
 
     public void wave5() {
-        boss = new Boss(75, 0, ID.Boss, handler, hud);
+        boss = new Boss(75, -96, ID.Boss, handler, hud);
         handler.addObject(boss);
         idEnemy++;
     }
