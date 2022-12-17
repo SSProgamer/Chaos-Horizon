@@ -33,10 +33,17 @@ public class HUD {
         g.drawString("DMG",570, 330);
         g.drawString("MAG",570, 360);
         g.drawString("FIRE",570, 390);
-        g.drawString("BOMB",570, 420);
-        g.drawString("DRILL",680, 420);
-        g.setFont(new Font("arial",1,24));
-        g.drawString("UPGRADE",600,500);
+        g.drawString("BOMB",570, 450);
+        g.drawString("DRILL",680, 450);
+        g.drawRect(750, 315, 20, 20);
+        g.drawRect(750, 345, 20, 20);
+        g.drawRect(750, 375, 20, 20);
+        g.drawString("^", 755, 335);
+        g.drawString("^", 755, 365);
+        g.drawString("^", 755, 395);
+        
+        // g.setFont(new Font("arial",1,24));
+        // g.drawString("UPGRADE",600,500);
 
     }
 

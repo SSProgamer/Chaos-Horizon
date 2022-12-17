@@ -63,16 +63,20 @@ public class MainMenu extends MouseAdapter {
         if (game.gameState == STATE.Menu) {
             g.drawImage(bg, 0, 0, null);
             g.setFont(new Font("arial", 1, 50));
-            g.setColor(Color.black);
+            g.setColor(Color.getHSBColor((float)0.55,(float) 0.5, (float) 1));
             // g.drawString("God Damn Game XD!", 150, 100);
+            g.drawImage(img1, 150, -100, null);
+            g.fillRoundRect(250, 275, 300, 60, 10, 10);
+            g.fillRoundRect(250, 375, 300, 60, 10, 10);
+            g.fillRoundRect(250, 475, 300, 60, 10, 10);
+            g.setColor(Color.black);
+            g.drawRoundRect(250, 275, 300, 60, 10, 10);
+            g.drawRoundRect(250, 375, 300, 60, 10, 10);
+            g.drawRoundRect(250, 475, 300, 60, 10, 10);
             g.setFont(new Font("arial", 1, 20));
             g.drawString("Start", 380, 310);
             g.drawString("Help", 380, 410);
             g.drawString("Exit", 380, 510);
-            g.drawImage(img1, 150, -100, null);
-            g.drawRoundRect(250, 275, 300, 60, 10, 10);
-            g.drawRoundRect(250, 375, 300, 60, 10, 10);
-            g.drawRoundRect(250, 475, 300, 60, 10, 10);
         } else if (game.gameState == STATE.Help) {
             // drawhelp
             g.drawImage(bg, 0, 0, null);
