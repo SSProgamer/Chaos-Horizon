@@ -10,7 +10,7 @@ public class Player extends GameObject {
     private int cooldown;
     private int endCooldown;
     private int d;
-    private Image left,right;
+
     public Player(int x, int y, ID id, Handler handler) {
         super(x, y, id);
         this.handler = handler;
@@ -19,9 +19,11 @@ public class Player extends GameObject {
         endCooldown = 20;
         cooldown = endCooldown;
     }
-    public void playerPost(int d){
+
+    public void playerPost(int d) {
         this.d = d;
     }
+
     public Rectangle getBounds() {
         return new Rectangle(x + 8, y + 8, 48, 48);
     }
@@ -52,25 +54,25 @@ public class Player extends GameObject {
 
     public void render(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
-        if(d == 1){
-            Image left = Toolkit.getDefaultToolkit().getImage("ChaosHorizon/res/player/ship/player_turn_left_hold64.gif");
+        if (d == 1) {
+            Image left = Toolkit.getDefaultToolkit()
+                    .getImage("ChaosHorizon/res/player/ship/player_turn_left_hold64.gif");
             g.drawImage(left, x, y, null);
-        }
-        else if(d == 2){
-            Image right = Toolkit.getDefaultToolkit().getImage("ChaosHorizon/res/player/ship/player_turn_right_hold64.gif");
+        } else if (d == 2) {
+            Image right = Toolkit.getDefaultToolkit()
+                    .getImage("ChaosHorizon/res/player/ship/player_turn_right_hold64.gif");
             g.drawImage(right, x, y, null);
-        }
-        else{
+        } else {
             Image img1 = Toolkit.getDefaultToolkit().getImage("ChaosHorizon/res/player/ship/player_idle64.gif");
             g.drawImage(img1, x, y, null);
         }
-                
-        //g.setColor(Color.white);
-        //g.fillRect(x, y, 64, 64);
+
+        // g.setColor(Color.white);
+        // g.fillRect(x, y, 64, 64);
 
         g.setColor(Color.green);
         g2d.draw(getBounds());
-        
+
     }
 
     private synchronized void collision() {

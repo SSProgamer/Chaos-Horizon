@@ -1,4 +1,5 @@
 package com.game;
+
 import com.game.Game.STATE;
 
 import java.awt.event.*;
@@ -11,7 +12,6 @@ public class MainMenu extends MouseAdapter {
     public MainMenu(Game game, Handler handler) {
         this.game = game;
         this.handler = handler;
-
     }
 
     @Override
@@ -20,12 +20,11 @@ public class MainMenu extends MouseAdapter {
         int my = e.getY();
 
         // play button
-        if (mouseOver(mx, my, 250, 275, 60, 300)) {
+        if (mouseOver(mx, my, 250, 275, 60, 300) && game.gameState == STATE.Menu) {
             game.gameState = STATE.Game;
-            handler.addObject(new Player(600 / 2 - 64, Game.HEIGHT - 128, ID.Player, handler));
         }
         // help
-        else if (mouseOver(mx, my, 250, 375, 60, 300)) {
+        else if (mouseOver(mx, my, 250, 375, 60, 300) && game.gameState == STATE.Menu) {
             game.gameState = STATE.Help;
         }
         // back to menu from help
@@ -34,11 +33,10 @@ public class MainMenu extends MouseAdapter {
                 game.gameState = STATE.Menu;
         }
         // exit
-        else if (mouseOver(mx, my, 250, 475, 60, 300)) {
-            if(game.gameState == STATE.Menu){
+        else if (mouseOver(mx, my, 250, 475, 60, 300) && game.gameState == STATE.Menu) {
+            if (game.gameState == STATE.Menu) {
                 System.exit(1);
             }
-            
         }
     }
 

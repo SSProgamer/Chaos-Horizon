@@ -44,13 +44,11 @@ public class Game extends Canvas implements Runnable {
         hud = new HUD();
         spawner = new Spawn(handler, hud);
 
-        playMusic(0);
+        // music start
+        // playMusic(1);
 
-        // Check State
-        if (gameState == STATE.Game) {
-            // handler create play
-            handler.addObject(new Player(600 / 2 - 64, HEIGHT - 128, ID.Player, handler));
-        }
+        // handler create play
+        handler.addObject(new Player(600 / 2 - 64, HEIGHT - 128, ID.Player, handler));
 
     }
 
@@ -123,7 +121,6 @@ public class Game extends Canvas implements Runnable {
 
         Graphics g = bs.getDrawGraphics();
 
-        
         g.setColor(Color.black);
         g.fillRect(0, 0, WIDTH, HEIGHT);
 
@@ -161,6 +158,11 @@ public class Game extends Canvas implements Runnable {
 
     public void stopMusic() {
         playSound.stop();
+    }
+
+    public void playSE(int i) {
+        playSound.setFile(i);
+        playSound.play();
     }
 
     public static void main(String[] args) {
