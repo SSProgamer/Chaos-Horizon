@@ -9,8 +9,12 @@ public class Player extends GameObject {
 
     private boolean shoot;
     private int cooldown;
-    private int endCooldown;
     private int d;
+
+    // Rate of fire | Less Number = Shoot Faster
+    public static int endCooldown;
+    // How many bullet we shoot | 1 -> 2 -> 3
+    public static int ammo;
 
     public Player(int x, int y, ID id, Handler handler) {
         super(x, y, id);
@@ -18,8 +22,9 @@ public class Player extends GameObject {
         playSound = new PlaySound();
 
         shoot = false;
-        endCooldown = 20;
+        endCooldown = 30;
         cooldown = endCooldown;
+        ammo = 1;
     }
 
     public void playerPost(int d) {

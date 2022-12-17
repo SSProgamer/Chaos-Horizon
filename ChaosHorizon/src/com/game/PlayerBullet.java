@@ -4,14 +4,15 @@ import java.awt.*;
 
 public class PlayerBullet extends GameObject {
     private Handler handler;
-    private int damage;
+    // Damage of out bullet | 1 -> 2 -> 3
+    public static int damage;
 
     public PlayerBullet(int x, int y, ID id, Handler handler, int velX, int velY) {
         super(x, y, id);
         this.handler = handler;
         this.velX = velX;
         this.velY = velY;
-        damage = 3;
+        damage = 1;
     }
 
     public Rectangle getBounds() {
@@ -33,13 +34,5 @@ public class PlayerBullet extends GameObject {
         if (x <= -16 || y <= -8 || y >= 550) {
             handler.removeObject(this);
         }
-    }
-
-    public int getDamage() {
-        return damage;
-    }
-
-    public void setDamage(int damage) {
-        this.damage = damage;
     }
 }

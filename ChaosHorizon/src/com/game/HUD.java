@@ -30,9 +30,9 @@ public class HUD {
         g.drawString("Wave : " + wave, 570, 190);
         g.drawString("Score : " + score, 570, 235);
         g.drawString("Stats", 570, 300);
-        g.drawString("Damage : Level 3", 570, 330);
-        g.drawString("Rate of fire : Level 3", 570, 360);
-        g.drawString("Ammo : Level 3", 570, 390);
+        g.drawString("Damage : Level 1", 570, 330);
+        g.drawString("Rate of fire : Level 1", 570, 360);
+        g.drawString("Ammo : Level 1", 570, 390);
         g.drawString("BOMB", 570, 450);
         g.drawString("DRILL", 680, 450);
         g.drawRect(750, 315, 20, 20);

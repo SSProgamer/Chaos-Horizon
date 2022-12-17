@@ -124,7 +124,7 @@ public class HeavyEnemy extends GameObject {
             }
             if (tempObject.getId() == ID.PlayerBullet) {
                 if (getBounds().intersects(tempObject.getBounds())) {
-                    HP -= ((PlayerBullet) tempObject).getDamage();
+                    HP -= PlayerBullet.damage;
                     handler.removeObject(tempObject);
                 }
             }
