@@ -34,8 +34,8 @@ public class Game extends Canvas implements Runnable {
     public Game() {
         playSound = new PlaySound();
         handler = new Handler();
-        menu = new MainMenu(this, handler);
-        end = new EndGame(this, handler);
+        menu = new MainMenu(this);
+        end = new EndGame(this);
         this.addKeyListener(new KeyInput(handler));
         this.addMouseListener(menu);
         this.addMouseListener(end);
@@ -99,13 +99,20 @@ public class Game extends Canvas implements Runnable {
 
     private void tick() {
         handler.tick();
-        if(hud.getWave() == 2){
+        if (hud.getWave() == 6) {
+            handler = new Handler();
+            this.addKeyListener(new KeyInput(handler));
+            spawner = new Spawn(handler, hud);
             hud.setWave(0);
+            handler.addObject(new Player(600 / 2 - 64, HEIGHT - 128, ID.Player, handler));
             gameState = STATE.Win;
-            
         }
-        if(Player.HEALTH <= 0){
+        if (Player.HEALTH <= 0) {
+            handler = new Handler();
+            this.addKeyListener(new KeyInput(handler));
+            spawner = new Spawn(handler, hud);
             Player.HEALTH = 100;
+            handler.addObject(new Player(600 / 2 - 64, HEIGHT - 128, ID.Player, handler));
             gameState = STATE.Lose;
         }
         // check State

@@ -7,11 +7,9 @@ import java.awt.*;
 
 public class MainMenu extends MouseAdapter {
     private Game game;
-    private Handler handler;
 
-    public MainMenu(Game game, Handler handler) {
+    public MainMenu(Game game) {
         this.game = game;
-        this.handler = handler;
     }
 
     @Override
@@ -22,7 +20,6 @@ public class MainMenu extends MouseAdapter {
         // play button
         if (mouseOver(mx, my, 250, 275, 60, 300) && game.gameState == STATE.Menu) {
             game.gameState = STATE.Game;
-            handler.addObject(new Player(600 / 2 - 64, Game.HEIGHT - 128, ID.Player, handler));
             game.playSE(6);
         }
         // help
@@ -66,7 +63,7 @@ public class MainMenu extends MouseAdapter {
         if (game.gameState == STATE.Menu) {
             g.drawImage(bg, 0, 0, null);
             g.setFont(new Font("arial", 1, 50));
-            g.setColor(Color.getHSBColor((float)0.55,(float) 0.5, (float) 1));
+            g.setColor(Color.getHSBColor((float) 0.55, (float) 0.5, (float) 1));
             // g.drawString("God Damn Game XD!", 150, 100);
             g.drawImage(img1, 150, -100, null);
             g.fillRoundRect(250, 275, 300, 60, 10, 10);
