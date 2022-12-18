@@ -3,19 +3,13 @@ package com.game;
 import java.awt.*;
 import java.awt.event.*;
 
-import com.game.Game.STATE;
 public class HUD extends MouseAdapter{
-    private Game game;
-    
+ 
     private int greenValue = 255;
     private int redValue = 0;
 
     private int score = 0;
     private int wave = 0;
-
-    public HUD(Game game){
-        this.game = game;
-    }
 
     public void tick() {
         greenValue = Player.HEALTH * 2;

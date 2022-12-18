@@ -45,7 +45,7 @@ public class Game extends Canvas implements Runnable {
         new Window(WIDTH, HEIGHT, "Chaos Horizon", this);
 
         backgroundInGame = new BackgroundInGame(0, -635, ID.BackgroundInGame);
-        hud = new HUD(this);
+        hud = new HUD();
         spawner = new Spawn(handler, hud);
 
         // music start
@@ -105,7 +105,7 @@ public class Game extends Canvas implements Runnable {
         if (hud.getWave() >= 6) {
             handler = new Handler();
             this.addKeyListener(new KeyInput(handler, this));
-            hud = new HUD(this);
+            hud = new HUD();
             spawner = new Spawn(handler, hud);
             Player.HEALTH = 100;
             handler.addObject(new Player(600 / 2 - 64, HEIGHT - 128, ID.Player, handler));
@@ -116,7 +116,7 @@ public class Game extends Canvas implements Runnable {
             playSE(7);
             handler = new Handler();
             this.addKeyListener(new KeyInput(handler, this));
-            hud = new HUD(this);
+            hud = new HUD();
             spawner = new Spawn(handler, hud);
             Player.HEALTH = 100;
             handler.addObject(new Player(600 / 2 - 64, HEIGHT - 128, ID.Player, handler));

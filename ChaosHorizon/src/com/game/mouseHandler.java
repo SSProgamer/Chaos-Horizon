@@ -16,7 +16,7 @@ public class mouseHandler extends MouseAdapter {
     public void mousePressed(MouseEvent e) {
         int mx = e.getX();
         int my = e.getY();
-        System.out.println("clicked");
+        // System.out.println("clicked");
         // play button
         if (mouseOver(mx, my, 250, 275, 60, 300) && game.gameState == STATE.Menu) {
             game.gameState = STATE.Game;
