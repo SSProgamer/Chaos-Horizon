@@ -22,7 +22,7 @@ public class Player extends GameObject {
         playSound = new PlaySound();
 
         shoot = false;
-        endCooldown = 30;
+        endCooldown = 20;
         cooldown = endCooldown;
         ammo = 1;
     }

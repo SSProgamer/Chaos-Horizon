@@ -74,6 +74,7 @@ public class Boss extends GameObject {
             playSE(7);
             handler.removeObject(this);
             hud.setScore(hud.getScore() + 1000);
+            Wave.setIdEnemy(Wave.getIdEnemy() - 1);
         }
 
         if (cooldown1 == endCooldown1 && inPosition) {

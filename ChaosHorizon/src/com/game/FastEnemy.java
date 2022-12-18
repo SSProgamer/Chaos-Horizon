@@ -94,7 +94,7 @@ public class FastEnemy extends GameObject {
             playSE(7);
             handler.removeObject(this);
             hud.setScore(hud.getScore() + 10);
-            Wave.setIdEnemy();
+            Wave.setIdEnemy(Wave.getIdEnemy() - 1);
         }
 
         if (cooldown == endCooldown && shoot <= 5 && inPosition) {

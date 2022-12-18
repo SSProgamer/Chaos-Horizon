@@ -99,20 +99,24 @@ public class Game extends Canvas implements Runnable {
 
     private void tick() {
         handler.tick();
-        if (hud.getWave() == 6) {
+        if (hud.getWave() >= 2) {
             handler = new Handler();
             this.addKeyListener(new KeyInput(handler));
+            hud = new HUD();
             spawner = new Spawn(handler, hud);
-            hud.setWave(0);
+            Player.HEALTH = 100;
             handler.addObject(new Player(600 / 2 - 64, HEIGHT - 128, ID.Player, handler));
+            Wave.setIdEnemy(0);
             gameState = STATE.Win;
         }
         if (Player.HEALTH <= 0) {
             handler = new Handler();
             this.addKeyListener(new KeyInput(handler));
+            hud = new HUD();
             spawner = new Spawn(handler, hud);
             Player.HEALTH = 100;
             handler.addObject(new Player(600 / 2 - 64, HEIGHT - 128, ID.Player, handler));
+            Wave.setIdEnemy(0);
             gameState = STATE.Lose;
         }
         // check State

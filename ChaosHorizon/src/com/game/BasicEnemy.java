@@ -94,7 +94,7 @@ public class BasicEnemy extends GameObject {
             playSE(7);
             handler.removeObject(this);
             hud.setScore(hud.getScore() + 20);
-            Wave.setIdEnemy();
+            Wave.setIdEnemy(Wave.getIdEnemy() - 1);
         }
 
         if (cooldown == endCooldown && shoot <= 5 && inPosition) {

@@ -12,7 +12,7 @@ public class PlayerBullet extends GameObject {
         this.handler = handler;
         this.velX = velX;
         this.velY = velY;
-        damage = 1;
+        damage = 3;
     }
 
     public Rectangle getBounds() {

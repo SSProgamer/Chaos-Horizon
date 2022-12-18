@@ -110,8 +110,8 @@ public class Wave {
         return idEnemy;
     }
 
-    public static void setIdEnemy() {
-        Wave.idEnemy--;
+    public static void setIdEnemy(int idEnemy) {
+        Wave.idEnemy = idEnemy;
     }
 
 }
