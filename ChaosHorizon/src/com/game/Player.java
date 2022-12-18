@@ -81,7 +81,6 @@ public class Player extends GameObject {
 
         g.setColor(Color.green);
         g2d.draw(getBounds());
-
     }
 
     private synchronized void collision() {
@@ -92,17 +91,19 @@ public class Player extends GameObject {
             if (tempObject.getId() == ID.BasicEnemy || tempObject.getId() == ID.FastEnemy
                     || tempObject.getId() == ID.HeavyEnemy || tempObject.getId() == ID.Boss) {
                 if (getBounds().intersects(tempObject.getBounds())) {
-                    // ลองหักเลือดเยอะขึ้นเมื่อชน
+                    // Collision with Enemy
                     HEALTH -= 5;
                 }
             }
             if (tempObject.getId() == ID.EnegyBall) {
                 if (getBounds().intersects(tempObject.getBounds())) {
+                    // Collision with EnegyBall
                     HEALTH -= 3;
                 }
             }
             if (tempObject.getId() == ID.EnemyBullet) {
                 if (getBounds().intersects(tempObject.getBounds())) {
+                    // Collision with EnemyBullet
                     HEALTH -= ((EnemyBullet) tempObject).getDamage();
                     handler.removeObject(tempObject);
                 }

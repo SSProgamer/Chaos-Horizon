@@ -45,7 +45,6 @@ public class Wave {
             fastEnemy = new FastEnemy(-50 * i, 300, ID.BasicEnemy, handler, hud, idEnemy);
             handler.addObject(fastEnemy);
             idEnemy++;
-            fastEnemy.setEnemyPosition(fastEnemy.getidEnemy());
         }
         for (int i = 0; i < 5; i++) {
             basicEnemy = new BasicEnemy(100 + 40 * i, -60, ID.BasicEnemy, handler, hud, idEnemy);
@@ -87,7 +86,6 @@ public class Wave {
             fastEnemy = new FastEnemy(-50 * i, 300, ID.BasicEnemy, handler, hud, idEnemy);
             handler.addObject(fastEnemy);
             idEnemy++;
-            fastEnemy.setEnemyPosition(fastEnemy.getidEnemy());
         }
     }
 

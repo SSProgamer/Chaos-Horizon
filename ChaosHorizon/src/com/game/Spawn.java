@@ -3,40 +3,29 @@ package com.game;
 public class Spawn {
     private Handler handler;
     private HUD hud;
-    private int spawnX = 20;
-    private int spawnY = 20;
+    private int spawnX;
+    private int spawnY;
+    private int delay;
 
     public Spawn(Handler handler, HUD hud) {
         this.handler = handler;
         this.hud = hud;
+        spawnX = 20;
+        spawnY = 20;
+        delay = 1000;
     }
 
     public void tick() {
+        delay = Game.clamp(delay, 0, 500);
 
         if (Wave.getIdEnemy() == 0) {
-            new Wave(handler, hud, hud.getWave());
-            /*
-             * for (int i = 0; i < 5; i++) {
-             * handler.addObject(new BasicEnemy(spawnX + 40 * i, spawnY, ID.BasicEnemy,
-             * handler, hud));
-             * }
-             * hud.setWave(hud.getWave() + 1);
-             */
+            if (delay >= 500) {
+                new Wave(handler, hud, hud.getWave());
+                delay = 0;
+            } else {
+                delay++;
+            }
         }
-        /*
-         * else if(hud.getWave() == 1 && basicEnemy.getEnemyaLive() == 0){
-         * new Wave(handler, hud, 2);
-         * }
-         * else if(hud.getWave() == 2 && basicEnemy.getEnemyaLive() == 0){
-         * new Wave(handler, hud, 3);
-         * }
-         * else if(hud.getWave() == 3 && basicEnemy.getEnemyaLive() == 0){
-         * new Wave(handler, hud, 4);
-         * }
-         * else if(hud.getWave() == 4 && basicEnemy.getEnemyaLive() == 0){
-         * new Wave(handler, hud, 5);
-         * }
-         */
     }
 
     public Handler getHandler() {
@@ -70,5 +59,4 @@ public class Spawn {
     public void setSpawnY(int spawnY) {
         this.spawnY = spawnY;
     }
-
 }
