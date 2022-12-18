@@ -1,8 +1,10 @@
 package com.game;
 
 import java.awt.*;
+import java.awt.event.*;
+public class HUD extends MouseAdapter{
+    
 
-public class HUD {
     private int greenValue = 255;
     private int redValue = 0;
 
@@ -26,28 +28,58 @@ public class HUD {
 
         g.setFont(new Font("arial", 1, 16));
         g.setColor(new Color(redValue, greenValue, 0));
-        g.fillRect(610, 125, Player.HEALTH * 17 / 10, 30);
+        g.fillRect(600, 225, Player.HEALTH * 17 / 10, 30);
         g.setColor(Color.white);
-        g.drawRect(610, 125, 170, 30);
+        g.drawRect(600, 225, 170, 30);
 
-        g.drawString("HP : ", 570, 145);
-        g.drawString("Wave : " + wave, 570, 190);
-        g.drawString("Score : " + score, 570, 235);
-        g.drawString("Stats", 570, 300);
-        g.drawString("Damage : Level 1", 570, 330);
-        g.drawString("Rate of fire : Level 1", 570, 360);
-        g.drawString("Ammo : Level 1", 570, 390);
-        g.drawString("BOMB", 570, 450);
-        g.drawString("DRILL", 680, 450);
-        g.drawRect(750, 315, 20, 20);
-        g.drawRect(750, 345, 20, 20);
-        g.drawRect(750, 375, 20, 20);
-        g.drawString("^", 755, 335);
-        g.drawString("^", 755, 365);
-        g.drawString("^", 755, 395);
+        g.drawString("HP : ", 600, 245);
+        g.drawString("Wave : " + wave, 600, 290);
+        g.drawString("Score : " + score, 600, 335);
+        g.drawString("Stats", 600, 400);
+        g.drawString("Damage : Level 1", 600, 430);
+        g.drawString("Rate of fire : Level 1", 600, 460);
+        g.drawString("Ammo : Level 1", 600, 490);
+        // g.drawString("BOMB", 600, 450);
+        // g.drawString("DRILL", 680, 450);
+        g.drawRect(750, 415, 20, 20);
+        g.drawRect(750, 445, 20, 20);
+        g.drawRect(750, 475, 20, 20);
+        g.drawString("^", 755, 435);
+        g.drawString("^", 755, 465);
+        g.drawString("^", 755, 495);
 
         // g.setFont(new Font("arial",1,24));
         // g.drawString("UPGRADE",600,500);
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        int mx = e.getX();
+        int my = e.getY();
+        //upgrade
+        if(mouseOver(mx, my, 0, 0, 20, 20)){
+            //do something
+            System.out.println("a");
+            System.exit(0);
+        }
+        else if(mouseOver(mx, my, 750, 435, 20, 20)){
+            //do something
+            System.out.println("b");
+        }
+        else if(mouseOver(mx, my, 750, 455, 20, 20)){
+            //do something
+            System.out.println("c");
+        }
+    }
+
+    public boolean mouseOver(int mx, int my, int x, int y, int h, int w) {
+        if ((x < mx && mx < x + w)) {
+            if (y < my && my < y + h) {
+                return true;
+            } else
+                return false;
+        } else
+            return false;
     }
 
     public int getScore() {
