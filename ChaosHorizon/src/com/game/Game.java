@@ -18,6 +18,7 @@ public class Game extends Canvas implements Runnable {
     private MainMenu menu;
     private EndGame end;
     private BackgroundInGame backgroundInGame;
+    private mouseHandler mouse;
 
     // Make state variable
     public enum STATE {
@@ -36,13 +37,15 @@ public class Game extends Canvas implements Runnable {
         handler = new Handler();
         menu = new MainMenu(this);
         end = new EndGame(this);
+        mouse = new mouseHandler(this);
         this.addKeyListener(new KeyInput(handler, this));
-        this.addMouseListener(menu);
-        this.addMouseListener(end);
+        // this.addMouseListener(menu);
+        // this.addMouseListener(end);
+        this.addMouseListener(mouse);
         new Window(WIDTH, HEIGHT, "Chaos Horizon", this);
 
         backgroundInGame = new BackgroundInGame(0, -635, ID.BackgroundInGame);
-        hud = new HUD();
+        hud = new HUD(this);
         spawner = new Spawn(handler, hud);
 
         // music start
@@ -102,7 +105,7 @@ public class Game extends Canvas implements Runnable {
         if (hud.getWave() >= 6) {
             handler = new Handler();
             this.addKeyListener(new KeyInput(handler, this));
-            hud = new HUD();
+            hud = new HUD(this);
             spawner = new Spawn(handler, hud);
             Player.HEALTH = 100;
             handler.addObject(new Player(600 / 2 - 64, HEIGHT - 128, ID.Player, handler));
@@ -113,7 +116,7 @@ public class Game extends Canvas implements Runnable {
             playSE(7);
             handler = new Handler();
             this.addKeyListener(new KeyInput(handler, this));
-            hud = new HUD();
+            hud = new HUD(this);
             spawner = new Spawn(handler, hud);
             Player.HEALTH = 100;
             handler.addObject(new Player(600 / 2 - 64, HEIGHT - 128, ID.Player, handler));

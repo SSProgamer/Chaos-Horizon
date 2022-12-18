@@ -2,14 +2,20 @@ package com.game;
 
 import java.awt.*;
 import java.awt.event.*;
-public class HUD extends MouseAdapter{
-    
 
+import com.game.Game.STATE;
+public class HUD extends MouseAdapter{
+    private Game game;
+    
     private int greenValue = 255;
     private int redValue = 0;
 
     private int score = 0;
     private int wave = 0;
+
+    public HUD(Game game){
+        this.game = game;
+    }
 
     public void tick() {
         greenValue = Player.HEALTH * 2;
@@ -50,36 +56,6 @@ public class HUD extends MouseAdapter{
 
         // g.setFont(new Font("arial",1,24));
         // g.drawString("UPGRADE",600,500);
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-        int mx = e.getX();
-        int my = e.getY();
-        //upgrade
-        if(mouseOver(mx, my, 0, 0, 20, 20)){
-            //do something
-            System.out.println("a");
-            System.exit(0);
-        }
-        else if(mouseOver(mx, my, 750, 435, 20, 20)){
-            //do something
-            System.out.println("b");
-        }
-        else if(mouseOver(mx, my, 750, 455, 20, 20)){
-            //do something
-            System.out.println("c");
-        }
-    }
-
-    public boolean mouseOver(int mx, int my, int x, int y, int h, int w) {
-        if ((x < mx && mx < x + w)) {
-            if (y < my && my < y + h) {
-                return true;
-            } else
-                return false;
-        } else
-            return false;
     }
 
     public int getScore() {
