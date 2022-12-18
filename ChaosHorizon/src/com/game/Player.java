@@ -62,7 +62,7 @@ public class Player extends GameObject {
     }
 
     public void render(Graphics g) {
-        Graphics2D g2d = (Graphics2D) g;
+        // Graphics2D g2d = (Graphics2D) g;
         if (d == 1) {
             Image left = Toolkit.getDefaultToolkit()
                     .getImage("ChaosHorizon/res/player/ship/player_turn_left_hold64.gif");
@@ -79,8 +79,8 @@ public class Player extends GameObject {
         // g.setColor(Color.white);
         // g.fillRect(x, y, 64, 64);
 
-        g.setColor(Color.green);
-        g2d.draw(getBounds());
+        // g.setColor(Color.green);
+        // g2d.draw(getBounds());
     }
 
     private synchronized void collision() {
