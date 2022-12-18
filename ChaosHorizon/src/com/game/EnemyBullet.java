@@ -19,13 +19,13 @@ public class EnemyBullet extends GameObject {
     }
 
     public void render(Graphics g) {
-        Graphics2D g2d = (Graphics2D) g;
+        // Graphics2D g2d = (Graphics2D) g;
 
         g.setColor(Color.yellow);
         g.fillRect(x, y, 8, 8);
 
-        g.setColor(Color.green);
-        g2d.draw(getBounds());
+        // g.setColor(Color.green);
+        // g2d.draw(getBounds());
     }
 
     public void tick() {
