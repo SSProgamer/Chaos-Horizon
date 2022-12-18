@@ -18,7 +18,7 @@ public class Wave {
         BasicEnemy.setNumberEnemy(0);
         // กำหนด wave
         if (wave == 0) {
-            wave5();
+            wave1();
         } else if (wave == 1) {
             wave2();
         } else if (wave == 2) {

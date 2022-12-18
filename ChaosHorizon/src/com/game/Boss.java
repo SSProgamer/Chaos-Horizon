@@ -43,7 +43,7 @@ public class Boss extends GameObject {
     }
 
     public void render(Graphics g) {
-        Graphics2D g2d = (Graphics2D) g;
+        // Graphics2D g2d = (Graphics2D) g;
 
         // g.setColor(Color.orange);
         // g.fillRect(x, y, 400, 64);
@@ -51,8 +51,8 @@ public class Boss extends GameObject {
         Image img = Toolkit.getDefaultToolkit().getImage("ChaosHorizon/res/enemy/boss/boss.gif");
         g.drawImage(img, x, y, null);
 
-        g.setColor(Color.green);
-        g2d.draw(getBounds());
+        // g.setColor(Color.green);
+        // g2d.draw(getBounds());
     }
 
     public void tick() {
