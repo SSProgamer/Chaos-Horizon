@@ -57,7 +57,7 @@ public class EndGame extends MouseAdapter {
         if (game.gameState == STATE.Lose) {
             g.drawImage(loseImg, 0, 0, null);
             g.setFont(head);
-            g.drawString("Game End!", 100, 100);
+            g.drawString("You are crash and become Mermaid", 100, 100);
             g.drawString("Retry", 163, 500);
             g.drawString("Back to Menu", 400, 500);
             g.setFont(txt);
