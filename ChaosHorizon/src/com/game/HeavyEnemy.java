@@ -5,7 +5,6 @@ import java.util.*;
 
 public class HeavyEnemy extends GameObject {
     private int startX;
-    private int startY;
     private HUD hud;
     private Handler handler;
     private PlaySound playSound;
@@ -19,18 +18,15 @@ public class HeavyEnemy extends GameObject {
     private int maxY;
     private int maxedY = 0;
     private boolean inPosition;
-    private static int numberEnemy = 0;
 
     public HeavyEnemy(int x, int y, ID id, Handler handler, HUD hud, int idEnemy) {
         super(x, y, id);
         this.handler = handler;
         this.hud = hud;
         this.idEnemy = idEnemy;
-        numberEnemy++;
         HP = 30;
         r = new Random();
         startX = x;
-        startY = y;
         inPosition = false;
         playSound = new PlaySound();
 
@@ -46,7 +42,6 @@ public class HeavyEnemy extends GameObject {
     }
 
     public static void setNumberEnemy(int numberEnemy) {
-        HeavyEnemy.numberEnemy = numberEnemy;
     }
 
     public void setEnemyPosition(int idEnemy) {
@@ -68,8 +63,8 @@ public class HeavyEnemy extends GameObject {
     }
 
     public void render(Graphics g) {
-        Image img1 = Toolkit.getDefaultToolkit().getImage("ChaosHorizon/res/enemy/big_ship/big_enemy.gif");
-        g.drawImage(img1, x, y, null);
+        Image img = Toolkit.getDefaultToolkit().getImage("ChaosHorizon/res/enemy/big_ship/big_enemy.gif");
+        g.drawImage(img, x, y, null);
         // g.setColor(Color.pink);
         // g.fillRect(x, y, 48, 48);
     }

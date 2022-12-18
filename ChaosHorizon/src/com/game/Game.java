@@ -99,7 +99,7 @@ public class Game extends Canvas implements Runnable {
 
     private void tick() {
         handler.tick();
-        if (hud.getWave() >= 2) {
+        if (hud.getWave() >= 6) {
             handler = new Handler();
             this.addKeyListener(new KeyInput(handler));
             hud = new HUD();
@@ -110,6 +110,7 @@ public class Game extends Canvas implements Runnable {
             gameState = STATE.Win;
         }
         if (Player.HEALTH <= 0) {
+            playSE(7);
             handler = new Handler();
             this.addKeyListener(new KeyInput(handler));
             hud = new HUD();

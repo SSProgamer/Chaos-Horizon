@@ -18,9 +18,13 @@ public class HUD {
     }
 
     public void render(Graphics g) {
-        g.setColor(Color.gray);
+        // g.setColor(Color.gray);
+        // g.fillRect(550, 0, 250, 600);
+
+        Image img = Toolkit.getDefaultToolkit().getImage("ChaosHorizon/res/sidebar.png");
+        g.drawImage(img, 550, 0, null);
+
         g.setFont(new Font("arial", 1, 16));
-        g.fillRect(550, 0, 250, 600);
         g.setColor(new Color(redValue, greenValue, 0));
         g.fillRect(610, 125, Player.HEALTH * 17 / 10, 30);
         g.setColor(Color.white);

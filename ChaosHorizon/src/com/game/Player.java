@@ -72,8 +72,8 @@ public class Player extends GameObject {
                     .getImage("ChaosHorizon/res/player/ship/player_turn_right_hold64.gif");
             g.drawImage(right, x, y, null);
         } else {
-            Image img1 = Toolkit.getDefaultToolkit().getImage("ChaosHorizon/res/player/ship/player_idle64.gif");
-            g.drawImage(img1, x, y, null);
+            Image img = Toolkit.getDefaultToolkit().getImage("ChaosHorizon/res/player/ship/player_idle64.gif");
+            g.drawImage(img, x, y, null);
         }
 
         // g.setColor(Color.white);

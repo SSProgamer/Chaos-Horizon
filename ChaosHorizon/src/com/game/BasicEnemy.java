@@ -5,7 +5,6 @@ import java.util.*;
 
 public class BasicEnemy extends GameObject {
     private int startX;
-    private int startY;
     private HUD hud;
     private Handler handler;
     private PlaySound playSound;
@@ -30,7 +29,6 @@ public class BasicEnemy extends GameObject {
         HP = 20;
         r = new Random();
         startX = x;
-        startY = y;
         inPosition = false;
         playSound = new PlaySound();
 
@@ -64,8 +62,8 @@ public class BasicEnemy extends GameObject {
     }
 
     public void render(Graphics g) {
-        Image img1 = Toolkit.getDefaultToolkit().getImage("ChaosHorizon/res/enemy/medium_ship/enemy_medium.gif");
-        g.drawImage(img1, x, y, null);
+        Image img = Toolkit.getDefaultToolkit().getImage("ChaosHorizon/res/enemy/medium_ship/enemy_medium.gif");
+        g.drawImage(img, x, y, null);
         // g.setColor(Color.red);
         // g.fillRect(x, y, 32, 32);
     }

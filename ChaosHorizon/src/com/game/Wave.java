@@ -5,7 +5,6 @@ public class Wave {
     private HUD hud;
     // private int num = 20;
     private static int idEnemy = 0;
-    private static int EnemyaLive = 0;
     private BasicEnemy basicEnemy;
     private HeavyEnemy heavyEnemy;
     private FastEnemy fastEnemy;
@@ -34,8 +33,6 @@ public class Wave {
 
     public void wave1() {
         for (int i = 0; i < 5; i++) {
-            // สร้าง enemy
-            EnemyaLive++;
             basicEnemy = new BasicEnemy(100 + 40 * i, -60, ID.BasicEnemy, handler, hud, idEnemy);
             handler.addObject(basicEnemy);
             idEnemy++;
@@ -51,8 +48,6 @@ public class Wave {
             fastEnemy.setEnemyPosition(fastEnemy.getidEnemy());
         }
         for (int i = 0; i < 5; i++) {
-            // สร้าง enemy
-            EnemyaLive++;
             basicEnemy = new BasicEnemy(100 + 40 * i, -60, ID.BasicEnemy, handler, hud, idEnemy);
             handler.addObject(basicEnemy);
             idEnemy++;
@@ -68,8 +63,6 @@ public class Wave {
             heavyEnemy.setEnemyPosition(heavyEnemy.getidEnemy());
         }
         for (int i = 0; i < 7; i++) {
-            // สร้าง enemy
-            EnemyaLive++;
             basicEnemy = new BasicEnemy(100 + 40 * i, -60, ID.BasicEnemy, handler, hud, idEnemy);
             handler.addObject(basicEnemy);
             idEnemy++;
@@ -85,8 +78,6 @@ public class Wave {
             heavyEnemy.setEnemyPosition(heavyEnemy.getidEnemy());
         }
         for (int i = 0; i < 9; i++) {
-            // สร้าง enemy
-            EnemyaLive++;
             basicEnemy = new BasicEnemy(100 + 40 * i, -60, ID.BasicEnemy, handler, hud, idEnemy);
             handler.addObject(basicEnemy);
             idEnemy++;

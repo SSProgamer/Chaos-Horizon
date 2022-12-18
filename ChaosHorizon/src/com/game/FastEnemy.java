@@ -4,8 +4,6 @@ import java.awt.*;
 import java.util.*;
 
 public class FastEnemy extends GameObject {
-    private int startX;
-    private int startY;
     private HUD hud;
     private Handler handler;
     private PlaySound playSound;
@@ -16,11 +14,8 @@ public class FastEnemy extends GameObject {
     private int shoot;
     private Random r;
     private int idEnemy;
-    private int maxY;
-    private int maxedY = 0;
     private boolean inPosition;
     private static int numberEnemy = 0;
-    private Wave wave;
 
     public FastEnemy(int x, int y, ID id, Handler handler, HUD hud, int idEnemy) {
         super(x, y, id);
@@ -30,8 +25,6 @@ public class FastEnemy extends GameObject {
         numberEnemy++;
         HP = 10;
         r = new Random();
-        startX = x;
-        startY = y;
         inPosition = true;
         velX = 5;
         velY = 5;
@@ -49,22 +42,13 @@ public class FastEnemy extends GameObject {
         FastEnemy.numberEnemy = numberEnemy;
     }
 
-    public void setEnemyPosition(int idEnemy) {
-        if (idEnemy % 2 == 0) {
-            maxY = 80;
-        } else {
-            maxY = 150;
-        }
-
-    }
-
     public Rectangle getBounds() {
         return new Rectangle(x, y, 16, 16);
     }
 
     public void render(Graphics g) {
-        Image img1 = Toolkit.getDefaultToolkit().getImage("ChaosHorizon/res/enemy/small_ship/small_enemy_16px.gif");
-        g.drawImage(img1, x, y, null);
+        Image img = Toolkit.getDefaultToolkit().getImage("ChaosHorizon/res/enemy/small_ship/small_enemy_16px.gif");
+        g.drawImage(img, x, y, null);
         // g.setColor(Color.pink);
         // g.fillRect(x, y, 16, 16);
     }
