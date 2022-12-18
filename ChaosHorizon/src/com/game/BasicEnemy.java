@@ -5,7 +5,6 @@ import java.util.*;
 
 public class BasicEnemy extends GameObject {
     private int startX;
-    private HUD hud;
     private Handler handler;
     private PlaySound playSound;
 
@@ -19,18 +18,19 @@ public class BasicEnemy extends GameObject {
     private int maxedY = 0;
     private boolean inPosition;
     private static int numberEnemy = 0;
+    private Image bulletImg;
 
-    public BasicEnemy(int x, int y, ID id, Handler handler, HUD hud, int idEnemy) {
+    public BasicEnemy(int x, int y, ID id, Handler handler, int idEnemy) {
         super(x, y, id);
         this.handler = handler;
-        this.hud = hud;
         this.idEnemy = idEnemy;
         numberEnemy++;
-        HP = 20;
+        HP = 10;
         r = new Random();
         startX = x;
         inPosition = false;
         playSound = new PlaySound();
+        bulletImg = Toolkit.getDefaultToolkit().getImage("ChaosHorizon/res/enemy/medium_ship/MediumBullet.gif");
 
         velX = 3;
         velY = 3;
@@ -91,12 +91,12 @@ public class BasicEnemy extends GameObject {
         if (HP <= 0) {
             playSE(7);
             handler.removeObject(this);
-            hud.setScore(hud.getScore() + 20);
+            HUD.score += 20;
             Wave.setIdEnemy(Wave.getIdEnemy() - 1);
         }
 
         if (cooldown == endCooldown && shoot <= 5 && inPosition) {
-            handler.addObject(new EnemyBullet(x + 12, y + 32, ID.EnemyBullet, handler, 0, 5, 2));
+            handler.addObject(new EnemyBullet(x + 12, y + 32, ID.EnemyBullet, handler, 0, 5, 2, bulletImg));
 
             playSE(3);
 
@@ -117,7 +117,8 @@ public class BasicEnemy extends GameObject {
             }
             if (tempObject.getId() == ID.PlayerBullet) {
                 if (getBounds().intersects(tempObject.getBounds())) {
-                    HP -= PlayerBullet.damage;
+                    HP -= ((PlayerBullet) tempObject).getBulletDamage();
+                    ;
                     handler.removeObject(tempObject);
                 }
             }

@@ -4,7 +4,6 @@ import java.awt.*;
 import java.util.*;
 
 public class FastEnemy extends GameObject {
-    private HUD hud;
     private Handler handler;
     private PlaySound playSound;
 
@@ -16,19 +15,20 @@ public class FastEnemy extends GameObject {
     private int idEnemy;
     private boolean inPosition;
     private static int numberEnemy = 0;
+    private Image bulletImg;
 
-    public FastEnemy(int x, int y, ID id, Handler handler, HUD hud, int idEnemy) {
+    public FastEnemy(int x, int y, ID id, Handler handler, int idEnemy) {
         super(x, y, id);
         this.handler = handler;
-        this.hud = hud;
         this.idEnemy = idEnemy;
         numberEnemy++;
-        HP = 10;
+        HP = 5;
         r = new Random();
         inPosition = true;
         velX = 5;
         velY = 5;
         playSound = new PlaySound();
+        bulletImg = Toolkit.getDefaultToolkit().getImage("ChaosHorizon/res/enemy/small_ship/SmallBullet.gif");
 
         endCooldown = 75;
         cooldown = endCooldown;
@@ -77,12 +77,12 @@ public class FastEnemy extends GameObject {
         if (HP <= 0) {
             playSE(7);
             handler.removeObject(this);
-            hud.setScore(hud.getScore() + 10);
+            HUD.score += 10;
             Wave.setIdEnemy(Wave.getIdEnemy() - 1);
         }
 
         if (cooldown == endCooldown && shoot <= 5 && inPosition) {
-            handler.addObject(new EnemyBullet(x + 4, y + 16, ID.EnemyBullet, handler, 0, 7, 1));
+            handler.addObject(new EnemyBullet(x + 4, y + 16, ID.EnemyBullet, handler, 0, 7, 1, bulletImg));
 
             playSE(3);
 
@@ -103,7 +103,8 @@ public class FastEnemy extends GameObject {
             }
             if (tempObject.getId() == ID.PlayerBullet) {
                 if (getBounds().intersects(tempObject.getBounds())) {
-                    HP -= PlayerBullet.damage;
+                    HP -= ((PlayerBullet) tempObject).getBulletDamage();
+                    ;
                     handler.removeObject(tempObject);
                 }
             }

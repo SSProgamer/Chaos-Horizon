@@ -1,21 +1,13 @@
 package com.game;
 
 import java.awt.*;
-import java.awt.event.*;
 
-import com.game.Game.STATE;
-public class HUD extends MouseAdapter{
-    private Game game;
-    
+public class HUD {
     private int greenValue = 255;
     private int redValue = 0;
 
-    private int score = 0;
+    public static int score = 0;
     private int wave = 0;
-
-    public HUD(Game game){
-        this.game = game;
-    }
 
     public void tick() {
         greenValue = Player.HEALTH * 2;
@@ -38,13 +30,13 @@ public class HUD extends MouseAdapter{
         g.setColor(Color.white);
         g.drawRect(600, 225, 170, 30);
 
-        g.drawString("HP : ", 600, 245);
-        g.drawString("Wave : " + wave, 600, 290);
-        g.drawString("Score : " + score, 600, 335);
+        // g.drawString("HP : ", 600, 245);
+        g.drawString("Wave: " + wave, 600, 290);
+        g.drawString("Score: " + score, 600, 335);
         g.drawString("Stats", 600, 400);
-        g.drawString("Damage : Level 1", 600, 430);
-        g.drawString("Rate of fire : Level 1", 600, 460);
-        g.drawString("Ammo : Level 1", 600, 490);
+        g.drawString("Damage: Level " + Player.damage, 600, 430);
+        g.drawString("Rate of fire: Level " + Player.raf, 600, 460);
+        g.drawString("Ammo: Level " + Player.ammo, 600, 490);
         // g.drawString("BOMB", 600, 450);
         // g.drawString("DRILL", 680, 450);
         g.drawRect(750, 415, 20, 20);
@@ -56,14 +48,6 @@ public class HUD extends MouseAdapter{
 
         // g.setFont(new Font("arial",1,24));
         // g.drawString("UPGRADE",600,500);
-    }
-
-    public int getScore() {
-        return score;
-    }
-
-    public void setScore(int score) {
-        this.score = score;
     }
 
     public int getWave() {

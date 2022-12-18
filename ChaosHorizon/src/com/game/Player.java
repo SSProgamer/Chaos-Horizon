@@ -8,11 +8,14 @@ public class Player extends GameObject {
     private PlaySound playSound;
 
     private boolean shoot;
+    private int endCooldown;
     private int cooldown;
     private int d;
 
+    // Damage of out bullet | 1 -> 2 -> 3
+    public static int damage;
     // Rate of fire | Less Number = Shoot Faster
-    public static int endCooldown;
+    public static int raf;
     // How many bullet we shoot | 1 -> 2 -> 3
     public static int ammo;
 
@@ -22,8 +25,11 @@ public class Player extends GameObject {
         playSound = new PlaySound();
 
         shoot = false;
-        endCooldown = 20;
+        endCooldown = 35;
         cooldown = endCooldown;
+
+        damage = 1;
+        raf = 1;
         ammo = 1;
     }
 
@@ -38,6 +44,8 @@ public class Player extends GameObject {
     public void tick() {
         HEALTH = Game.clamp(HEALTH, 0, 100);
 
+        endCooldown = 35 - (raf * 5);
+
         x += velX;
         y += velY;
         cooldown++;
@@ -47,11 +55,15 @@ public class Player extends GameObject {
         cooldown = Game.clamp(cooldown, 0, endCooldown);
 
         if (shoot && (cooldown == endCooldown)) {
-            handler.addObject(new PlayerBullet(x + 26, y - 20, ID.PlayerBullet, handler, 0, -10));
-            handler.addObject(new PlayerBullet(x + 26, y - 20, ID.PlayerBullet, handler, 5, -10));
-            handler.addObject(new PlayerBullet(x + 26, y - 20, ID.PlayerBullet, handler, -5, -10));
-            handler.addObject(new PlayerBullet(x + 26, y - 20, ID.PlayerBullet, handler, 10, -10));
-            handler.addObject(new PlayerBullet(x + 26, y - 20, ID.PlayerBullet, handler, -10, -10));
+            handler.addObject(new PlayerBullet(x + 26, y - 20, ID.PlayerBullet, handler, 0, -10, damage));
+            if (ammo >= 2) {
+                handler.addObject(new PlayerBullet(x + 26, y - 20, ID.PlayerBullet, handler, 5, -10, damage));
+                handler.addObject(new PlayerBullet(x + 26, y - 20, ID.PlayerBullet, handler, -5, -10, damage));
+            }
+            if (ammo >= 3) {
+                handler.addObject(new PlayerBullet(x + 26, y - 20, ID.PlayerBullet, handler, 10, -10, damage));
+                handler.addObject(new PlayerBullet(x + 26, y - 20, ID.PlayerBullet, handler, -10, -10, damage));
+            }
 
             playSE(2);
 

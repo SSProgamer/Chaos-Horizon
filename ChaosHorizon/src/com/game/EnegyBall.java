@@ -3,17 +3,17 @@ package com.game;
 import java.awt.*;
 
 public class EnegyBall extends GameObject {
-    private HUD hud;
     private Handler handler;
     private PlaySound playSound;
 
     private int HP;
+    private Image bulletImg;
 
-    public EnegyBall(int x, int y, ID id, Handler handler, HUD hud) {
+    public EnegyBall(int x, int y, ID id, Handler handler) {
         super(x, y, id);
         this.handler = handler;
-        this.hud = hud;
         playSound = new PlaySound();
+        bulletImg = Toolkit.getDefaultToolkit().getImage("ChaosHorizon/res/enemy/small_ship/SmallBullet.gif");
 
         HP = 20;
         velY = 3;
@@ -24,8 +24,11 @@ public class EnegyBall extends GameObject {
     }
 
     public void render(Graphics g) {
-        g.setColor(Color.magenta);
-        g.fillRect(x, y, 64, 64);
+        // g.setColor(Color.magenta);
+        // g.fillRect(x, y, 64, 64);
+
+        Image img = Toolkit.getDefaultToolkit().getImage("ChaosHorizon/res/enemy/boss/boss_energy_ball.gif");
+        g.drawImage(img, x, y, null);
     }
 
     public void tick() {
@@ -33,18 +36,18 @@ public class EnegyBall extends GameObject {
 
         if (HP <= 0) {
             handler.removeObject(this);
-            hud.setScore(hud.getScore() + 10);
+            HUD.score += 10;
         }
 
         if (y >= 300) {
-            handler.addObject(new EnemyBullet(x + 28, y + 28, ID.EnemyBullet, handler, 0, 7, 1));
-            handler.addObject(new EnemyBullet(x + 28, y + 28, ID.EnemyBullet, handler, 0, -7, 1));
-            handler.addObject(new EnemyBullet(x + 28, y + 28, ID.EnemyBullet, handler, -7, 0, 1));
-            handler.addObject(new EnemyBullet(x + 28, y + 28, ID.EnemyBullet, handler, 7, 0, 1));
-            handler.addObject(new EnemyBullet(x + 28, y + 28, ID.EnemyBullet, handler, -7, 7, 1));
-            handler.addObject(new EnemyBullet(x + 28, y + 28, ID.EnemyBullet, handler, 7, 7, 1));
-            handler.addObject(new EnemyBullet(x + 28, y + 28, ID.EnemyBullet, handler, -7, -7, 1));
-            handler.addObject(new EnemyBullet(x + 28, y + 28, ID.EnemyBullet, handler, 7, -7, 1));
+            handler.addObject(new EnemyBullet(x + 28, y + 28, ID.EnemyBullet, handler, 0, 7, 1, bulletImg));
+            handler.addObject(new EnemyBullet(x + 28, y + 28, ID.EnemyBullet, handler, 0, -7, 1, bulletImg));
+            handler.addObject(new EnemyBullet(x + 28, y + 28, ID.EnemyBullet, handler, -7, 0, 1, bulletImg));
+            handler.addObject(new EnemyBullet(x + 28, y + 28, ID.EnemyBullet, handler, 7, 0, 1, bulletImg));
+            handler.addObject(new EnemyBullet(x + 28, y + 28, ID.EnemyBullet, handler, -7, 7, 1, bulletImg));
+            handler.addObject(new EnemyBullet(x + 28, y + 28, ID.EnemyBullet, handler, 7, 7, 1, bulletImg));
+            handler.addObject(new EnemyBullet(x + 28, y + 28, ID.EnemyBullet, handler, -7, -7, 1, bulletImg));
+            handler.addObject(new EnemyBullet(x + 28, y + 28, ID.EnemyBullet, handler, 7, -7, 1, bulletImg));
 
             playSE(3);
 
@@ -65,7 +68,8 @@ public class EnegyBall extends GameObject {
             }
             if (tempObject.getId() == ID.PlayerBullet) {
                 if (getBounds().intersects(tempObject.getBounds())) {
-                    HP -= PlayerBullet.damage;
+                    HP -= ((PlayerBullet) tempObject).getBulletDamage();
+                    ;
                     handler.removeObject(tempObject);
                 }
             }

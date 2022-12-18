@@ -3,7 +3,6 @@ package com.game;
 import com.game.Game.STATE;
 
 import java.awt.event.*;
-import java.awt.*;
 
 public class mouseHandler extends MouseAdapter {
     private Game game;
@@ -16,7 +15,6 @@ public class mouseHandler extends MouseAdapter {
     public void mousePressed(MouseEvent e) {
         int mx = e.getX();
         int my = e.getY();
-        System.out.println("clicked");
         // play button
         if (mouseOver(mx, my, 250, 275, 60, 300) && game.gameState == STATE.Menu) {
             game.gameState = STATE.Game;
@@ -41,33 +39,39 @@ public class mouseHandler extends MouseAdapter {
                 System.exit(1);
             }
         }
-        
-        //retry
-        else if (mouseOver(mx, my, 163, 464, 72, 116) && (game.gameState == STATE.Lose || game.gameState == STATE.Win)) {
-            System.out.println("Retry");
+
+        // retry
+        else if (mouseOver(mx, my, 163, 464, 72, 116)
+                && (game.gameState == STATE.Lose || game.gameState == STATE.Win)) {
             game.gameState = STATE.Game;
             game.playSE(6);
         }
         // Back to menu
         else if (mouseOver(mx, my, 398, 464, 72, 266)
                 && (game.gameState == STATE.Lose || game.gameState == STATE.Win)) {
-            System.out.println("Menu");
             game.gameState = STATE.Menu;
             game.playSE(6);
         }
 
-        //upgrade
-        else if(mouseOver(mx, my, 750, 415, 20, 20) && game.gameState == STATE.Game){
-            //do something
-            System.out.println("a");
-        }
-        else if(mouseOver(mx, my, 750, 445, 20, 20) && game.gameState == STATE.Game){
-            //do something
-            System.out.println("b");
-        }
-        else if(mouseOver(mx, my, 750, 475, 20, 20) && game.gameState == STATE.Game){
-            //do something
-            System.out.println("c");
+        // upgrade
+        else if (mouseOver(mx, my, 750, 415, 20, 20) && game.gameState == STATE.Game && Player.damage <= 2
+                && HUD.score >= 50) {
+            // do something
+            Player.damage++;
+            HUD.score -= 50;
+            game.playSE(6);
+        } else if (mouseOver(mx, my, 750, 445, 20, 20) && game.gameState == STATE.Game && Player.raf <= 2
+                && HUD.score >= 50) {
+            // do something
+            Player.raf++;
+            HUD.score -= 50;
+            game.playSE(6);
+        } else if (mouseOver(mx, my, 750, 475, 20, 20) && game.gameState == STATE.Game && Player.ammo <= 2
+                && HUD.score >= 50) {
+            // do something
+            Player.ammo++;
+            HUD.score -= 50;
+            game.playSE(6);
         }
     }
 
@@ -79,13 +83,5 @@ public class mouseHandler extends MouseAdapter {
                 return false;
         } else
             return false;
-    }
-
-    public void tick() {
-
-    }
-
-    public void render(Graphics g) {
-        
     }
 }

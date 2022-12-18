@@ -33,7 +33,7 @@ public class Wave {
 
     public void wave1() {
         for (int i = 0; i < 5; i++) {
-            basicEnemy = new BasicEnemy(100 + 40 * i, -60, ID.BasicEnemy, handler, hud, idEnemy);
+            basicEnemy = new BasicEnemy(100 + 40 * i, -60, ID.BasicEnemy, handler, idEnemy);
             handler.addObject(basicEnemy);
             idEnemy++;
             basicEnemy.setEnemyPosition(basicEnemy.getidEnemy());
@@ -42,12 +42,12 @@ public class Wave {
 
     public void wave2() {
         for (int i = 0; i < 10; i++) {
-            fastEnemy = new FastEnemy(-50 * i, 300, ID.BasicEnemy, handler, hud, idEnemy);
+            fastEnemy = new FastEnemy(-50 * i, 300, ID.BasicEnemy, handler, idEnemy);
             handler.addObject(fastEnemy);
             idEnemy++;
         }
         for (int i = 0; i < 5; i++) {
-            basicEnemy = new BasicEnemy(100 + 40 * i, -60, ID.BasicEnemy, handler, hud, idEnemy);
+            basicEnemy = new BasicEnemy(100 + 40 * i, -60, ID.BasicEnemy, handler, idEnemy);
             handler.addObject(basicEnemy);
             idEnemy++;
             basicEnemy.setEnemyPosition(basicEnemy.getidEnemy());
@@ -56,13 +56,13 @@ public class Wave {
 
     public void wave3() {
         for (int i = 0; i < 4; i++) {
-            heavyEnemy = new HeavyEnemy(165 + 40 * i, -120, ID.BasicEnemy, handler, hud, idEnemy);
+            heavyEnemy = new HeavyEnemy(165 + 40 * i, -120, ID.BasicEnemy, handler, idEnemy);
             handler.addObject(heavyEnemy);
             idEnemy++;
             heavyEnemy.setEnemyPosition(heavyEnemy.getidEnemy());
         }
         for (int i = 0; i < 7; i++) {
-            basicEnemy = new BasicEnemy(100 + 40 * i, -60, ID.BasicEnemy, handler, hud, idEnemy);
+            basicEnemy = new BasicEnemy(100 + 40 * i, -60, ID.BasicEnemy, handler, idEnemy);
             handler.addObject(basicEnemy);
             idEnemy++;
             basicEnemy.setEnemyPosition(basicEnemy.getidEnemy());
@@ -71,26 +71,26 @@ public class Wave {
 
     public void wave4() {
         for (int i = 0; i < 4; i++) {
-            heavyEnemy = new HeavyEnemy(165 + 40 * i, -120, ID.BasicEnemy, handler, hud, idEnemy);
+            heavyEnemy = new HeavyEnemy(165 + 40 * i, -120, ID.BasicEnemy, handler, idEnemy);
             handler.addObject(heavyEnemy);
             idEnemy++;
             heavyEnemy.setEnemyPosition(heavyEnemy.getidEnemy());
         }
         for (int i = 0; i < 9; i++) {
-            basicEnemy = new BasicEnemy(100 + 40 * i, -60, ID.BasicEnemy, handler, hud, idEnemy);
+            basicEnemy = new BasicEnemy(100 + 40 * i, -60, ID.BasicEnemy, handler, idEnemy);
             handler.addObject(basicEnemy);
             idEnemy++;
             basicEnemy.setEnemyPosition(basicEnemy.getidEnemy());
         }
         for (int i = 0; i < 10; i++) {
-            fastEnemy = new FastEnemy(-50 * i, 300, ID.BasicEnemy, handler, hud, idEnemy);
+            fastEnemy = new FastEnemy(-50 * i, 300, ID.BasicEnemy, handler, idEnemy);
             handler.addObject(fastEnemy);
             idEnemy++;
         }
     }
 
     public void wave5() {
-        boss = new Boss(75, -96, ID.Boss, handler, hud);
+        boss = new Boss(75, -96, ID.Boss, handler);
         handler.addObject(boss);
         idEnemy++;
     }

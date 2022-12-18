@@ -37,16 +37,15 @@ public class Game extends Canvas implements Runnable {
         handler = new Handler();
         menu = new MainMenu(this);
         end = new EndGame(this);
-        mouse = new mouseHandler(this);
-        this.addKeyListener(new KeyInput(handler, this));
-        // this.addMouseListener(menu);
-        // this.addMouseListener(end);
-        this.addMouseListener(mouse);
-        new Window(WIDTH, HEIGHT, "Chaos Horizon", this);
-
-        backgroundInGame = new BackgroundInGame(0, -635, ID.BackgroundInGame);
-        hud = new HUD(this);
+        hud = new HUD();
         spawner = new Spawn(handler, hud);
+        mouse = new mouseHandler(this);
+        backgroundInGame = new BackgroundInGame(0, -635, ID.BackgroundInGame);
+
+        this.addMouseListener(mouse);
+        this.addKeyListener(new KeyInput(handler, this));
+
+        new Window(WIDTH, HEIGHT, "Chaos Horizon", this);
 
         // music start
         playMusic(1);
@@ -104,9 +103,14 @@ public class Game extends Canvas implements Runnable {
         handler.tick();
         if (hud.getWave() >= 6) {
             handler = new Handler();
-            this.addKeyListener(new KeyInput(handler, this));
-            hud = new HUD(this);
+            hud = new HUD();
             spawner = new Spawn(handler, hud);
+
+            this.addKeyListener(new KeyInput(handler, this));
+
+            end.setEndScore(HUD.score);
+
+            HUD.score = 0;
             Player.HEALTH = 100;
             handler.addObject(new Player(600 / 2 - 64, HEIGHT - 128, ID.Player, handler));
             Wave.setIdEnemy(0);
@@ -115,9 +119,14 @@ public class Game extends Canvas implements Runnable {
         if (Player.HEALTH <= 0) {
             playSE(7);
             handler = new Handler();
-            this.addKeyListener(new KeyInput(handler, this));
-            hud = new HUD(this);
+            hud = new HUD();
             spawner = new Spawn(handler, hud);
+
+            this.addKeyListener(new KeyInput(handler, this));
+
+            end.setEndScore(HUD.score);
+
+            HUD.score = 0;
             Player.HEALTH = 100;
             handler.addObject(new Player(600 / 2 - 64, HEIGHT - 128, ID.Player, handler));
             Wave.setIdEnemy(0);
@@ -130,10 +139,7 @@ public class Game extends Canvas implements Runnable {
             spawner.tick();
         } else if (gameState == STATE.Menu) {
             menu.tick();
-        } else if (gameState == STATE.Win || gameState == STATE.Lose) {
-            end.tick();
         }
-
     }
 
     private void render() {

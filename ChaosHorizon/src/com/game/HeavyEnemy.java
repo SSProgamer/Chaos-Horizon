@@ -5,7 +5,6 @@ import java.util.*;
 
 public class HeavyEnemy extends GameObject {
     private int startX;
-    private HUD hud;
     private Handler handler;
     private PlaySound playSound;
 
@@ -18,17 +17,18 @@ public class HeavyEnemy extends GameObject {
     private int maxY;
     private int maxedY = 0;
     private boolean inPosition;
+    private Image bulletImg;
 
-    public HeavyEnemy(int x, int y, ID id, Handler handler, HUD hud, int idEnemy) {
+    public HeavyEnemy(int x, int y, ID id, Handler handler, int idEnemy) {
         super(x, y, id);
         this.handler = handler;
-        this.hud = hud;
         this.idEnemy = idEnemy;
         HP = 30;
         r = new Random();
         startX = x;
         inPosition = false;
         playSound = new PlaySound();
+        bulletImg = Toolkit.getDefaultToolkit().getImage("ChaosHorizon/res/enemy/big_ship/BigBullet.gif");
 
         velX = 1;
         velY = 1;
@@ -92,13 +92,13 @@ public class HeavyEnemy extends GameObject {
         if (HP <= 0) {
             playSE(7);
             handler.removeObject(this);
-            hud.setScore(hud.getScore() + 40);
+            HUD.score += 40;
             Wave.setIdEnemy(Wave.getIdEnemy() - 1);
         }
 
         if (cooldown == endCooldown && shoot <= 5 && inPosition) {
-            handler.addObject(new EnemyBullet(x + 4, y + 48, ID.EnemyBullet, handler, 0, 3, 4));
-            handler.addObject(new EnemyBullet(x + 36, y + 48, ID.EnemyBullet, handler, 0, 3, 4));
+            handler.addObject(new EnemyBullet(x + 4, y + 48, ID.EnemyBullet, handler, 0, 3, 4, bulletImg));
+            handler.addObject(new EnemyBullet(x + 36, y + 48, ID.EnemyBullet, handler, 0, 3, 4, bulletImg));
 
             playSE(3);
 
@@ -119,7 +119,7 @@ public class HeavyEnemy extends GameObject {
             }
             if (tempObject.getId() == ID.PlayerBullet) {
                 if (getBounds().intersects(tempObject.getBounds())) {
-                    HP -= PlayerBullet.damage;
+                    HP -= ((PlayerBullet) tempObject).getBulletDamage();
                     handler.removeObject(tempObject);
                 }
             }
