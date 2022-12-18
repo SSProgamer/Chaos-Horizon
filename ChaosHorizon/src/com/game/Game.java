@@ -36,7 +36,7 @@ public class Game extends Canvas implements Runnable {
         handler = new Handler();
         menu = new MainMenu(this);
         end = new EndGame(this);
-        this.addKeyListener(new KeyInput(handler));
+        this.addKeyListener(new KeyInput(handler, this));
         this.addMouseListener(menu);
         this.addMouseListener(end);
         new Window(WIDTH, HEIGHT, "Chaos Horizon", this);
@@ -101,7 +101,7 @@ public class Game extends Canvas implements Runnable {
         handler.tick();
         if (hud.getWave() >= 6) {
             handler = new Handler();
-            this.addKeyListener(new KeyInput(handler));
+            this.addKeyListener(new KeyInput(handler, this));
             hud = new HUD();
             spawner = new Spawn(handler, hud);
             Player.HEALTH = 100;
@@ -112,7 +112,7 @@ public class Game extends Canvas implements Runnable {
         if (Player.HEALTH <= 0) {
             playSE(7);
             handler = new Handler();
-            this.addKeyListener(new KeyInput(handler));
+            this.addKeyListener(new KeyInput(handler, this));
             hud = new HUD();
             spawner = new Spawn(handler, hud);
             Player.HEALTH = 100;
