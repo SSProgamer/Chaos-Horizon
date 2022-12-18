@@ -28,29 +28,39 @@ public class Boss extends GameObject {
         velX = 1;
         velY = 1;
 
-        endCooldown1 = 150;
+        endCooldown1 = 100;
         cooldown1 = 0;
 
-        endCooldown2 = 200;
+        endCooldown2 = 150;
         cooldown2 = 0;
 
-        endCooldown3 = 300;
+        endCooldown3 = 275;
         cooldown3 = 0;
     }
 
     public Rectangle getBounds() {
-        return new Rectangle(x, y, 400, 64);
+        return new Rectangle(x + 72, y, 254, 64);
     }
 
     public void render(Graphics g) {
-        g.setColor(Color.orange);
-        g.fillRect(x, y, 400, 64);
+        Graphics2D g2d = (Graphics2D) g;
+
+        // g.setColor(Color.orange);
+        // g.fillRect(x, y, 400, 64);
+
+        Image img = Toolkit.getDefaultToolkit().getImage("ChaosHorizon/res/enemy/boss/boss.gif");
+        g.drawImage(img, x, y, null);
+
+        g.setColor(Color.green);
+        g2d.draw(getBounds());
     }
 
     public void tick() {
-        cooldown1++;
-        cooldown2++;
-        cooldown3++;
+        if (inPosition) {
+            cooldown1++;
+            cooldown2++;
+            cooldown3++;
+        }
 
         cooldown1 = Game.clamp(cooldown1, 0, endCooldown1);
         cooldown2 = Game.clamp(cooldown2, 0, endCooldown2);
@@ -66,7 +76,7 @@ public class Boss extends GameObject {
             x += velX;
         }
 
-        if (x >= 150 || x <= 0) {
+        if (x >= 222 || x <= -72) {
             velX *= -1;
         }
 
@@ -78,56 +88,54 @@ public class Boss extends GameObject {
         }
 
         if (cooldown1 == endCooldown1 && inPosition) {
-            handler.addObject(new EnemyBullet(x + 20, y + 64, ID.EnemyBullet, handler, 0, 5, 2));
-            handler.addObject(new EnemyBullet(x + 20 + 32 * 11, y + 64, ID.EnemyBullet, handler, 0, 5, 2));
-
-            playSE(3);
-
-            cooldown1 = 0;
-        } else if (cooldown1 == 100 && inPosition) {
-            handler.addObject(new EnemyBullet(x + 20 + 32 * 5, y + 64, ID.EnemyBullet, handler, 0, 5, 2));
-            handler.addObject(new EnemyBullet(x + 20 + 32 * 6, y + 64, ID.EnemyBullet, handler, 0, 5, 2));
-
-            playSE(3);
-        } else if (cooldown1 == 110 && inPosition) {
-            handler.addObject(new EnemyBullet(x + 20 + 32 * 4, y + 64, ID.EnemyBullet, handler, 0, 5, 2));
-            handler.addObject(new EnemyBullet(x + 20 + 32 * 7, y + 64, ID.EnemyBullet, handler, 0, 5, 2));
-
-            playSE(3);
-        } else if (cooldown1 == 120 && inPosition) {
-            handler.addObject(new EnemyBullet(x + 20 + 32 * 3, y + 64, ID.EnemyBullet, handler, 0, 5, 2));
-            handler.addObject(new EnemyBullet(x + 20 + 32 * 8, y + 64, ID.EnemyBullet, handler, 0, 5, 2));
-
-            playSE(3);
-        } else if (cooldown1 == 130 && inPosition) {
             handler.addObject(new EnemyBullet(x + 20 + 32 * 2, y + 64, ID.EnemyBullet, handler, 0, 5, 2));
             handler.addObject(new EnemyBullet(x + 20 + 32 * 9, y + 64, ID.EnemyBullet, handler, 0, 5, 2));
 
             playSE(3);
-        } else if (cooldown1 == 140 && inPosition) {
-            handler.addObject(new EnemyBullet(x + 20 + 32 * 1, y + 64, ID.EnemyBullet, handler, 0, 5, 2));
-            handler.addObject(new EnemyBullet(x + 20 + 32 * 10, y + 64, ID.EnemyBullet, handler, 0, 5, 2));
+
+            cooldown1 = 0;
+        } else if (cooldown1 == endCooldown1 - 30 && inPosition) {
+            handler.addObject(new EnemyBullet(x + 20 + 32 * 5, y + 64, ID.EnemyBullet, handler, 0, 5, 2));
+            handler.addObject(new EnemyBullet(x + 20 + 32 * 6, y + 64, ID.EnemyBullet, handler, 0, 5, 2));
+
+            playSE(3);
+        } else if (cooldown1 == endCooldown1 - 20 && inPosition) {
+            handler.addObject(new EnemyBullet(x + 20 + 32 * 4, y + 64, ID.EnemyBullet, handler, 0, 5, 2));
+            handler.addObject(new EnemyBullet(x + 20 + 32 * 7, y + 64, ID.EnemyBullet, handler, 0, 5, 2));
+
+            playSE(3);
+        } else if (cooldown1 == endCooldown1 - 10 && inPosition) {
+            handler.addObject(new EnemyBullet(x + 20 + 32 * 3, y + 64, ID.EnemyBullet, handler, 0, 5, 2));
+            handler.addObject(new EnemyBullet(x + 20 + 32 * 8, y + 64, ID.EnemyBullet, handler, 0, 5, 2));
 
             playSE(3);
         }
 
         if (cooldown2 == endCooldown2 && inPosition) {
-            handler.addObject(new EnemyBullet(x + 88, y + 64, ID.EnemyBullet, handler, 0, 3, 5));
-            handler.addObject(new EnemyBullet(x + 112, y + 64, ID.EnemyBullet, handler, 0, 3, 5));
-            handler.addObject(new EnemyBullet(x + 64, y + 64, ID.EnemyBullet, handler, -1, 3, 5));
-            handler.addObject(new EnemyBullet(x + 136, y + 64, ID.EnemyBullet, handler, 1, 3, 5));
+            handler.addObject(new EnemyBullet(x + 88, y + 64, ID.EnemyBullet, handler, 0,
+                    3, 5));
+            handler.addObject(new EnemyBullet(x + 112, y + 64, ID.EnemyBullet, handler,
+                    0, 3, 5));
+            handler.addObject(new EnemyBullet(x + 64, y + 64, ID.EnemyBullet, handler,
+                    -1, 3, 5));
+            handler.addObject(new EnemyBullet(x + 136, y + 64, ID.EnemyBullet, handler,
+                    1, 3, 5));
 
-            handler.addObject(new EnemyBullet(x + 288, y + 64, ID.EnemyBullet, handler, 0, 3, 5));
-            handler.addObject(new EnemyBullet(x + 312, y + 64, ID.EnemyBullet, handler, 0, 3, 5));
-            handler.addObject(new EnemyBullet(x + 264, y + 64, ID.EnemyBullet, handler, -1, 3, 5));
-            handler.addObject(new EnemyBullet(x + 336, y + 64, ID.EnemyBullet, handler, 1, 3, 5));
+            handler.addObject(new EnemyBullet(x + 288, y + 64, ID.EnemyBullet, handler,
+                    0, 3, 5));
+            handler.addObject(new EnemyBullet(x + 312, y + 64, ID.EnemyBullet, handler,
+                    0, 3, 5));
+            handler.addObject(new EnemyBullet(x + 264, y + 64, ID.EnemyBullet, handler,
+                    -1, 3, 5));
+            handler.addObject(new EnemyBullet(x + 336, y + 64, ID.EnemyBullet, handler,
+                    1, 3, 5));
 
             playSE(3);
 
             cooldown2 = 0;
         }
         if (cooldown3 == endCooldown3 && inPosition) {
-            handler.addObject(new EnegyBall(x + 173, y, ID.EnegyBall, handler, hud));
+            handler.addObject(new EnegyBall(x + 168, y, ID.EnegyBall, handler, hud));
 
             cooldown3 = 0;
 

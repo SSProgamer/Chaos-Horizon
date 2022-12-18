@@ -19,7 +19,7 @@ public class Spawn {
         delay = Game.clamp(delay, 0, 500);
 
         if (Wave.getIdEnemy() == 0) {
-            if (delay >= 500) {
+            if (delay >= 500 || hud.getWave() >= 5) {
                 new Wave(handler, hud, hud.getWave());
                 delay = 0;
             } else {

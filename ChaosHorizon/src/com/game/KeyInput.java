@@ -2,11 +2,16 @@ package com.game;
 
 import java.awt.event.*;
 
+import com.game.Game.STATE;
+
 public class KeyInput extends KeyAdapter {
     private Handler handler;
+    private Game game;
     private boolean[] keyDown = new boolean[4];
-    public KeyInput(Handler handler) {
+
+    public KeyInput(Handler handler, Game game) {
         this.handler = handler;
+        this.game = game;
 
         keyDown[0] = false;
         keyDown[1] = false;
@@ -46,8 +51,8 @@ public class KeyInput extends KeyAdapter {
             }
         }
 
-        if (key == KeyEvent.VK_ESCAPE) {
-            System.exit(1);
+        if (key == KeyEvent.VK_ESCAPE && game.gameState == STATE.Game) {
+            Player.HEALTH = 0;
         }
     }
 
