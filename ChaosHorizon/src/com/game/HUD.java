@@ -39,14 +39,20 @@ public class HUD {
         g.drawString("Ammo: Level " + Player.ammo, 600, 490);
         // g.drawString("BOMB", 600, 450);
         // g.drawString("DRILL", 680, 450);
+        g.setColor(Color.yellow);
+        g.fillRect(750, 415, 20, 20);
+        g.fillRect(750, 445, 20, 20);
+        g.fillRect(750, 475, 20, 20);
+        g.setColor(Color.black);
         g.drawRect(750, 415, 20, 20);
         g.drawRect(750, 445, 20, 20);
         g.drawRect(750, 475, 20, 20);
         g.drawString("^", 755, 435);
         g.drawString("^", 755, 465);
         g.drawString("^", 755, 495);
-        g.setFont(new Font("arial",1,10));
-        g.drawString("Use 50 point to upgrade.",600,530);
+        g.setColor(Color.white);
+        g.setFont(new Font("arial", 1, 10));
+        g.drawString("Use 50 point to upgrade.", 600, 530);
         g.drawString("(Up to Level 3)", 700, 400);
 
         // g.setFont(new Font("arial",1,24));

@@ -14,7 +14,6 @@ public class EndGame {
     }
 
     public void render(Graphics g) {
-        g.setColor(Color.black);
         Font head = new Font("arial", 1, 36);
         Font txt = new Font("arial", 1, 24);
         Image loseImg = Toolkit.getDefaultToolkit().getImage("ChaosHorizon/res/losebg.png");
@@ -22,8 +21,13 @@ public class EndGame {
 
         if (game.gameState == STATE.Lose) {
             g.drawImage(loseImg, 0, 0, null);
+
+            g.setColor(new Color(255, 255, 255, 100));
+            g.fillRect(0, 0, 800, 600);
+
+            g.setColor(Color.black);
             g.setFont(head);
-            g.drawString("You are crash and become Mermaid", 100, 100);
+            g.drawString("Your aircraft cannot take any damage!", 100, 100);
             g.drawString("Retry", 163, 500);
             g.drawString("Back to Menu", 400, 500);
             g.setFont(txt);
@@ -31,8 +35,13 @@ public class EndGame {
         }
         if (game.gameState == STATE.Win) {
             g.drawImage(winImg, 0, 0, null);
+
+            g.setColor(new Color(255, 255, 255, 100));
+            g.fillRect(0, 0, 800, 600);
+
+            g.setColor(Color.black);
             g.setFont(head);
-            g.drawString("You defeat the XD Empire.", 100, 100);
+            g.drawString("You defeated the evil organization!", 100, 100);
             g.drawString("Retry", 163, 500);
             g.drawString("Back to Menu", 400, 500);
             g.setFont(txt);

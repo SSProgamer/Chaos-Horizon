@@ -36,11 +36,22 @@ public class MainMenu extends MouseAdapter {
             g.drawString("____________", 620, 270);
             g.drawString(": " + Game.highestScore, 620, 300);
         } else if (game.gameState == STATE.Help) {
-            // drawhelp
+            // draw help
             g.drawImage(bg, 0, 0, null);
             Font fnt1 = new Font("arial", 1, 48);
             Font fnt2 = new Font("arial", 1, 28);
             Font fnt3 = new Font("arial", 1, 20);
+
+            g.setColor(new Color(255, 255, 255, 127));
+            g.fillRect(0, 0, 800, 600);
+
+            g.setColor(Color.white);
+            g.fillRect(350, 160, 75, 75);
+            g.fillRect(350, 260, 75, 75);
+            g.fillRect(250, 260, 75, 75);
+            g.fillRect(450, 260, 75, 75);
+            g.fillRect(105, 400, 125, 70);
+
             g.setFont(fnt1);
             g.setColor(Color.black);
             g.drawString("How to play?", 245, 70);
@@ -49,6 +60,7 @@ public class MainMenu extends MouseAdapter {
             g.drawRect(250, 260, 75, 75);
             g.drawRect(450, 260, 75, 75);
             g.drawRect(105, 400, 125, 70);
+
             g.setFont(fnt2);
             g.drawString("UP", 370, 150);
             g.drawString("DOWN", 345, 370);
@@ -60,6 +72,7 @@ public class MainMenu extends MouseAdapter {
             g.drawString("S", 380, 310);
             g.drawString("D", 475, 310);
             g.drawString("SHIFT", 130, 450);
+
             g.setFont(fnt3);
             g.drawString("Click again for back to Menu.", 20, 550);
             g.drawString("To upgrade click \"^\"", 400, 430);
