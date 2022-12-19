@@ -21,15 +21,14 @@ public class PlayerBullet extends GameObject {
     public void render(Graphics g) {
         Image pBulletImage = Toolkit.getDefaultToolkit().getImage("ChaosHorizon/res/player/weapon/range/bullet.gif");
         g.drawImage(pBulletImage, x - 6, y, null);
-
-        // g.setColor(Color.blue);
-        // g.fillRect(x, y, 12, 24);
     }
 
     public void tick() {
+        // movement
         x += velX;
         y += velY;
 
+        // when out of bounds
         if (x <= -16 || y <= -8 || y >= 550) {
             handler.removeObject(this);
         }

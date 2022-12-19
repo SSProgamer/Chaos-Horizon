@@ -16,10 +16,10 @@ public class MainMenu extends MouseAdapter {
         Image img1 = Toolkit.getDefaultToolkit().getImage("ChaosHorizon/res/logo.png");
         Image bg = Toolkit.getDefaultToolkit().getImage("ChaosHorizon/res/background.png");
         if (game.gameState == STATE.Menu) {
+            // draw menu
             g.drawImage(bg, 0, 0, null);
             g.setFont(new Font("arial", 1, 50));
             g.setColor(Color.getHSBColor((float) 0.55, (float) 0.5, (float) 1));
-            // g.drawString("God Damn Game XD!", 150, 100);
             g.drawImage(img1, 150, -100, null);
             g.fillRoundRect(250, 275, 300, 60, 10, 10);
             g.fillRoundRect(250, 375, 300, 60, 10, 10);

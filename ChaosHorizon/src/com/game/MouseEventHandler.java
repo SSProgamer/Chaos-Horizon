@@ -63,19 +63,19 @@ public class MouseEventHandler extends MouseAdapter {
         // upgrade
         else if (mouseOver(mx, my, 750, 415, 20, 20) && game.gameState == STATE.Game && Player.damage <= 2
                 && HUD.score >= 50) {
-            // do something
+            // damage
             Player.damage++;
             HUD.score -= 50;
             game.playSE(6);
         } else if (mouseOver(mx, my, 750, 445, 20, 20) && game.gameState == STATE.Game && Player.raf <= 2
                 && HUD.score >= 50) {
-            // do something
+            // rate of fire
             Player.raf++;
             HUD.score -= 50;
             game.playSE(6);
         } else if (mouseOver(mx, my, 750, 475, 20, 20) && game.gameState == STATE.Game && Player.ammo <= 2
                 && HUD.score >= 50) {
-            // do something
+            // ammo
             Player.ammo++;
             HUD.score -= 50;
             game.playSE(6);

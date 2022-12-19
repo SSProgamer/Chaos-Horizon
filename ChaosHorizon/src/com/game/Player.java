@@ -3,6 +3,7 @@ package com.game;
 import java.awt.*;
 
 public class Player extends GameObject {
+    // Player health
     public static int HEALTH = 100;
     private Handler handler;
     private PlaySound playSound;
@@ -14,7 +15,7 @@ public class Player extends GameObject {
 
     // Damage of out bullet | 1 -> 2 -> 3
     public static int damage;
-    // Rate of fire | Less Number = Shoot Faster
+    // Rate of fire | 1 -> 2 -> 3
     public static int raf;
     // How many bullet we shoot | 1 -> 2 -> 3
     public static int ammo;
@@ -42,18 +43,22 @@ public class Player extends GameObject {
     }
 
     public void tick() {
+        // cap number
         HEALTH = Game.clamp(HEALTH, 0, 100);
 
         endCooldown = 35 - (raf * 5);
-
-        x += velX;
-        y += velY;
         cooldown++;
 
+        // movement
+        x += velX;
+        y += velY;
+
+        // cap number
         x = Game.clamp(x, 0, Game.WIDTH - 312);
         y = Game.clamp(y, 0, Game.HEIGHT - 104);
         cooldown = Game.clamp(cooldown, 0, endCooldown);
 
+        // shoot
         if (shoot && (cooldown == endCooldown)) {
             handler.addObject(new PlayerBullet(x + 26, y - 20, ID.PlayerBullet, handler, 0, -10, damage));
             if (ammo >= 2) {
@@ -70,32 +75,30 @@ public class Player extends GameObject {
             cooldown = 0;
         }
 
+        // check collision
         collision();
     }
 
     public void render(Graphics g) {
-        // Graphics2D g2d = (Graphics2D) g;
         if (d == 1) {
+            // go left
             Image left = Toolkit.getDefaultToolkit()
                     .getImage("ChaosHorizon/res/player/ship/player_turn_left_hold64.gif");
             g.drawImage(left, x, y, null);
         } else if (d == 2) {
+            // go right
             Image right = Toolkit.getDefaultToolkit()
                     .getImage("ChaosHorizon/res/player/ship/player_turn_right_hold64.gif");
             g.drawImage(right, x, y, null);
         } else {
+            // normal
             Image img = Toolkit.getDefaultToolkit().getImage("ChaosHorizon/res/player/ship/player_idle64.gif");
             g.drawImage(img, x, y, null);
         }
-
-        // g.setColor(Color.white);
-        // g.fillRect(x, y, 64, 64);
-
-        // g.setColor(Color.green);
-        // g2d.draw(getBounds());
     }
 
     private synchronized void collision() {
+        // loop to all object in game
         for (int i = 0; i < handler.object.size(); i++) {
 
             GameObject tempObject = handler.object.get(i);
@@ -124,6 +127,7 @@ public class Player extends GameObject {
     }
 
     public void playSE(int i) {
+        // play sound effect
         playSound.setFile(i);
         playSound.play();
     }

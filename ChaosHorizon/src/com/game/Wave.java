@@ -3,7 +3,6 @@ package com.game;
 public class Wave {
     private Handler handler;
     private HUD hud;
-    // private int num = 20;
     private static int idEnemy = 0;
     private BasicEnemy basicEnemy;
     private HeavyEnemy heavyEnemy;
