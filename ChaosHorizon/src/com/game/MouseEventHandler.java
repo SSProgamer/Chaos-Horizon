@@ -4,10 +4,10 @@ import com.game.Game.STATE;
 
 import java.awt.event.*;
 
-public class mouseHandler extends MouseAdapter {
+public class MouseEventHandler extends MouseAdapter {
     private Game game;
 
-    public mouseHandler(Game game) {
+    public MouseEventHandler(Game game) {
         this.game = game;
     }
 

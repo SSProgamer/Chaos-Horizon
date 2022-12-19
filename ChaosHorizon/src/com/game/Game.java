@@ -18,7 +18,7 @@ public class Game extends Canvas implements Runnable {
     private MainMenu menu;
     private EndGame end;
     private BackgroundInGame backgroundInGame;
-    private mouseHandler mouse;
+    private MouseEventHandler mouse;
 
     // Make state variable
     public enum STATE {
@@ -39,7 +39,7 @@ public class Game extends Canvas implements Runnable {
         end = new EndGame(this);
         hud = new HUD();
         spawner = new Spawn(handler, hud);
-        mouse = new mouseHandler(this);
+        mouse = new MouseEventHandler(this);
         backgroundInGame = new BackgroundInGame(0, -635, ID.BackgroundInGame);
 
         this.addMouseListener(mouse);
