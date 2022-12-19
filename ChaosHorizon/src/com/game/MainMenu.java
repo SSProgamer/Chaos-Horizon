@@ -44,7 +44,7 @@ public class MainMenu extends MouseAdapter {
             Font fnt3 = new Font("arial", 1, 20);
             g.setFont(fnt1);
             g.setColor(Color.black);
-            g.drawString("How to play?", 45, 70);
+            g.drawString("How to play?", 245, 70);
             g.drawRect(350, 160, 75, 75);
             g.drawRect(350, 260, 75, 75);
             g.drawRect(250, 260, 75, 75);
@@ -63,8 +63,8 @@ public class MainMenu extends MouseAdapter {
             g.drawString("SHIFT", 130, 450);
             g.setFont(fnt3);
             g.drawString("Click again for back to Menu.", 20, 550);
-            g.drawString("To upgrade click \"Upgrade\"", 400, 430);
-            g.drawString("and Click which Upgrage you want to.", 400, 460);
+            g.drawString("To upgrade click \"^\"", 400, 430);
+            g.drawString("which Upgrade you want to.", 400, 460);
 
         }
     }
