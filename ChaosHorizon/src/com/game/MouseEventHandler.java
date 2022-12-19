@@ -36,7 +36,7 @@ public class MouseEventHandler extends MouseAdapter {
         else if (mouseOver(mx, my, 250, 475, 60, 300) && game.gameState == STATE.Menu) {
             if (game.gameState == STATE.Menu) {
                 game.playSE(6);
-                System.exit(1);
+                System.exit(0);
             }
         }
 

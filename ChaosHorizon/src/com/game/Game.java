@@ -18,7 +18,9 @@ public class Game extends Canvas implements Runnable {
     private MainMenu menu;
     private EndGame end;
     private BackgroundInGame backgroundInGame;
-    private MouseEventHandler mouse;
+    private MouseEventHandler mouseHandler;
+
+    public static int highestScore;
 
     // Make state variable
     public enum STATE {
@@ -39,10 +41,10 @@ public class Game extends Canvas implements Runnable {
         end = new EndGame(this);
         hud = new HUD();
         spawner = new Spawn(handler, hud);
-        mouse = new MouseEventHandler(this);
+        mouseHandler = new MouseEventHandler(this);
         backgroundInGame = new BackgroundInGame(0, -635, ID.BackgroundInGame);
 
-        this.addMouseListener(mouse);
+        this.addMouseListener(mouseHandler);
         this.addKeyListener(new KeyInput(handler, this));
 
         new Window(WIDTH, HEIGHT, "Chaos Horizon", this);
@@ -110,6 +112,10 @@ public class Game extends Canvas implements Runnable {
 
             end.setEndScore(HUD.score);
 
+            if (HUD.score > highestScore) {
+                highestScore = HUD.score;
+            }
+
             HUD.score = 0;
             Player.HEALTH = 100;
             handler.addObject(new Player(600 / 2 - 64, HEIGHT - 128, ID.Player, handler));
@@ -126,6 +132,10 @@ public class Game extends Canvas implements Runnable {
 
             end.setEndScore(HUD.score);
 
+            if (HUD.score > highestScore) {
+                highestScore = HUD.score;
+            }
+
             HUD.score = 0;
             Player.HEALTH = 100;
             handler.addObject(new Player(600 / 2 - 64, HEIGHT - 128, ID.Player, handler));
@@ -137,8 +147,6 @@ public class Game extends Canvas implements Runnable {
             hud.tick();
             backgroundInGame.tick();
             spawner.tick();
-        } else if (gameState == STATE.Menu) {
-            menu.tick();
         }
     }
 

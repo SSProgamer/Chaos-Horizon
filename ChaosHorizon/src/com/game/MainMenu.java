@@ -12,10 +12,6 @@ public class MainMenu extends MouseAdapter {
         this.game = game;
     }
 
-    public void tick() {
-
-    }
-
     public void render(Graphics g) {
         Image img1 = Toolkit.getDefaultToolkit().getImage("ChaosHorizon/res/logo.png");
         Image bg = Toolkit.getDefaultToolkit().getImage("ChaosHorizon/res/background.png");
@@ -36,6 +32,9 @@ public class MainMenu extends MouseAdapter {
             g.drawString("Start", 380, 310);
             g.drawString("Help", 380, 410);
             g.drawString("Exit", 380, 510);
+            g.drawString("Highest Score", 620, 260);
+            g.drawString("____________", 620, 270);
+            g.drawString(": " + Game.highestScore, 620, 300);
         } else if (game.gameState == STATE.Help) {
             // drawhelp
             g.drawImage(bg, 0, 0, null);
@@ -65,8 +64,6 @@ public class MainMenu extends MouseAdapter {
             g.drawString("Click again for back to Menu.", 20, 550);
             g.drawString("To upgrade click \"^\"", 400, 430);
             g.drawString("which Upgrade you want to.", 400, 460);
-
         }
     }
-
 }

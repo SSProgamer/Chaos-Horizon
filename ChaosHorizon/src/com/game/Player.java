@@ -135,5 +135,4 @@ public class Player extends GameObject {
     public void setShoot(boolean shoot) {
         this.shoot = shoot;
     }
-
 }
