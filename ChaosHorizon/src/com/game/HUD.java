@@ -45,6 +45,7 @@ public class HUD {
         g.drawString("^", 755, 435);
         g.drawString("^", 755, 465);
         g.drawString("^", 755, 495);
+        g.drawString("Use 50 point to upgrade.",600,530);
 
         // g.setFont(new Font("arial",1,24));
         // g.drawString("UPGRADE",600,500);
