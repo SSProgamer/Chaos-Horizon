@@ -41,20 +41,13 @@ public class Boss extends GameObject {
     }
 
     public Rectangle getBounds() {
+        // set hit-box
         return new Rectangle(x + 72, y, 254, 64);
     }
 
     public void render(Graphics g) {
-        // Graphics2D g2d = (Graphics2D) g;
-
-        // g.setColor(Color.orange);
-        // g.fillRect(x, y, 400, 64);
-
         Image img = Toolkit.getDefaultToolkit().getImage("ChaosHorizon/res/enemy/boss/boss.gif");
         g.drawImage(img, x, y, null);
-
-        // g.setColor(Color.green);
-        // g2d.draw(getBounds());
     }
 
     public void tick() {
@@ -64,24 +57,27 @@ public class Boss extends GameObject {
             cooldown3++;
         }
 
+        // cap number
         cooldown1 = Game.clamp(cooldown1, 0, endCooldown1);
         cooldown2 = Game.clamp(cooldown2, 0, endCooldown2);
         cooldown3 = Game.clamp(cooldown3, 0, endCooldown3);
 
+        // go to position
         if (y < 0) {
             y += velY;
         } else {
             inPosition = true;
         }
 
+        // movement when in position
         if (inPosition) {
             x += velX;
         }
-
         if (x >= 222 || x <= -72) {
             velX *= -1;
         }
 
+        // check hp
         if (HP <= 0) {
             playSE(7);
             handler.removeObject(this);
@@ -89,6 +85,7 @@ public class Boss extends GameObject {
             Wave.setIdEnemy(Wave.getIdEnemy() - 1);
         }
 
+        // shoot
         if (cooldown1 == endCooldown1 && inPosition) {
             handler.addObject(new EnemyBullet(x + 20 + 32 * 2, y + 64, ID.EnemyBullet, handler, 0, 5, 2, bulletImg1));
             handler.addObject(new EnemyBullet(x + 20 + 32 * 9, y + 64, ID.EnemyBullet, handler, 0, 5, 2, bulletImg1));
@@ -136,6 +133,7 @@ public class Boss extends GameObject {
 
             cooldown2 = 0;
         }
+
         if (cooldown3 == endCooldown3 && inPosition) {
             handler.addObject(new EnegyBall(x + 168, y, ID.EnegyBall, handler));
 
@@ -144,18 +142,22 @@ public class Boss extends GameObject {
             playSE(3);
         }
 
+        // check collision
         collision();
     }
 
     private synchronized void collision() {
+        // loop to all object in game
         for (int i = 0; i < handler.object.size(); i++) {
             GameObject tempObject = handler.object.get(i);
 
+            // collision player
             if (tempObject.getId() == ID.Player) {
                 if (getBounds().intersects(tempObject.getBounds())) {
                     HP--;
                 }
             }
+            // collision player bullet
             if (tempObject.getId() == ID.PlayerBullet) {
                 if (getBounds().intersects(tempObject.getBounds())) {
                     HP -= ((PlayerBullet) tempObject).getBulletDamage();
@@ -167,6 +169,7 @@ public class Boss extends GameObject {
     }
 
     public void playSE(int i) {
+        // play sound effect
         playSound.setFile(i);
         playSound.play();
     }

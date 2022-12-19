@@ -19,6 +19,7 @@ public class EndGame {
         Image loseImg = Toolkit.getDefaultToolkit().getImage("ChaosHorizon/res/losebg.png");
         Image winImg = Toolkit.getDefaultToolkit().getImage("ChaosHorizon/res/winbg.png");
 
+        // when lose
         if (game.gameState == STATE.Lose) {
             g.drawImage(loseImg, 0, 0, null);
 
@@ -33,6 +34,7 @@ public class EndGame {
             g.setFont(txt);
             g.drawString("Score : " + endScore, 350, 400);
         }
+        // when win
         if (game.gameState == STATE.Win) {
             g.drawImage(winImg, 0, 0, null);
 

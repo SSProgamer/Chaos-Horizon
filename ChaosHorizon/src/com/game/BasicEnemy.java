@@ -64,11 +64,10 @@ public class BasicEnemy extends GameObject {
     public void render(Graphics g) {
         Image img = Toolkit.getDefaultToolkit().getImage("ChaosHorizon/res/enemy/medium_ship/enemy_medium.gif");
         g.drawImage(img, x, y, null);
-        // g.setColor(Color.red);
-        // g.fillRect(x, y, 32, 32);
     }
 
     public void tick() {
+        // go to position
         if (y <= maxY) {
             maxedY += velY;
             y += velY;
@@ -82,12 +81,15 @@ public class BasicEnemy extends GameObject {
         shoot = r.nextInt(100);
         cooldown++;
 
+        // cap number
         cooldown = Game.clamp(cooldown, 0, endCooldown);
 
+        // movement when in position
         if (x <= startX - 90 || x >= Game.WIDTH - 470 + startX - (numberEnemy * 25)) {
             velX *= -1;
         }
 
+        // check hp
         if (HP <= 0) {
             playSE(7);
             handler.removeObject(this);
@@ -95,6 +97,7 @@ public class BasicEnemy extends GameObject {
             Wave.setIdEnemy(Wave.getIdEnemy() - 1);
         }
 
+        // shoot
         if (cooldown == endCooldown && shoot <= 5 && inPosition) {
             handler.addObject(new EnemyBullet(x + 12, y + 32, ID.EnemyBullet, handler, 0, 5, 2, bulletImg));
 
@@ -103,22 +106,25 @@ public class BasicEnemy extends GameObject {
             cooldown = 0;
         }
 
+        // check collision
         collision();
     }
 
     private synchronized void collision() {
+        // loop to all object in game
         for (int i = 0; i < handler.object.size(); i++) {
             GameObject tempObject = handler.object.get(i);
 
+            // collision player
             if (tempObject.getId() == ID.Player) {
                 if (getBounds().intersects(tempObject.getBounds())) {
                     HP--;
                 }
             }
+            // collision player bullet
             if (tempObject.getId() == ID.PlayerBullet) {
                 if (getBounds().intersects(tempObject.getBounds())) {
                     HP -= ((PlayerBullet) tempObject).getBulletDamage();
-                    ;
                     handler.removeObject(tempObject);
                 }
             }
@@ -126,6 +132,7 @@ public class BasicEnemy extends GameObject {
     }
 
     public void playSE(int i) {
+        // play sound effect
         playSound.setFile(i);
         playSound.play();
     }

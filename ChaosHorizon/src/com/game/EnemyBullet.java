@@ -21,21 +21,15 @@ public class EnemyBullet extends GameObject {
     }
 
     public void render(Graphics g) {
-        // Graphics2D g2d = (Graphics2D) g;
-
-        // g.setColor(Color.yellow);
-        // g.fillRect(x, y, 8, 8);
-
         g.drawImage(img, x, y, null);
-
-        // g.setColor(Color.green);
-        // g2d.draw(getBounds());
     }
 
     public void tick() {
+        // movement
         x += velX;
         y += velY;
 
+        // when out of bounds
         if (x >= Game.WIDTH || x <= -10 || y >= Game.HEIGHT || y <= -10) {
             handler.removeObject(this);
         }

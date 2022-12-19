@@ -24,21 +24,21 @@ public class EnegyBall extends GameObject {
     }
 
     public void render(Graphics g) {
-        // g.setColor(Color.magenta);
-        // g.fillRect(x, y, 64, 64);
-
         Image img = Toolkit.getDefaultToolkit().getImage("ChaosHorizon/res/enemy/boss/boss_energy_ball.gif");
         g.drawImage(img, x, y, null);
     }
 
     public void tick() {
+        // movement
         y += velY;
 
+        // check hp
         if (HP <= 0) {
             handler.removeObject(this);
             HUD.score += 10;
         }
 
+        // when in position
         if (y >= 300) {
             handler.addObject(new EnemyBullet(x + 28, y + 28, ID.EnemyBullet, handler, 0, 7, 1, bulletImg));
             handler.addObject(new EnemyBullet(x + 28, y + 28, ID.EnemyBullet, handler, 0, -7, 1, bulletImg));
@@ -54,18 +54,22 @@ public class EnegyBall extends GameObject {
             handler.removeObject(this);
         }
 
+        // check collision
         collision();
     }
 
     private synchronized void collision() {
+        // loop to all object in game
         for (int i = 0; i < handler.object.size(); i++) {
             GameObject tempObject = handler.object.get(i);
 
+            // collision player
             if (tempObject.getId() == ID.Player) {
                 if (getBounds().intersects(tempObject.getBounds())) {
                     HP--;
                 }
             }
+            // collision player bullet
             if (tempObject.getId() == ID.PlayerBullet) {
                 if (getBounds().intersects(tempObject.getBounds())) {
                     HP -= ((PlayerBullet) tempObject).getBulletDamage();
@@ -77,6 +81,7 @@ public class EnegyBall extends GameObject {
     }
 
     public void playSE(int i) {
+        // play sound effect
         playSound.setFile(i);
         playSound.play();
     }

@@ -44,9 +44,11 @@ public class Game extends Canvas implements Runnable {
         mouseHandler = new MouseEventHandler(this);
         backgroundInGame = new BackgroundInGame(0, -635, ID.BackgroundInGame);
 
+        // add listener
         this.addMouseListener(mouseHandler);
         this.addKeyListener(new KeyInput(handler, this));
 
+        // make window
         new Window(WIDTH, HEIGHT, "Chaos Horizon", this);
 
         // music start
@@ -74,6 +76,7 @@ public class Game extends Canvas implements Runnable {
 
     public void run() {
         this.requestFocus();
+        // too hard to explain
         long lastTime = System.nanoTime();
         double amountOfTicks = 60.0;
         double ns = 1000000000 / amountOfTicks;
@@ -102,8 +105,11 @@ public class Game extends Canvas implements Runnable {
     }
 
     private void tick() {
+        // order the work of all objects in the game
         handler.tick();
+        // win
         if (hud.getWave() >= 6) {
+            // build all object in new game
             handler = new Handler();
             hud = new HUD();
             spawner = new Spawn(handler, hud);
@@ -122,8 +128,10 @@ public class Game extends Canvas implements Runnable {
             Wave.setIdEnemy(0);
             gameState = STATE.Win;
         }
+        // lose
         if (Player.HEALTH <= 0) {
             playSE(7);
+            // build all object in new game
             handler = new Handler();
             hud = new HUD();
             spawner = new Spawn(handler, hud);
@@ -144,6 +152,7 @@ public class Game extends Canvas implements Runnable {
         }
         // check State
         if (gameState == STATE.Game) {
+            // object work in every tick
             hud.tick();
             backgroundInGame.tick();
             spawner.tick();
@@ -179,6 +188,7 @@ public class Game extends Canvas implements Runnable {
     }
 
     public static int clamp(int var, int min, int max) {
+        // cap number
         if (var >= max) {
             return var = max;
         } else if (var <= min) {
@@ -189,21 +199,25 @@ public class Game extends Canvas implements Runnable {
     }
 
     public void playMusic(int i) {
+        // play music
         playSound.setFile(i);
         playSound.play();
         playSound.loop();
     }
 
     public void stopMusic() {
+        // stop music
         playSound.stop();
     }
 
     public void playSE(int i) {
+        // play sound effect
         playSound.setFile(i);
         playSound.play();
     }
 
     public static void main(String[] args) {
+        // start game
         new Game();
     }
 }

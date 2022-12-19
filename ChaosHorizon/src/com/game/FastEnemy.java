@@ -49,13 +49,11 @@ public class FastEnemy extends GameObject {
     public void render(Graphics g) {
         Image img = Toolkit.getDefaultToolkit().getImage("ChaosHorizon/res/enemy/small_ship/small_enemy_16px.gif");
         g.drawImage(img, x, y, null);
-        // g.setColor(Color.pink);
-        // g.fillRect(x, y, 16, 16);
     }
 
     public void tick() {
+        // movement
         if (x <= 0) {
-            // y -= velY;
             x += velX;
         } else {
             y += velY;
@@ -65,8 +63,10 @@ public class FastEnemy extends GameObject {
         shoot = r.nextInt(100);
         cooldown++;
 
+        // cap
         cooldown = Game.clamp(cooldown, 0, endCooldown);
 
+        // movement
         if (x <= numberEnemy * -45 || x >= Game.WIDTH) {
             velX *= -1;
         }
@@ -74,6 +74,7 @@ public class FastEnemy extends GameObject {
             velY *= -1;
         }
 
+        // check hp
         if (HP <= 0) {
             playSE(7);
             handler.removeObject(this);
@@ -81,6 +82,7 @@ public class FastEnemy extends GameObject {
             Wave.setIdEnemy(Wave.getIdEnemy() - 1);
         }
 
+        // shoot
         if (cooldown == endCooldown && shoot <= 5 && inPosition) {
             handler.addObject(new EnemyBullet(x + 4, y + 16, ID.EnemyBullet, handler, 0, 7, 1, bulletImg));
 
@@ -89,18 +91,22 @@ public class FastEnemy extends GameObject {
             cooldown = 0;
         }
 
+        // check collision
         collision();
     }
 
     private synchronized void collision() {
+        // loop to all object in game
         for (int i = 0; i < handler.object.size(); i++) {
             GameObject tempObject = handler.object.get(i);
 
+            // collision player
             if (tempObject.getId() == ID.Player) {
                 if (getBounds().intersects(tempObject.getBounds())) {
                     HP--;
                 }
             }
+            // collision player bullet
             if (tempObject.getId() == ID.PlayerBullet) {
                 if (getBounds().intersects(tempObject.getBounds())) {
                     HP -= ((PlayerBullet) tempObject).getBulletDamage();
@@ -112,6 +118,7 @@ public class FastEnemy extends GameObject {
     }
 
     public void playSE(int i) {
+        // play sound effect
         playSound.setFile(i);
         playSound.play();
     }

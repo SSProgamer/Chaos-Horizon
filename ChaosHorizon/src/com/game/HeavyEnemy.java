@@ -41,9 +41,6 @@ public class HeavyEnemy extends GameObject {
         return idEnemy;
     }
 
-    public static void setNumberEnemy(int numberEnemy) {
-    }
-
     public void setEnemyPosition(int idEnemy) {
         if (idEnemy % 2 == 0) {
             maxY = 90;
@@ -65,11 +62,10 @@ public class HeavyEnemy extends GameObject {
     public void render(Graphics g) {
         Image img = Toolkit.getDefaultToolkit().getImage("ChaosHorizon/res/enemy/big_ship/big_enemy.gif");
         g.drawImage(img, x, y, null);
-        // g.setColor(Color.pink);
-        // g.fillRect(x, y, 48, 48);
     }
 
     public void tick() {
+        // go to position
         if (y <= maxY) {
             maxedY += velY;
             y += velY;
@@ -83,12 +79,15 @@ public class HeavyEnemy extends GameObject {
         shoot = r.nextInt(100);
         cooldown++;
 
+        // cap number
         cooldown = Game.clamp(cooldown, 0, endCooldown);
 
+        // movement when in position
         if (x <= startX - 200 || x >= Game.WIDTH - 470 + startX - 135) {
             velX *= -1;
         }
 
+        // check hp
         if (HP <= 0) {
             playSE(7);
             handler.removeObject(this);
@@ -96,6 +95,7 @@ public class HeavyEnemy extends GameObject {
             Wave.setIdEnemy(Wave.getIdEnemy() - 1);
         }
 
+        // shoot
         if (cooldown == endCooldown && shoot <= 5 && inPosition) {
             handler.addObject(new EnemyBullet(x + 4, y + 48, ID.EnemyBullet, handler, 0, 3, 4, bulletImg));
             handler.addObject(new EnemyBullet(x + 36, y + 48, ID.EnemyBullet, handler, 0, 3, 4, bulletImg));
@@ -105,18 +105,22 @@ public class HeavyEnemy extends GameObject {
             cooldown = 0;
         }
 
+        // check collision
         collision();
     }
 
     private synchronized void collision() {
+        // loop to all object in game
         for (int i = 0; i < handler.object.size(); i++) {
             GameObject tempObject = handler.object.get(i);
 
+            // collision player
             if (tempObject.getId() == ID.Player) {
                 if (getBounds().intersects(tempObject.getBounds())) {
                     HP--;
                 }
             }
+            // collision player bullet
             if (tempObject.getId() == ID.PlayerBullet) {
                 if (getBounds().intersects(tempObject.getBounds())) {
                     HP -= ((PlayerBullet) tempObject).getBulletDamage();
@@ -127,6 +131,7 @@ public class HeavyEnemy extends GameObject {
     }
 
     public void playSE(int i) {
+        // play sound effect
         playSound.setFile(i);
         playSound.play();
     }
