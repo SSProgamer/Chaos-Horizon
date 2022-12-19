@@ -3,6 +3,7 @@ package com.game;
 import com.game.Game.STATE;
 
 import java.awt.event.*;
+import java.io.*;
 
 public class MouseEventHandler extends MouseAdapter {
     private Game game;
@@ -36,6 +37,12 @@ public class MouseEventHandler extends MouseAdapter {
         else if (mouseOver(mx, my, 250, 475, 60, 300) && game.gameState == STATE.Menu) {
             if (game.gameState == STATE.Menu) {
                 game.playSE(6);
+                try (FileOutputStream fout = new FileOutputStream("Data.dat");) {
+                    for (int i = 0; i < String.valueOf(Game.highestScore).length(); i++)
+                        fout.write(String.valueOf(Game.highestScore).charAt(i));
+                } catch (IOException ei) {
+                    System.out.println(ei);
+                }
                 System.exit(0);
             }
         }
