@@ -37,7 +37,7 @@ public class MouseEventHandler extends MouseAdapter {
         else if (mouseOver(mx, my, 250, 475, 60, 300) && game.gameState == STATE.Menu) {
             if (game.gameState == STATE.Menu) {
                 game.playSE(6);
-                try (FileOutputStream fout = new FileOutputStream("Data.dat");) {
+                try (FileOutputStream fout = new FileOutputStream("ChaosHorizon/Data.dat");) {
                     for (int i = 0; i < String.valueOf(Game.highestScore).length(); i++)
                         fout.write(String.valueOf(Game.highestScore).charAt(i));
                 } catch (IOException ei) {

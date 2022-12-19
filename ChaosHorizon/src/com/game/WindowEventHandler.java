@@ -12,7 +12,7 @@ public class WindowEventHandler extends WindowAdapter {
 
     @Override
     public void windowClosing(WindowEvent e) {
-        try (FileOutputStream fout = new FileOutputStream("Data.dat");) {
+        try (FileOutputStream fout = new FileOutputStream("ChaosHorizon/Data.dat");) {
             for (int i = 0; i < String.valueOf(Game.highestScore).length(); i++)
                 fout.write(String.valueOf(Game.highestScore).charAt(i));
         } catch (IOException ei) {
@@ -22,7 +22,7 @@ public class WindowEventHandler extends WindowAdapter {
 
     @Override
     public void windowOpened(WindowEvent e) {
-        try (FileInputStream fin = new FileInputStream("Data.dat");) {
+        try (FileInputStream fin = new FileInputStream("ChaosHorizon/Data.dat");) {
             int i = fin.read();
             while (i != -1) {
                 saveString = saveString + (char) i;
